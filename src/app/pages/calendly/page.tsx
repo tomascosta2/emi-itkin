@@ -188,7 +188,7 @@ export default function CalendlyFast() {
       <section className="py-[40px] px-4">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex flex-wrap justify-center gap-4 mt-8">
-            {TESTIMONIALS.map((t, i) => (
+            {TESTIMONIALS.splice(1,3).map((t, i) => (
               <div className="rounded-[14px] w-full md:w-[32%] bg-[var(--primary)] p-1 overflow-hidden">
                 {/* <p className="text-center py-2 bg-[var(--primary)] text-[#111] font-semibold">
                   {t.weight}

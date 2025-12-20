@@ -6,16 +6,18 @@ export const calendlyBaseUrl = "<<LLENAR>>"
 
 export const waNumber = "<<LLENAR>>";
 
-export const ALT_IMG_GENERIC = "<<LLENAR>>"
+export const ALT_IMG_GENERIC = "Emiliano Itkin - Fit"
 
 // Calendario: helpers
 export const titleCalender = "Reunión con el equipo de Emi – Plan para recomponer hormonas y músculo";
 export const descriptionCalender = `Reunión 1:1 para alinear objetivos y plan.\nEnlace: MEETING_URL\nTraer dudas y objetivos claros.`;
 export const locationCalender = "Online (se compartirá enlace)";
 
+
+
 // VSL
-export const idVsl = "<<LLENAR>>";
-export const srcVsl = "/placeholder.mp4";
+export const idVsl = "panda-db8732b6-b713-4da2-ba3d-df8726f6f5e3";
+export const srcVsl = "https://player-vz-5c2adb98-6a4.tv.pandavideo.com/embed/?v=db8732b6-b713-4da2-ba3d-df8726f6f5e3";
 
 // Thankyou
 export const idThankyou = "<<LLENAR>>";
