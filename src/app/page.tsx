@@ -178,7 +178,7 @@ export default function Home() {
             {TESTIMONIALS.map((t, i) => (
               <div className="rounded-[14px] w-full md:w-[32%] bg-[var(--primary)] p-1 overflow-hidden">
                 <p className="text-center py-2 bg-[var(--primary)] text-[#f5f5f5] font-semibold">
-                  {/* {t.weight} */}
+                  {t.weight}
                 </p>
                 <img
                   className="w-full rounded-[10px] h-[310px] max-h-full object-cover"
