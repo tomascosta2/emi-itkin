@@ -35,20 +35,12 @@ export default function Home() {
   return (
     <div className="relative overflow-clip">
       {isFormOpened && <CalificationFormDirect variant={variant} />}
-      <header className="bg-[var(--primary)] max-w-[85%] w-[400px] rounded-full mt-8 md:mt-12 mx-auto">
+      <header className="border border-[var(--primary)] bg-[var(--primary)]/20 max-w-[85%] w-[400px] rounded-full mt-8 md:mt-12 mx-auto">
         <div className="cf-container">
           <h3 className="text-center text-[var(--text-primary)] text-[14px] py-3 font-bold leading-[115%]">
-            {variant === "A" && (
               <span>
-                Te exigis, te castigas, lo das todo… y aún así ¿no te reconoces
-                frente al espejo?
+                Exclusivo para Profesionales Mayores de 30
               </span>
-            )}
-            {variant === "B" && (
-              <span>
-                ¿Tenes un buen trabajo pero te has dejado estar con tu fisico?
-              </span>
-            )}
           </h3>
         </div>
       </header>
@@ -57,16 +49,16 @@ export default function Home() {
       <section className="mt-6 md:mt-8 pb-[60px] md:pb-[80px]">
         <div className="cf-container">
           <h1 className="text-center text-[20px] md:text-[32px] font-bold leading-[120%]">
-            <span>
-              BAJÁ ENTRE{" "}
-              <span className="">
-                [X] Y [Y] KG DE GRASA CORPORAL Y TONIFICÁ EN 90 DÍAS
-              </span>{" "}
-              CON MI{" "}
-              <span className="">
-                MÉTODO PARA HOMBRES OCUPADOS
-              </span>{" "}
-            </span>
+            {variant === "A" && (
+              <span>
+                BAJA +10 KG DE GRASA EN 16 SEMANAS ENTRENANDO DESDE CASA CON MI PROGRAMA 100% CALISTENIA
+              </span>
+            )}
+            {variant === "B" && (
+              <span>
+                BAJA +10 KG DE GRASA, RECUPERA TU ENERGÍA Y TONIFICÁ EN 16 SEMANAS ENTRENANDO DESDE CASA CON MI PROGRAMA 100% CALISTENIA
+              </span>
+            )}
             <br/>
             <span className="text-[16px] text-[var(--primary)] leading-[100%] block mt-2">SIN DIETAS EXTREMAS NI RUTINAS IMPOSIBLES</span>
           </h1>
@@ -86,8 +78,7 @@ export default function Home() {
             </div>
           </section>
           <p className="mt-4 text-center text-[16px] max-w-[700px] mx-auto">
-            <strong>Paso 2 de 2:</strong> Agenda una Llamada para Asegurar tu
-            Lugar y tu Cambio Fisico.
+            <strong>Paso 2 de 2:</strong> Agenda una Llamada si te gustaria entrar al programa y empezar tu cambio.
           </p>
 
           {/* Botón bloqueado 5 minutos */}
@@ -104,7 +95,7 @@ export default function Home() {
             </button>
             <p className="text-center mt-4 text-white/60 italic mx-auto max-w-[350px] text-[14px]">
               {isUnlocked
-                ? "Solo 6 cupos nuevos por mes"
+                ? "Solo hay 8 cupos nuevos por mes. Si tu objetivo es lograr un resultado real, aplicá arriba."
                 : "⚠️ El botón se habilitará luego de ver el video."}
             </p>
           </div>
@@ -166,7 +157,7 @@ export default function Home() {
                 ¡AGENDAR MI SESIÓN DE DIAGNÓSTICO!
               </button>
               <p className="text-center mt-4 text-white/60 italic mx-auto max-w-[350px] text-[14px]">
-                Solo 6 cupos nuevos por mes
+                Solo hay 8 cupos nuevos por mes. Si tu objetivo es lograr un resultado real, aplicá arriba.
               </p>
             </div>
           </section>
@@ -187,7 +178,7 @@ export default function Home() {
             {TESTIMONIALS.map((t, i) => (
               <div className="rounded-[14px] w-full md:w-[32%] bg-[var(--primary)] p-1 overflow-hidden">
                 <p className="text-center py-2 bg-[var(--primary)] text-[#f5f5f5] font-semibold">
-                  {t.weight}
+                  {/* {t.weight} */}
                 </p>
                 <img
                   className="w-full rounded-[10px] h-[310px] max-h-full object-cover"
@@ -225,7 +216,7 @@ export default function Home() {
             </button>
             <p className="text-center mt-4 text-white/60 italic mx-auto max-w-[350px] text-[14px]">
               {isUnlocked
-                ? "Solo 6 cupos nuevos por mes"
+                ? "Solo hay 8 cupos nuevos por mes. Si tu objetivo es lograr un resultado real, aplicá arriba."
                 : "⚠️ El botón se habilitará luego de ver el video."}
             </p>
           </div>
@@ -249,7 +240,7 @@ export default function Home() {
             </button>
             <p className="text-center mt-4 text-white/60 italic mx-auto max-w-[350px] text-[14px]">
               {isUnlocked
-                ? "Solo 6 cupos nuevos por mes"
+                ? "Solo hay 8 cupos nuevos por mes. Si tu objetivo es lograr un resultado real, aplicá arriba."
                 : "⚠️ El botón se habilitará luego de ver el video."}
             </p>
           </div>

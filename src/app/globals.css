@@ -41,6 +41,6 @@ body {
 	@apply max-w-[1020px] mx-auto px-4;
 }
 .cf-btn {
-	@apply flex items-center text-[18px] justify-center gap-2 rounded-lg w-full py-6 font-semibold disabled:bg-gray-400 text-[var(--background)] cursor-pointer text-center max-w-[480px] mx-auto;
+	@apply flex items-center text-[18px] justify-center gap-2 rounded-lg w-full py-6 font-semibold disabled:bg-gray-400 text-[var(--text-primary)] cursor-pointer text-center max-w-[480px] mx-auto;
 	background-color: var(--primary);
 }
