@@ -2,9 +2,9 @@ export const coachName = "Emiliano Itkin"
 
 export const pixelId = "639700134796854"
 
-export const calendlyBaseUrl = "<<LLENAR>>"
+export const calendlyBaseUrl = "//calendly.com/emilianoitkincoach/asesoria-1-1?embed_domain=100porcientocalistenia.com&embed_type=Inline"
 
-export const waNumber = "<<LLENAR>>";
+export const waNumber = "5493446406338";
 
 export const ALT_IMG_GENERIC = "Emiliano Itkin - Fit"
 
@@ -23,15 +23,6 @@ export const srcVsl = "https://player-vz-5c2adb98-6a4.tv.pandavideo.com/embed/?v
 export const idThankyou = "<<LLENAR>>";
 export const srcThankyou = "/placeholder.mp4";
 
-export const VIDEO_TESTIMONIALS = [
-    {
-        video: "/placeholder.mp4",
-        titulo: "<<LLENAR>>",
-        story: "<<LLENAR>>",
-        nombre: "<<LLENAR>>",
-        dato: "<<LLENAR>>",
-    },
-];
 
 export const TESTIMONIALS = [
     // {
@@ -116,7 +107,7 @@ export const MORE_CHANGES_IMG = "/images/testimonios/testimonio1.webp";
 
 // Hacemos una constante aparte para modificar puntualmente que imagenes queremos en THANKYOU
 export const TESTIMONIALS_THANKYOU_IMG = [
-        {
+    {
         img: "/images/testimonios/testimonio1.webp",
     },
     {
@@ -138,16 +129,46 @@ export const TESTIMONIALS_VIDEO_PAGE = [
         nombre: "Carlos Andres Paul",
         dato: "Buenos Aires, Argentina",
     },
+    {
+        video:
+            "https://player-vz-5c2adb98-6a4.tv.pandavideo.com/embed/?v=2b6ef2c9-fa26-4861-b327-826ca6af4ccb",
+        titulo: "Recomiendo este programa porque me funcionó",
+        story:
+            "Lo que más valoré fue el acompañamiento: nuestras reuniones semanales, la app que utilizamos, donde tenés las dietas, las recetas, la música y el grupo de WhatsApp que te motiva a sumarte.",
+        nombre: "Hugo Reynoso",
+        dato: "Buenos Aires, Argentina",
+    },
+
+    {
+        video:
+            "https://player-vz-5c2adb98-6a4.tv.pandavideo.com/embed/?v=05ae2960-cf86-48a2-b00b-bd7258043a86",
+        titulo: "Tuve los resultados que hace tiempo venía buscando",
+        story:
+            "En el primer chequeo bajé entre 2 y 5 kilos, y siempre tuve un progreso.",
+        nombre: "Dario Gutierrez",
+        dato: "Buenos Aires, Argentina",
+    },
+    {
+        video:
+            "https://player-vz-5c2adb98-6a4.tv.pandavideo.com/embed/?v=db5ef3d1-2167-4292-9dac-78be05e39afe",
+        titulo: "Antes no tenía un seguimiento personalizado",
+        story:
+            "El programa te ofrece hacerlo desde tu casa y una dieta acorde, que no implica un sacrificio.",
+        nombre: "Christian Armesto",
+        dato: "Córdoba, Argentina",
+    }
 ];
 
 
 export const CALENDLY_TITLE_PART1 =
-    "<<LLENAR>>";
+    "Transformá tu cuerpo en 16 semanas bajando grasa de forma sostenida";
 
-export const CALENDLY_SPAN = "<<LLENAR>>";
+export const CALENDLY_SPAN =
+    "entrenando desde casa con calistenia";
 
 export const CALENDLY_TITLE_PART2 =
-    "<<LLENAR>>";
+    "Agendá una llamada y veamos cómo hacerlo de manera personalizada.";
+
 
 export const hotjarID = "<<LLENAR>>"
 

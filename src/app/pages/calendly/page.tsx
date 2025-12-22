@@ -166,7 +166,7 @@ export default function CalendlyFast() {
               WhatsApp al{" "}
               <a
                 className="underline text-blue-500"
-                href="https://wa.me/5492216720769"
+                href={`https://wa.me/${waNumber}`}
                 target="_blank"
               >
                 +{waNumber}
