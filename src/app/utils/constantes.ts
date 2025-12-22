@@ -9,7 +9,7 @@ export const waNumber = "<<LLENAR>>";
 export const ALT_IMG_GENERIC = "Emiliano Itkin - Fit"
 
 // Calendario: helpers
-export const titleCalender = "Reunión con el equipo de Emi – Plan para recomponer hormonas y músculo";
+export const titleCalender = "Reunión con el equipo de Emi";
 export const descriptionCalender = `Reunión 1:1 para alinear objetivos y plan.\nEnlace: MEETING_URL\nTraer dudas y objetivos claros.`;
 export const locationCalender = "Online (se compartirá enlace)";
 
@@ -34,9 +34,9 @@ export const VIDEO_TESTIMONIALS = [
 ];
 
 export const TESTIMONIALS = [
-    {
-        img: "/images/testimonios/testimonio1.webp",
-    },
+    // {
+    //     img: "/images/testimonios/testimonio1.webp",
+    // },
     {
         img: "/images/testimonios/testimonio2.webp",
     },
@@ -61,9 +61,9 @@ export const TESTIMONIALS = [
     {
         img: "/images/testimonios/testimonio9.webp",
     },
-    {
-        img: "/images/testimonios/testimonio10.webp",
-    },
+    // {
+    //     img: "/images/testimonios/testimonio10.webp",
+    // },
     {
         img: "/images/testimonios/testimonio11.webp",
     },
@@ -82,15 +82,15 @@ export const TESTIMONIALS = [
     {
         img: "/images/testimonios/testimonio16.webp",
     },
-    {
-        img: "/images/testimonios/testimonio17.webp",
-    },
+    // {
+    //     img: "/images/testimonios/testimonio17.webp",
+    // },
     {
         img: "/images/testimonios/testimonio18.webp",
     },
-    {
-        img: "/images/testimonios/testimonio19.webp",
-    },
+    // {
+    //     img: "/images/testimonios/testimonio19.webp",
+    // },
     {
         img: "/images/testimonios/testimonio20.webp",
     },

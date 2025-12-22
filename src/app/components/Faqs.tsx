@@ -5,12 +5,48 @@
 import { useState } from 'react';
 
 const faqs = [
-	{
-		pregunta: "¿Realmente puedo bajar tanto peso en tan poco tiempo, o es solo humo?",
-		respuesta:
-			"Respuesta"
-	},
+  {
+    pregunta: "¿La llamada tiene algún costo?",
+    respuesta:
+      "No. La llamada es 100% gratuita para darte claridad sobre tu situación, entender qué podés hacer en tu caso para lograr tus objetivos y, si veo que puedo ayudarte, ofrecerte mis servicios."
+  },
+  {
+    pregunta: "¿Cuánto dura el asesoramiento?",
+    respuesta:
+      "La duración del programa es de 16 semanas."
+  },
+  {
+    pregunta: "Si nunca he entrenado calistenia o gimnasio, ¿puedo unirme a tu asesoría?",
+    respuesta:
+      "Sí. Podés unirte sin problema aunque no tengas experiencia previa, ya que el proceso está adaptado para personas que recién comienzan."
+  },
+  {
+    pregunta: "¿Qué resultados puedo esperar?",
+    respuesta:
+      "Vas a perder entre 10 y 20 kg de grasa en un proceso de 16 semanas, 100% garantizado o no pagás."
+  },
+  {
+    pregunta: "¿Puedo contratar la nutrición y el entrenamiento por separado?",
+    respuesta:
+      "No. El plan es completo y se trabaja de forma integral para asegurar los mejores resultados."
+  },
+  {
+    pregunta: "¿El asesoramiento es en línea o presencial?",
+    respuesta:
+      "El asesoramiento es 100% online. Recibís tu programa y estamos en comunicación constante para optimizar tu progreso."
+  },
+  {
+    pregunta: "¿Puedo unirme si no tengo elementos para entrenar?",
+    respuesta:
+      "Sí. La calistenia se adapta a cualquier situación y se puede entrenar solo con el peso corporal. Con el tiempo, se recomienda contar al menos con una barra de dominadas para facilitar el progreso."
+  },
+  {
+    pregunta: "¿Tengo que comer todos los días lo mismo?",
+    respuesta:
+      "No. Vas a aprender un método de alimentación flexible que se adapta a tus gustos, estilo de vida y necesidades, sin dejar de cumplir con tus requerimientos nutricionales."
+  }
 ];
+
 
 function PlusIcon({ rotated }: { rotated: boolean }) {
 	return (

@@ -51,7 +51,7 @@ export default function Home() {
           <h1 className="text-center text-[20px] md:text-[32px] font-bold leading-[120%]">
             {variant === "A" && (
               <span>
-                BAJA +10 KG DE GRASA EN 16 SEMANAS ENTRENANDO DESDE CASA CON MI PROGRAMA 100% CALISTENIA
+                BAJA +10 KG DE GRASA, RECUPERA TU ENERGÍA Y TONIFICÁ EN 16 SEMANAS ENTRENANDO DESDE CASA CON MI PROGRAMA 100% CALISTENIA
               </span>
             )}
             {variant === "B" && (
@@ -190,7 +190,7 @@ export default function Home() {
             <div className="h-full w-full md:w-[32%] min-h-[338px] overflow-clip relative border-4 border-[var(--primary)] p-1 rounded-[14px]">
               <div className="absolute flex items-center justify-center w-full h-full bg-black/90">
                 <p className="text-white text-center px-8 font-semibold">
-                  +20 cambios como estos
+                  +100 cambios como estos
                   <br />
                   (Mirá el video completo y agendá tu sesión de diagnóstico)
                 </p>
