@@ -51,12 +51,12 @@ export default function Home() {
           <h1 className="text-center text-[20px] md:text-[32px] font-bold leading-[120%]">
             {variant === "A" && (
               <span>
-                BAJA +10 KG DE GRASA, RECUPERA TU ENERGÍA Y TONIFICÁ EN 16 SEMANAS ENTRENANDO DESDE CASA CON MI PROGRAMA 100% CALISTENIA
+                BAJA +10 KG DE GRASA, RECUPERA TU ENERGÍA Y TONIFICÁ EN 12 SEMANAS ENTRENANDO DESDE CASA CON MI PROGRAMA 100% CALISTENIA
               </span>
             )}
             {variant === "B" && (
               <span>
-                BAJA +10 KG DE GRASA, RECUPERA TU ENERGÍA Y TONIFICÁ EN 16 SEMANAS ENTRENANDO DESDE CASA CON MI PROGRAMA 100% CALISTENIA
+                BAJA +10 KG DE GRASA, RECUPERA TU ENERGÍA Y TONIFICÁ EN 12 SEMANAS ENTRENANDO DESDE CASA CON MI PROGRAMA 100% CALISTENIA
               </span>
             )}
             <br/>

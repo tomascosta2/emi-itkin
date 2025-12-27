@@ -13,7 +13,7 @@ const faqs = [
   {
     pregunta: "¿Cuánto dura el asesoramiento?",
     respuesta:
-      "La duración del programa es de 16 semanas."
+      "La duración del programa es de 12 semanas."
   },
   {
     pregunta: "Si nunca he entrenado calistenia o gimnasio, ¿puedo unirme a tu asesoría?",
@@ -23,7 +23,7 @@ const faqs = [
   {
     pregunta: "¿Qué resultados puedo esperar?",
     respuesta:
-      "Vas a perder entre 10 y 20 kg de grasa en un proceso de 16 semanas, 100% garantizado o no pagás."
+      "Vas a perder entre 10 y 20 kg de grasa en un proceso de 12 semanas, 100% garantizado o no pagás."
   },
   {
     pregunta: "¿Puedo contratar la nutrición y el entrenamiento por separado?",

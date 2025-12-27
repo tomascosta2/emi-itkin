@@ -17,6 +17,7 @@ type FormValues = {
   urgencia: string;
   ocupacion: string;
   compromiso90: string;
+  estadoActual: string; // ✅ NUEVO (texto)
   ad: string;
 };
 
@@ -40,6 +41,20 @@ type SingleStep = {
   subtitle?: string;
   options: Opcion[];
   required?: boolean;
+};
+
+// ✅ NUEVO: step de texto
+type TextId = Extract<keyof FormValues, 'estadoActual'>;
+
+type TextStep = {
+  type: 'text';
+  id: TextId;
+  title: string;
+  subtitle?: string;
+  required?: boolean;
+  placeholder?: string;
+  maxLength?: number;
+  minLength?: number; // ✅ recomendación: mínimo para evitar respuestas tipo "bien"
 };
 
 const PAISES = [
@@ -86,6 +101,7 @@ export default function CalificationFormDirect({ variant }: Props) {
       urgencia: '',
       ocupacion: '',
       compromiso90: '',
+      estadoActual: '', // ✅ NUEVO
       ad: '',
     },
   });
@@ -93,7 +109,7 @@ export default function CalificationFormDirect({ variant }: Props) {
   const [loading, setLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const steps = useMemo<(ContactStep | SingleStep)[]>(
+  const steps = useMemo<(ContactStep | SingleStep | TextStep)[]>(
     () => [
       {
         type: 'contact',
@@ -102,37 +118,26 @@ export default function CalificationFormDirect({ variant }: Props) {
           'Completá tus datos para agendar tu consulta gratuita y ver si somos un buen fit',
         subtitle:
           'Tus datos son 100% confidenciales. Te tomará menos de 1 minuto.',
-      },
+      },  
       {
-        type: 'single',
-        id: 'cuerpo',
+        type: 'text',
+        id: 'estadoActual',
         required: true,
-        title: '¿Cómo describirías tu cuerpo hoy?*',
-        subtitle:
-          'No te preocupes, nadie va a juzgarte. Solo queremos entender por dónde empezar.',
-        options: [
-          {
-            value: 'sobrepeso-15kg',
-            label: 'Tengo sobrepeso (quiero perder más de 15 kg por salud)',
-          },
-          {
-            value: 'fuera-de-forma',
-            label:
-              'Estoy fuera de forma (quiero perder entre 7 y 15 kg y quiero verme mejor)',
-          },
-          {
-            value: 'delgado-grasa',
-            label:
-              'Soy delgado(a), pero tengo grasa rebelde que quiero eliminar y ganar músculo',
-          },
-          { value: 'otro', label: 'Otro' },
-        ],
+        title: '¿Estado de salud/físico/calidad de vida actual?*',
+        subtitle: 'Describe tu situación actual para que podamos ayudarte mejor.',
+        // ✅ recomendación: ejemplos para guiar mejores respuestas
+        placeholder:
+          'Ej: “Me falta energía a la tarde, duermo mal, me duele la espalda por estar sentado, me canso subiendo escaleras, me cuesta ser constante, tengo estrés alto, etc.”',
+        maxLength: 600,
+        // ✅ recomendación clave: mínimo para evitar “bien / normal”
+        minLength: 25,
       },
+
       {
         type: 'single',
         id: 'urgencia',
         required: true,
-        title: '¿Qué tan urgente es para ti cambiar tu cuerpo ahora mismo?*',
+        title: '¿Qué tan urgente es para vos cambiar tu cuerpo y mejorar tu salud ahora mismo?*',
         subtitle:
           'Responde con total sinceridad. Esto nos ayuda a ver cómo ayudarte.',
         options: [
@@ -141,12 +146,12 @@ export default function CalificationFormDirect({ variant }: Props) {
           {
             value: '7',
             label:
-              '(7 de 10) Quiero empezar ya. Me frustra cómo me siento y quiero recuperar mi salud y autoestima.',
+              '(7 de 10) Quiero empezar ya. Me frustra cómo me siento y quiero recuperar mi salud, autoestima y bienestar.',
           },
           {
             value: '10',
             label:
-              '(10 de 10) No puedo esperar más. Esto me afecta física y mentalmente. Haré lo que haga falta.',
+              '(10 de 10) No puedo esperar más. Esto me afecta física y mentalmente.',
           },
         ],
       },
@@ -181,7 +186,6 @@ export default function CalificationFormDirect({ variant }: Props) {
         required: true,
         title: '¿En qué rango de edad te encontrás?*',
         options: [
-          { value: 'menor', label: 'Soy menor de edad' },
           { value: 'joven', label: '18 - 24 años' },
           { value: 'adulto', label: '24 - 44 años' },
           { value: 'mayor', label: '+44 años' },
@@ -191,22 +195,27 @@ export default function CalificationFormDirect({ variant }: Props) {
         type: 'single',
         id: 'presupuesto',
         required: true,
-        title: '¿Qué tipo de solución estás buscando para transformar tu físico?*',
+        title: 'En caso de ser aceptado ¿Cuanto dinero dispones para invertir en vos y ser acompañado por todo un equipo integral de profesionales que te ayudaran a lograr tus objetivos de forma garantizada? *',
         options: [
           {
             value: 'presupuesto-bajo',
             label:
-              'Quiero una solución económica para empezar por mi cuenta. (En este caso NO agendes, para cambiar tu vida necesitás invertir)',
+              'Entre 200 a 300 USD/mes',
           },
           {
             value: 'presupuesto-intermedio',
             label:
-              'Quiero un plan serio, con un equipo de profesionales ayudándome 1 a 1.',
+              'Entre 300 a 400 USD/mes',
           },
           {
             value: 'presupuesto-alto',
             label:
-              'Quiero la mejor opción disponible, se que cambiar mi fisico lo vale.',
+              'Entre 400 a 500 USD/mes',
+          },
+          {
+            value: 'sin-presupuesto',
+            label:
+              'No tengo dinero para invertir en mi calidad de vida, imagen ni salud',
           },
         ],
       },
@@ -233,21 +242,42 @@ export default function CalificationFormDirect({ variant }: Props) {
     return isNameValid && isEmailValid && isPhoneValid;
   };
 
-  const canAdvanceFromStep = (s: ContactStep | SingleStep) => {
+  const canAdvanceFromStep = (s: ContactStep | SingleStep | TextStep) => {
     if (s.type === 'contact') return isContactValid();
+
     if (s.type === 'single' && s.required === true) {
-      return !!values[s.id]; // valor seleccionado
+      return !!values[s.id];
     }
+
+    if (s.type === 'text' && s.required === true) {
+      const v = (values[s.id] ?? '').trim();
+      const min = s.minLength ?? 0;
+      return v.length >= min;
+    }
+
     return true;
   };
 
   const back = () => setStepIndex((i) => Math.max(0, i - 1));
   const next = () => setStepIndex((i) => Math.min(totalSteps - 1, i + 1));
 
-  // Atajos teclado (respetan validación)
+  // Atajos teclado (respetan validación) + NO romper textarea
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const step = steps[stepIndex];
+
+      const target = e.target as HTMLElement | null;
+      const isTypingField =
+        target?.tagName === 'INPUT' ||
+        target?.tagName === 'TEXTAREA' ||
+        target?.tagName === 'SELECT';
+
+      // Back siempre
+      if (e.key === 'Escape' || e.key === 'ArrowLeft') {
+        back();
+        return;
+      }
+
       if (step.type === 'single') {
         const selectByIndex = (idx: number) => {
           const opt = step.options[idx];
@@ -262,11 +292,13 @@ export default function CalificationFormDirect({ variant }: Props) {
           selectByIndex(key.charCodeAt(0) - 'a'.charCodeAt(0));
       }
 
+      // Si está escribiendo, no avances con Enter
+      if (isTypingField) return;
+
       if (e.key === 'Enter' || e.key === 'ArrowRight') {
         const s = steps[stepIndex];
         if (canAdvanceFromStep(s)) next();
       }
-      if (e.key === 'Escape' || e.key === 'ArrowLeft') back();
     };
 
     window.addEventListener('keydown', onKey);
@@ -289,18 +321,20 @@ export default function CalificationFormDirect({ variant }: Props) {
 
   // ------- Submit
   const onSubmit = async (data: FormValues) => {
-    // ✅ Type guard reutilizable
-    const isSingleRequired = (s: ContactStep | SingleStep): s is SingleStep =>
-      s.type === 'single' && s.required === true;
+    // ✅ Type guard: single o text requeridos
+    const isRequiredStep = (
+      s: ContactStep | SingleStep | TextStep
+    ): s is (SingleStep | TextStep) =>
+      (s.type === 'single' || s.type === 'text') && s.required === true;
 
-    // Doble seguro: si falta algún single requerido, volver al primero que falte
-    const requiredIds = steps
-      .filter(isSingleRequired)      // <- ahora devuelve siempre boolean y estrecha el tipo
-      .map((s) => s.id);
+    // Doble seguro: si falta algún requerido, volver al primero que falte
+    const requiredIds = steps.filter(isRequiredStep).map((s) => s.id);
 
-    const missing = requiredIds.find((id) => !data[id]);
+    const missing = requiredIds.find((id) => !data[id] || String(data[id]).trim() === '');
     if (missing) {
-      const idx = steps.findIndex((s) => s.type === 'single' && s.id === missing);
+      const idx = steps.findIndex(
+        (s) => (s.type === 'single' || s.type === 'text') && s.id === missing
+      );
       if (idx >= 0) setStepIndex(idx);
       return;
     }
@@ -308,7 +342,7 @@ export default function CalificationFormDirect({ variant }: Props) {
     try {
       setLoading(true);
 
-      await fetch('https://hook.us2.make.com/4440nxy5471reiw1q18qotjc15rveijb', {
+      await fetch('https://hook.us2.make.com/25w2sb42t4aeuxm5e8h02nxcvpu115xj', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify([{ ...data, variant }]),
@@ -318,7 +352,7 @@ export default function CalificationFormDirect({ variant }: Props) {
         (data.presupuesto === 'presupuesto-intermedio' || data.presupuesto === 'presupuesto-alto') &&
         (data.edad === 'adulto' || data.edad === 'mayor') &&
         (data.urgencia === '7' || data.urgencia === '10') &&
-        (data.ocupacion === 'negocio-propio' || data.ocupacion === 'profesional' );
+        (data.ocupacion === 'negocio-propio' || data.ocupacion === 'profesional');
 
       localStorage.setItem('isQualified', isQualified ? 'true' : 'false');
       localStorage.setItem('name', data.name);
@@ -490,6 +524,43 @@ export default function CalificationFormDirect({ variant }: Props) {
             </div>
           )}
 
+          {/* ✅ NUEVO: step de texto */}
+          {step.type === 'text' && (
+            <div className="mt-4">
+              <textarea
+                data-autofocus
+                rows={6}
+                placeholder={step.placeholder ?? 'Escribí acá...'}
+                maxLength={step.maxLength ?? 800}
+                {...register(step.id, {
+                  required: step.required ? 'Campo requerido' : false,
+                  validate: (v) => {
+                    const val = (v ?? '').trim();
+                    const min = step.minLength ?? 0;
+                    if (!step.required) return true;
+                    if (val.length >= min) return true;
+                    return `Contanos un poco más (mín. ${min} caracteres).`;
+                  },
+                })}
+                className="w-full rounded-lg bg-white text-[#111] px-4 py-3 outline-none"
+              />
+
+              {(errors as any)[step.id] && (
+                <span className="text-red-400 text-xs">{(errors as any)[step.id].message}</span>
+              )}
+
+              <div className="mt-2 text-white/50 text-xs">
+                {(watch(step.id) ?? '').length}/{step.maxLength ?? 800}
+              </div>
+
+              {/* ✅ recomendación extra (micro-copy) para mejorar calidad */}
+              <p className="mt-3 text-white/60 text-xs leading-relaxed">
+                Recomendación: contanos <b>síntomas + contexto</b>. Ej: energía, sueño, estrés, dolores,
+                y qué es lo que hoy más te limita (tiempo, constancia, ansiedad, etc.).
+              </p>
+            </div>
+          )}
+
           <input type="hidden" {...register('ad')} />
 
           <div className="mt-6 flex items-center justify-between gap-3">
@@ -537,8 +608,8 @@ export default function CalificationFormDirect({ variant }: Props) {
           </div>
 
           <p className="text-white/70 text-xs mt-4">
-             PD: El método está diseñado para hombres ocupados; no es la típica rutina de
-            influencer que solo puede cumplir un adolescente que vive con los padres, ni las dietas de moda que son insostenibles.
+            PD: El programa está diseñado para hombres ocupados; no es una rutina de
+            influencer que solo puede cumplir un adolescente con tiempo, ni usamos dietas insostenibles, es un proceso 100% natural y personalizado.
           </p>
         </form>
       </div>

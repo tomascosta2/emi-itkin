@@ -36,10 +36,10 @@ export const TESTIMONIALS = [
         weight: "-X kg en 3 meses",
         img: "/images/testimonios/testimonio3.webp",
     },
-    {
-        weight: "-X kg en 3 meses",
-        img: "/images/testimonios/testimonio4.webp",
-    },
+    // {
+    //     weight: "-X kg en 3 meses",
+    //     img: "/images/testimonios/testimonio4.webp",
+    // },
     {
         weight: "-X kg en 3 meses",
         img: "/images/testimonios/testimonio5.webp",
@@ -72,10 +72,10 @@ export const TESTIMONIALS = [
         weight: "-X kg en 3 meses",
         img: "/images/testimonios/testimonio12.webp",
     },
-    {
-        weight: "-X kg en 3 meses",
-        img: "/images/testimonios/testimonio13.webp",
-    },
+    // {
+    //     weight: "-X kg en 3 meses",
+    //     img: "/images/testimonios/testimonio13.webp",
+    // },
     {
         weight: "-X kg en 3 meses",
         img: "/images/testimonios/testimonio14.webp",
@@ -92,10 +92,10 @@ export const TESTIMONIALS = [
     
     //     img: "/images/testimonios/testimonio17.webp",
     // },
-    {
-        weight: "-X kg en 3 meses",
-        img: "/images/testimonios/testimonio18.webp",
-    },
+    // {
+    //     weight: "-X kg en 3 meses",
+    //     img: "/images/testimonios/testimonio18.webp",
+    // },
     // {
     
     //     img: "/images/testimonios/testimonio19.webp",
@@ -108,10 +108,10 @@ export const TESTIMONIALS = [
         weight: "-X kg en 3 meses",
         img: "/images/testimonios/testimonio21.webp",
     },
-    {
-        weight: "-X kg en 3 meses",
-        img: "/images/testimonios/testimonio22.webp",
-    },
+    // {
+    //     weight: "-X kg en 3 meses",
+    //     img: "/images/testimonios/testimonio22.webp",
+    // },
     {
         weight: "-X kg en 3 meses",
         img: "/images/testimonios/testimonio23.webp",
@@ -185,7 +185,7 @@ export const TESTIMONIALS_VIDEO_PAGE = [
 
 
 export const CALENDLY_TITLE_PART1 =
-    "Transformá tu cuerpo en 16 semanas bajando grasa de forma sostenida";
+    "Transformá tu cuerpo en 12 semanas bajando grasa de forma sostenida";
 
 export const CALENDLY_SPAN =
     "entrenando desde casa con calistenia";
