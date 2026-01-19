@@ -33,80 +33,104 @@ export const VIDEO_TESTIMONIALS = [
 ];
 
 export const TESTIMONIALS = [
+    // {
+    //     img: "/images/testimonios/testimonio1.webp",
+    // },
     {
-        img: "/images/testimonios/testimonios/testimonio1.webp",
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio2.webp",
     },
     {
-        img: "/images/testimonios/testimonios/testimonio2.webp",
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio3.webp",
+    },
+    // {
+    //     weight: "-X kg en 3 meses",
+    //     img: "/images/testimonios/testimonio4.webp",
+    // },
+    {
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio5.webp",
     },
     {
-        img: "/images/testimonios/testimonios/testimonio3.webp",
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio6.webp",
     },
     {
-        img: "/images/testimonios/testimonios/testimonio4.webp",
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio7.webp",
     },
     {
-        img: "/images/testimonios/testimonios/testimonio5.webp",
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio8.webp",
     },
     {
-        img: "/images/testimonios/testimonios/testimonio6.webp",
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio9.webp",
+    },
+    // {
+    
+    //     img: "/images/testimonios/testimonio10.webp",
+    // },
+    {
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio11.webp",
     },
     {
-        img: "/images/testimonios/testimonios/testimonio7.webp",
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio12.webp",
+    },
+    // {
+    //     weight: "-X kg en 3 meses",
+    //     img: "/images/testimonios/testimonio13.webp",
+    // },
+    {
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio14.webp",
     },
     {
-        img: "/images/testimonios/testimonios/testimonio8.webp",
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio15.webp",
     },
     {
-        img: "/images/testimonios/testimonios/testimonio9.webp",
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio16.webp",
+    },
+    // {
+    
+    //     img: "/images/testimonios/testimonio17.webp",
+    // },
+    // {
+    //     weight: "-X kg en 3 meses",
+    //     img: "/images/testimonios/testimonio18.webp",
+    // },
+    // {
+    
+    //     img: "/images/testimonios/testimonio19.webp",
+    // },
+    {
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio20.webp",
     },
     {
-        img: "/images/testimonios/testimonios/testimonio10.webp",
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio21.webp",
+    },
+    // {
+    //     weight: "-X kg en 3 meses",
+    //     img: "/images/testimonios/testimonio22.webp",
+    // },
+    {
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio23.webp",
     },
     {
-        img: "/images/testimonios/testimonios/testimonio11.webp",
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio24.webp",
     },
     {
-        img: "/images/testimonios/testimonios/testimonio12.webp",
-    },
-    {
-        img: "/images/testimonios/testimonios/testimonio13.webp",
-    },
-    {
-        img: "/images/testimonios/testimonios/testimonio14.webp",
-    },
-    {
-        img: "/images/testimonios/testimonios/testimonio15.webp",
-    },
-    {
-        img: "/images/testimonios/testimonios/testimonio16.webp",
-    },
-    {
-        img: "/images/testimonios/testimonios/testimonio17.webp",
-    },
-    {
-        img: "/images/testimonios/testimonios/testimonio18.webp",
-    },
-    {
-        img: "/images/testimonios/testimonios/testimonio19.webp",
-    },
-    {
-        img: "/images/testimonios/testimonios/testimonio20.webp",
-    },
-    {
-        img: "/images/testimonios/testimonios/testimonio21.webp",
-    },
-    {
-        img: "/images/testimonios/testimonios/testimonio22.webp",
-    },
-    {
-        img: "/images/testimonios/testimonios/testimonio23.webp",
-    },
-    {
-        img: "/images/testimonios/testimonios/testimonio24.webp",
-    },
-    {
-        img: "/images/testimonios/testimonios/testimonio25.webp",
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio25.webp",
     }
 ];
 

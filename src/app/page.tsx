@@ -433,7 +433,7 @@ export default function Home() {
                   "
                 >
                   <p className="text-center py-2 tracking-wider text-[#f5f5f5]">
-                    {/* {t.weight} */}
+                    {t.weight}
                   </p>
 
                   <div className="relative flex-1 overflow-clip rounded-[10px]">
