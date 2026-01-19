@@ -249,7 +249,7 @@ body {
 }
 
 :root {
-	--primary: #FF3B00;
+	--primary: #7AB200;
 	--background: #000;
 	--text-primary: #f5f5f5;
 }
@@ -287,7 +287,7 @@ body {
 .cf-container {
 	@apply max-w-[1090px] mx-auto px-4;
 }
-.cf-btn {
+/* .cf-btn {
 	@apply flex items-center font-semibold text-[16px] md:text-[18px] justify-center gap-2 rounded-[12px] w-full py-6 tracking-[-1%] disabled:bg-gray-400 text-[var(--text-primary)] cursor-pointer text-center max-w-[480px] mx-auto 
 	not-disabled:bg-gradient-to-r
     from-[var(--primary)] via-[#FF693C] to-[var(--primary)]
@@ -296,7 +296,28 @@ body {
     transition-all duration-300
 	border-3 not-disabled:border-[#FF754B]/80 disabled:border-gray-400/80;
 	background-color: var(--primary);
+} */
+
+.cf-btn {
+  @apply flex items-center font-semibold text-[16px] md:text-[18px] justify-center gap-2 
+  rounded-[12px] w-full py-6 tracking-[-1%] cursor-pointer text-center 
+  max-w-[480px] mx-auto transition-all duration-300
+  text-[var(--text-primary)]
+  
+  disabled:bg-gray-400 disabled:border-gray-400/80
+
+  not-disabled:bg-gradient-to-r
+  from-[var(--primary)] via-[#7AB200] to-[var(--primary)]
+
+  not-disabled:shadow-[0_0_25px_rgba(122,178,0,0.6)]
+  not-disabled:hover:shadow-[0_0_35px_rgba(122,178,0,0.9)]
+
+  border-3 not-disabled:border-[#7AB200]/80;
+  
+  background-color: var(--primary);
 }
+
+
 
 @keyframes marquee {
   0% {

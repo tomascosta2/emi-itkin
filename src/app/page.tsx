@@ -50,7 +50,7 @@ export default function Home() {
           onClose={() => setIsFormOpened(false)}
         />
       )}
-      <img src="/images/logo.png" className="h-[25px] object-contain mx-auto" alt="Logo" />
+      <img src="/images/LOGO-100_CALISTENIA.webp" className="h-[25px] object-contain mx-auto" alt="Logo" />
       <header className="bg-linear-0 from-[#0E0E0E] to-[#1C1B1B] max-w-[85%] mt-12 w-[500px] rounded-full mx-auto border border-[var(--primary)]/30 z-50">
         <div className="cf-container">
           <h3 className="text-center uppercase text-[var(--text-primary)]/80 tracking-widest text-[12px] py-3 leading-[130%]">
@@ -132,7 +132,7 @@ export default function Home() {
                 {TESTIMONIALS_VIDEO_PAGE.map((testimonial) => {
                   return (
                     <div
-                      className="shadow-[0_4px_90px_0_#FF3B0070] rounded-[25px]"
+                      className="shadow-[0_4px_90px_0_#7AB20070] rounded-[25px]"
                       key={testimonial.video}
                     >
                       <div>
@@ -252,10 +252,10 @@ export default function Home() {
                   </ul>
                 </div>
               </div>
-              <div className="overflow-clip relative p-1 rounded-[20px] bg-linear-[-142deg] from-[#FF3B00]/20 via-[#FF3B00]/100 to-[#FF3B00]/20">
+              <div className="overflow-clip relative p-1 rounded-[20px] bg-linear-[-142deg] from-[#7AB200]/20 via-[#7AB200]/100 to-[#7AB200]/20">
                 <div className="absolute w-full top-[5px] left-0 z-50">
                   <div className="h-[2px] relative overflow-clip w-full mx-auto">
-                    <div className="bg-linear-90 from-[#FF3B00]/0 via-white to-[#FF3B00]/0 h-[200px] w-80 left-10 absolute -top-[100px]"></div>
+                    <div className="bg-linear-90 from-[#7AB200]/0 via-white to-[#7AB200]/0 h-[200px] w-80 left-10 absolute -top-[100px]"></div>
                   </div>
                 </div>
                 <div className="bg-linear-0 z-40 border relative border-[#252525] from-[#070707] to-[#161616] p-8 rounded-[18px]">
@@ -376,10 +376,10 @@ export default function Home() {
                       mx-auto mb-5
                       flex p-[25px] items-center justify-center
                       rounded-2xl
-                      bg-gradient-to-b from-[#551400] to-[#000]
+                      bg-gradient-to-b from-[#2F5D00] to-[#000]
                       outline-1 outline-[var(--primary)]/60 outline-offset-[4px]  
                       w-fit
-                      shadow-[0_4px_30px_0_#FF3B0070]
+                      shadow-[0_4px_30px_0_#7AB20070]
                     "
                   >
                     <img src={m.img} alt={m.title} className="size-[42px]" />
