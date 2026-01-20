@@ -32,7 +32,7 @@ export default function Home() {
   console.log(variant);
 
   return (
-    <div className="relative overflow-clip pt-8 md:pt-12">
+    <div className="relative overflow-clip pt-8">
       <img
         src="/images/Sombra.webp"
         alt="Sombra"
@@ -50,7 +50,7 @@ export default function Home() {
           onClose={() => setIsFormOpened(false)}
         />
       )}
-      <img src="/images/LOGO-100_CALISTENIA.webp" className="h-[25px] object-contain mx-auto" alt="Logo" />
+      <img src="/images/LOGO-100_CALISTENIA.webp" className="h-[40px] object-contain mx-auto" alt="Logo" />
       <header className="bg-linear-0 from-[#0E0E0E] to-[#1C1B1B] max-w-[85%] mt-12 w-[500px] rounded-full mx-auto border border-[var(--primary)]/30 z-50">
         <div className="cf-container">
           <h3 className="text-center uppercase text-[var(--text-primary)]/80 tracking-widest text-[12px] py-3 leading-[130%]">
@@ -62,10 +62,10 @@ export default function Home() {
       {/* Sección VSL (siempre visible) */}
       <section className="mt-6 pb-[60px] md:pb-[100px] border-b border-[var(--primary)] rounded-b-[45px] md:rounded-b-[60px] relative overflow-clip">
         <div className="cf-container">
-          <h1 className="text-center text-[22px] md:text-[38px] font-bold uppercase leading-[140%] md:px-4">
+          <h1 className="text-center text-[22px] md:text-[36px] font-bold uppercase leading-[140%] md:px-4">
             <span>
               Bajá entre <span>6 y 15 kg de grasa, recupera tu energía y
-              tonificá en 90 días</span> con mi Método [M] de forma 100% natural
+              tonificá en 90 días</span> con Entrenamientos en Casa y de forma 100% natural
             </span>
           </h1>
           <p className="text-[var(--primary)] text-center mt-2">
@@ -262,32 +262,38 @@ export default function Home() {
                   <div className="size-[200px] bg-[var(--primary)]/20 blur-[100px] absolute z-10 -top-[100px] -left-[100px]"></div>
                   <h3 className="text-white text-[24px] font-semibold tracking-[-1%] relative z-20">
                     Para quién <span className="text-[var(--primary)]">SÍ</span>{" "}
-                    es [M]
+                    es 100% Calistenia
                   </h3>
                   <ul className="mt-4 max-w-[600px] mx-auto space-y-4 md:pe-12 list-disc list-inside text-white/60 text-[18px] leading-[24px] relative z-20">
                     <li className="flex items-start gap-4">
-                      <img
-                        src="/images/check.webp"
-                        className="mt-[8px] size-[22px]"
-                        alt="Es para vos"
-                      />
+                      <div className="size-[24px] mt-2 min-w-[24px] rounded-full flex items-center justify-center bg-[var(--primary)]">
+                        <img
+                          src="/images/white-check.svg"
+                          className="size-[10px]"
+                          alt="Es para vos"
+                        />
+                      </div>
                       Tenes 30 años o más con una carrera profesional
                       demandante.
                     </li>
                     <li className="flex items-start gap-4">
-                      <img
-                        src="/images/check.webp"
-                        className="mt-[8px] size-[22px]"
-                        alt="Es para vos"
-                      />
+                      <div className="size-[24px] mt-2 min-w-[24px] rounded-full flex items-center justify-center bg-[var(--primary)]">
+                        <img
+                          src="/images/white-check.svg"
+                          className="size-[10px]"
+                          alt="Es para vos"
+                        />
+                      </div>
                       Sentis estrés frecuentemente, desgano y baja energía.
                     </li>
                     <li className="flex items-start gap-4">
-                      <img
-                        src="/images/check.webp"
-                        className="mt-[8px] size-[22px]"
-                        alt="Es para vos"
-                      />
+                      <div className="size-[24px] mt-2 min-w-[24px] rounded-full flex items-center justify-center bg-[var(--primary)]">
+                        <img
+                          src="/images/white-check.svg"
+                          className="size-[10px]"
+                          alt="Es para vos"
+                        />
+                      </div>
                       Poder dedicarle al método 3 horas a la semana.
                     </li>
                   </ul>
@@ -346,7 +352,7 @@ export default function Home() {
             </div>
             <div className="mt-8">
               <h2 className="text-[36px] md:text-[40px] font-bold text-white text-center max-w-[900px] leading-[130%] mx-auto">
-                ¿Que incluye el metodo [M]?
+                ¿Que incluye 100% Calistenia?
               </h2>
               <p className="text-white/80 text-center mt-4 max-w-[600px] text-[18px] mx-auto">
                 FIT90 no es una rutina más: es una estructura simple y probada

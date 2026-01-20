@@ -5,41 +5,46 @@
 import { useState } from 'react';
 
 const faqs = [
-	{
-		pregunta: "¿Hay que hacer ejercicio todos los días?",
-		respuesta:
-			"No, justamente es lo contrario, sabemos que no tenes todo el tiempo del mundo y que el que tenes no lo queres pasar sufriendo. Por eso está todo pensado para que con dos a tres días por semana puedas lograr tu cambio. E incluso si alguna semana no podes entrenar vamos a adaptar el plan."
-	},
-	{
-		pregunta: "¿Es necesario ir al gimnasio?",
-		respuesta:
-			"Me especializo en entrenamientos en el gimnasio, pero de ser necesario, se pueden adaptar los entrenamientos con materiales en tu casa."
-	},
-	{
-		pregunta: "¿Tengo que comer lo mismo durante 3 meses?",
-		respuesta:
-			"Para nada, te enseño a comer sin eliminar lo que te gusta, y si en algún momento queres modificar o eliminar alguna de tus comidas me lo decis y lo adaptamos al plan"
-	},
-	{
-		pregunta: "¿Una vez terminados los 3 meses es necesario renovar?",
-		respuesta:
-			"No, porque no es una dieta ni una rutina, es un acompañamiento de 3 meses en el que no solo te ayudamos a lograr el objetivo si no que te explicamos el por que de cada cosa para que vos entiendas que era lo que te estaba evitando avanzar y lo puedas mantener con gusto para siempre, sin necesidad de volver a contratar nunca a un nutricionista o entrenador personal"
-	},
-	{
-		pregunta: "¿Qué pasa si no puedo cumplir perfecto el plan?",
-		respuesta:
-			"No pasa nada. Esto no es un examen, es un proceso. Adaptamos el plan a lo que sí podés hacer, no a lo ideal de Instagram."
-	},
-	{
-		pregunta: "¿Voy a perder músculo o verme más flaco?",
-		respuesta:
-			"No. El objetivo no es achicarte, es mejorar tu composición corporal: menos grasa, más firmeza, mejor postura y más energía."
-	},
-	{
-		pregunta: "¿Y si ya intenté otras veces y no funcionó?",
-		respuesta:
-			"¿Y si ya intenté otras veces y no funcionó?"
-	},
+  {
+    pregunta: "¿La llamada tiene algún costo?",
+    respuesta:
+      "No. La llamada es 100% gratuita para darte claridad sobre tu situación, ayudarte a entender qué podés hacer para lograr tus objetivos y, solo si veo que puedo ayudarte, ofrecerte mis servicios."
+  },
+  {
+    pregunta: "¿Cuánto dura el asesoramiento?",
+    respuesta:
+      "La duración del programa es de 16 semanas."
+  },
+  {
+    pregunta: "Si nunca he entrenado calistenia o gimnasio, ¿puedo unirme a tu asesoría?",
+    respuesta:
+      "Sí. Podés unirte sin experiencia previa y comenzar tu proceso de cambio físico desde cero."
+  },
+  {
+    pregunta: "¿Qué resultados puedo esperar?",
+    respuesta:
+      "Podés perder entre 10 y 20 kg de grasa en un proceso de 16 semanas, con garantía de resultados o no pagás."
+  },
+  {
+    pregunta: "¿Puedo contratar la nutrición y el entrenamiento por separado?",
+    respuesta:
+      "No. El plan es integral y se trabaja nutrición y entrenamiento de forma conjunta."
+  },
+  {
+    pregunta: "¿El asesoramiento es en línea o presencial?",
+    respuesta:
+      "El asesoramiento es 100% online. Recibís tu programa y contamos con comunicación constante para optimizar tu progreso."
+  },
+  {
+    pregunta: "¿Puedo unirme si no tengo elementos para entrenar?",
+    respuesta:
+      "Sí. La calistenia se adapta a cualquier situación, ya que se entrena principalmente con el peso corporal. Con el tiempo, se recomienda contar al menos con una barra de dominadas para facilitar el progreso."
+  },
+  {
+    pregunta: "¿Tengo que comer todos los días lo mismo?",
+    respuesta:
+      "No. Aprenderás un método de alimentación flexible que se adapta a tus gustos, estilo de vida y necesidades nutricionales."
+  }
 ];
 
 function PlusIcon({ rotated }: { rotated: boolean }) {
