@@ -677,7 +677,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
           </div>
 
           <p className="text-white/70 text-xs mt-4">
-            PD: El método M90 está pensado para hombres ocupados que quieren resultados reales sin vivir en el gimnasio.
+            PD: 100% Calistenia está pensado para hombres ocupados que quieren resultados reales sin vivir en el gimnasio.
           </p>
         </form>
       </div>

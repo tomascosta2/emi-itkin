@@ -54,7 +54,7 @@ export default function Home() {
       <header className="bg-linear-0 from-[#0E0E0E] to-[#1C1B1B] max-w-[85%] mt-6 md:mt-12 w-[500px] rounded-full mx-auto border border-[var(--primary)]/30 z-50">
         <div className="cf-container">
           <h3 className="text-center uppercase text-[var(--text-primary)]/80 tracking-widest text-[12px] py-3 leading-[130%]">
-            <span>Exclusivo para profesionales mayores de 35</span>
+            <span>Exclusivo para profesionales mayores de 30</span>
           </h3>
         </div>
       </header>
@@ -442,7 +442,7 @@ export default function Home() {
                     {t.weight}
                   </p>
 
-                  <div className="relative flex-1 overflow-clip rounded-[10px]">
+                  <div className="relative flex-1 max-h-[302px] overflow-clip rounded-[10px]">
                     <div className="absolute inset-0 rounded-[10px] bg-gradient-to-t from-black/90 from-5% to-transparent to-65%" />
 
                     <img
@@ -469,8 +469,9 @@ export default function Home() {
                   TU PRÓXIMO CAMBIO
                 </p>
                 <div className="relative flex-1 overflow-clip rounded-[10px]">
-                  <div className="absolute inset-0 rounded-[10px] bg-gradient-to-t from-black/90 from-5% to-transparent to-65%" />
-
+                  <div className="absolute flex items-center justify-center inset-0 rounded-[10px] bg-black/80">
+                    <p className="text-white text-center font-semibold text-[18px] px-4">+300 cambios de hombres ocupados. Vos podes ser el proximo</p>
+                  </div>
                   <img
                     className="w-full h-full object-cover rounded-[10px]"
                     src={`${MORE_CHANGES_IMG}`}
@@ -547,7 +548,7 @@ export default function Home() {
 
 
       <p className="pb-6 pt-8 text-[14px] text-center px-4 text-white/60">
-        © {coachName} 2025. Todos los derechos reservados.
+        © {coachName} 2026. Todos los derechos reservados.
       </p>
       <div className="bg-[var(--primary)] size-[600px] md:size-[700px] blur-[100px] md:blur-[200px] opacity-[50%] rounded-full absolute left-[calc(50%-300px)] md:-left-[300px] -bottom-[300px] md:block hidden -z-50"></div>
       <div className="bg-[var(--primary)] size-[600px] md:size-[700px] blur-[100px] md:blur-[200px] opacity-[50%] rounded-full absolute right-[calc(50%-300px)] md:-right-[300px] -bottom-[300px] md:block hidden -z-50"></div>

@@ -37,64 +37,73 @@ export const TESTIMONIALS = [
     //     img: "/images/testimonios/testimonio1.webp",
     // },
     {
-        weight: "-X kg en 3 meses",
+        weight: "-10 kg en 3 meses",
         img: "/images/testimonios/testimonio2.webp",
+        name: "Ignacio Larroca",
     },
     {
-        weight: "-X kg en 3 meses",
+        weight: "-9 kg en 3 meses",
         img: "/images/testimonios/testimonio3.webp",
+        name: "Elio De Angeli",
     },
     // {
     //     weight: "-X kg en 3 meses",
     //     img: "/images/testimonios/testimonio4.webp",
     // },
     {
-        weight: "-X kg en 3 meses",
+        weight: "-6 kg en 3 meses",
         img: "/images/testimonios/testimonio5.webp",
+        name: "Patricio Brondi",
     },
     {
-        weight: "-X kg en 3 meses",
+        weight: "+4 kg en 2 meses",
         img: "/images/testimonios/testimonio6.webp",
     },
     {
-        weight: "-X kg en 3 meses",
+        weight: "-10 kg en 3 meses",
         img: "/images/testimonios/testimonio7.webp",
+        name: "Andres R.",
     },
+    // {
+    //     weight: "-X kg en 3 meses",
+    //     img: "/images/testimonios/testimonio8.webp",
+    // },
     {
-        weight: "-X kg en 3 meses",
-        img: "/images/testimonios/testimonio8.webp",
-    },
-    {
-        weight: "-X kg en 3 meses",
+        weight: "-10 kg en 3 meses",
         img: "/images/testimonios/testimonio9.webp",
+        name: "Hugo Reynoso",
     },
     // {
     
     //     img: "/images/testimonios/testimonio10.webp",
     // },
     {
-        weight: "-X kg en 3 meses",
+        weight: "-13 kg en 3 meses",
         img: "/images/testimonios/testimonio11.webp",
+        name: "Juan Peralta",
     },
-    {
-        weight: "-X kg en 3 meses",
-        img: "/images/testimonios/testimonio12.webp",
-    },
+    // {
+    //     weight: "-X kg en 3 meses",
+    //     img: "/images/testimonios/testimonio12.webp",
+    // },
     // {
     //     weight: "-X kg en 3 meses",
     //     img: "/images/testimonios/testimonio13.webp",
     // },
+    // {
+    //     weight: "-X kg en 3 meses",
+    //     img: "/images/testimonios/testimonio14.webp",
+    //     name: "Nombre Apellido",
+    // },
     {
-        weight: "-X kg en 3 meses",
-        img: "/images/testimonios/testimonio14.webp",
-    },
-    {
-        weight: "-X kg en 3 meses",
+        weight: "-9 kg en 3 meses",
         img: "/images/testimonios/testimonio15.webp",
+        name: "Josue Moreno",
     },
     {
-        weight: "-X kg en 3 meses",
+        weight: "-16 kg en 3 meses",
         img: "/images/testimonios/testimonio16.webp",
+        name: "Elian Mazaira",
     },
     // {
     
@@ -109,33 +118,36 @@ export const TESTIMONIALS = [
     //     img: "/images/testimonios/testimonio19.webp",
     // },
     {
-        weight: "-X kg en 3 meses",
+        weight: "-12 kg en 3 meses",
         img: "/images/testimonios/testimonio20.webp",
+        name: "Ignacio Frias"
     },
     {
-        weight: "-X kg en 3 meses",
+        weight: "-8 kg en 3 meses",
         img: "/images/testimonios/testimonio21.webp",
+        name: "Javier Liforena"
     },
     // {
     //     weight: "-X kg en 3 meses",
     //     img: "/images/testimonios/testimonio22.webp",
     // },
+    // {
+    //     weight: "-X kg en 3 meses",
+    //     img: "/images/testimonios/testimonio23.webp",
+    // },
     {
-        weight: "-X kg en 3 meses",
-        img: "/images/testimonios/testimonio23.webp",
-    },
-    {
-        weight: "-X kg en 3 meses",
+        weight: "-11 kg en 3 meses",
         img: "/images/testimonios/testimonio24.webp",
+        name: "Matias Aguiar"
     },
     {
-        weight: "-X kg en 3 meses",
+        weight: "+3 kg en 2 meses",
         img: "/images/testimonios/testimonio25.webp",
     }
 ];
 
 // Imagen con texto en testimonios page
-export const MORE_CHANGES_IMG = "/images/testimonios/testimonios/testimonio1.webp";
+export const MORE_CHANGES_IMG = "/images/testimonios/testimonio18.webp";
 
 // Hacemos una constante aparte para modificar puntualmente que imagenes queremos en THANKYOU
 export const TESTIMONIALS_THANKYOU_IMG = [

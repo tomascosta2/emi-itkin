@@ -312,7 +312,7 @@ body {
   not-disabled:shadow-[0_0_25px_rgba(122,178,0,0.6)]
   not-disabled:hover:shadow-[0_0_35px_rgba(122,178,0,0.9)]
 
-  border-3 not-disabled:border-[#7AB200]/80;
+  border-3 not-disabled:border-[#96c62d];
   
   background-color: var(--primary);
 }
