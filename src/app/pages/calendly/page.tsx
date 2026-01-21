@@ -185,7 +185,7 @@ export default function CalendlyFast() {
       </section>
 
        {/* Social proof – sin cambios */}
-      <section className="py-[40px] px-4">
+      {/* <section className="py-[40px] px-4">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex flex-wrap justify-center gap-4 mt-8">
             {TESTIMONIALS.map((t, i) => (
@@ -202,7 +202,7 @@ export default function CalendlyFast() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }
