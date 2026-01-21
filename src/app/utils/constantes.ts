@@ -206,16 +206,6 @@ export const TESTIMONIALS_VIDEO_PAGE = [
     }
 ];
 
-export const CALENDLY_TITLE_PART1 =
-    "Transformá tu cuerpo en 16 semanas bajando grasa de forma sostenida";
-
-export const CALENDLY_SPAN =
-    "entrenando desde casa con calistenia";
-
-export const CALENDLY_TITLE_PART2 =
-    "Agendá una llamada y veamos cómo hacerlo de manera personalizada.";
-
-export const hotjarID = "<<LLENAR>>"
 
 // Que incluye el metodo landing
 export const METHOD_INCLUDES = [
@@ -257,3 +247,26 @@ export const METHOD_INCLUDES = [
     },
 
 ]
+
+
+// Webhooks N8N
+export const FIRST_STEP_FORM_TEST = "https://n8n.srv953925.hstgr.cloud/webhook-test/76fb72cc-46bd-4462-aa9f-425a1e78ee56";
+export const FIRST_STEP_FORM = "https://n8n.srv953925.hstgr.cloud/webhook/76fb72cc-46bd-4462-aa9f-425a1e78ee56";
+
+export const COMPLETED_FORM_TEST = "https://n8n.srv953925.hstgr.cloud/webhook-test/7ce6331c-2350-46b3-bb64-1c13295b15c6";
+export const COMPLETED_FORM = "https://n8n.srv953925.hstgr.cloud/webhook/7ce6331c-2350-46b3-bb64-1c13295b15c6";
+
+export const CALL_SHEDULED = "https://n8n.srv953925.hstgr.cloud/webhook/3d69fbe3-8f0b-4eb4-a728-4b0f9db8854d"
+
+
+
+// Calendly constantes de texto
+export const CALENDLY_TITLE_PART1 = "Transformá tu cuerpo en 16 semanas bajando grasa de forma sostenida";
+
+export const CALENDLY_SPAN = "entrenando desde casa con calistenia";
+
+export const CALENDLY_TITLE_PART2 = "Agendá una llamada y veamos cómo hacerlo de manera personalizada.";
+
+
+// Hotjar ID
+export const hotjarID = "<<LLENAR>>"

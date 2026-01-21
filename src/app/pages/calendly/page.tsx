@@ -5,6 +5,7 @@ import {
   CALENDLY_TITLE_PART1,
   CALENDLY_TITLE_PART2,
   calendlyBaseUrl,
+  CALL_SHEDULED,
   TESTIMONIALS,
   waNumber,
 } from "@/app/utils/constantes";
@@ -31,7 +32,7 @@ export default function CalendlyFast() {
       if (e.data?.event === "calendly.event_scheduled") {
         // https://hook.us2.make.com/2a7gkby3xtgo4annvy16nbu74laekhem
 
-        fetch("https://hook.us2.make.com/2a7gkby3xtgo4annvy16nbu74laekhem", {
+        fetch(CALL_SHEDULED, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

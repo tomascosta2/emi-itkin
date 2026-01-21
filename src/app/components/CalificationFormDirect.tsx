@@ -3,6 +3,7 @@
 import { hostname } from 'os';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { COMPLETED_FORM, COMPLETED_FORM_TEST, FIRST_STEP_FORM, FIRST_STEP_FORM_TEST } from '../utils/constantes';
 
 type Props = {
   variant: string;
@@ -322,12 +323,12 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
     return () => b?.classList.remove('overflow-hidden');
   }, []);
 
-  
+
   const hostname = typeof window !== "undefined" ? window.location.hostname : "";
 
   const N8N_CONTACT_WEBHOOK = hostname.includes("localhost") ?
-					'CAMBIAR' :
-					'CAMBIAR';
+    FIRST_STEP_FORM_TEST :
+    FIRST_STEP_FORM;
 
   const sentContactRef = useRef(false);
 
@@ -386,7 +387,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
 
       // test
       try {
-        const result = await fetch('CAMBIAR', {
+        const result = await fetch(COMPLETED_FORM_TEST, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify([{ ...data, variant, leadId: leadIdRef.current }]),
@@ -394,12 +395,14 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
         console.log(result)
       } catch { }
 
-      // production
-      await fetch('CAMBIAR', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      try {
+        // production
+        await fetch(COMPLETED_FORM, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify([{ ...data, variant, leadId: leadIdRef.current }]),
-      });
+        });
+      } catch { }
 
       const isQualified =
         (data.presupuesto === 'presupuesto-intermedio' || data.presupuesto === 'presupuesto-alto' || data.presupuesto === 'presupuesto-muy-alto') &&

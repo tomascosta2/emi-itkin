@@ -208,7 +208,7 @@ export default function Home() {
               </div>
             </header>
             <h2 className="text-[24px] md:text-[40px] mt-6 font-bold text-white text-center uppercase max-w-[780px] leading-[130%] mx-auto">
-              [M] no es para cualquiera. Pero si es para vos,{" "}
+              Esto no es para cualquiera. Pero si es para vos,{" "}
               <span className="text-[var(--primary)]">
                 puede cambiarte la vida en 90 días...
               </span>
@@ -222,7 +222,7 @@ export default function Home() {
               <div className="overflow-clip relative p-1 rounded-[20px] bg-linear-[-142deg] from-[#FFF]/5 via-[#B4B4B4]/50 to-[#FFF]/5">
                 <div className="bg-linear-0 z-50 border border-[#252525] from-[#070707] to-[#161616] p-8 rounded-[18px] h-full">
                   <h3 className="text-white text-[24px] font-semibold tracking-[-1%]">
-                    Para quién NO es [M]
+                    Para quién NO es esto
                   </h3>
                   <ul className="mt-4 max-w-[600px] mx-auto space-y-4 md:pe-12 list-disc list-inside text-white/60 text-[18px] leading-[24px]">
                     <li className="flex items-start gap-4">
@@ -319,7 +319,7 @@ export default function Home() {
       </section>
 
       <div className="bg-black">
-        <section
+        {/* <section
           className="
               relative
               py-[60px]
@@ -410,21 +410,21 @@ export default function Home() {
               Solo 6 cupos nuevos por mes
             </p>
           </div>
-        </section>
+        </section> */}
       </div>
 
       <section className="w-full  bg-[#000] relative pt-[80px] md:pt-[160px]">
         <div className="h-[2px] top-0 absolute overflow-clip w-full z-50 hidden md:block">
           <div className="size-[400px] blur-[200px] left-[calc(50%-200px)] -top-[200px] absolute bg-[var(--primary)]"></div>
         </div>
-        <img src="/images/img_background_testimonials.webp" className="absolute md:top-0 top-[130px] w-full object-contain" alt="Fit Funnels" />
+        <img src="/images/img_background_testimonials.webp" className="absolute md:top-0 top-[180px] w-full object-contain" alt="Fit Funnels" />
         <div className="cf-container relative">
           <div className="mx-auto w-full max-w-[1200px] text-center">
             <h2 className="text-[32px] md:text-[50px] max-w-[750px] mx-auto font-bold text-white leading-[130%]">
               Estos Resultados podes Obtener Si Agendas Hoy
             </h2>
-            <p className="mt-4 text-white/80 text-[18px] max-w-[400px] mx-auto">
-              Si ellos pudieron, vos también podés.
+            <p className="mt-4 text-white/80 text-[18px] max-w-[500px] mx-auto">
+              +300 Hombres Ocupados ya mejoraron su Fisico, Energia y Salud. Si ellos pudieron, Vos También Podés.
             </p>
             <div className="grid md:grid-cols-3 mt-[140px] md:mt-[192px] gap-4">
               {TESTIMONIALS.map((t, i) => (
