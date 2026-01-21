@@ -13,7 +13,7 @@ const faqs = [
   {
     pregunta: "¿Cuánto dura el asesoramiento?",
     respuesta:
-      "La duración del programa es de 16 semanas."
+      "La duración del programa es de 3 meses."
   },
   {
     pregunta: "Si nunca he entrenado calistenia o gimnasio, ¿puedo unirme a tu asesoría?",

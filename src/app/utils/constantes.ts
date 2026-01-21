@@ -140,12 +140,15 @@ export const MORE_CHANGES_IMG = "/images/testimonios/testimonios/testimonio1.web
 // Hacemos una constante aparte para modificar puntualmente que imagenes queremos en THANKYOU
 export const TESTIMONIALS_THANKYOU_IMG = [
     {
+        txt: "-X kg en 3 meses",
         img: "/images/testimonios/testimonios/testimonio1.webp",
     },
     {
+        txt: "-X kg en 3 meses",
         img: "/images/testimonios/testimonios/testimonio2.webp",
     },
     {
+        txt: "-X kg en 3 meses",
         img: "/images/testimonios/testimonios/testimonio3.webp",
     },
 ]
@@ -206,7 +209,7 @@ export const hotjarID = "<<LLENAR>>"
 export const METHOD_INCLUDES = [
     {
         img: "./images/medical_mobile_app.svg",
-        title: `App Mobile "TestoBoost" Todo en uno`
+        title: `App Mobile Todo en uno`
     },
     // {
     //     img: "./images/hand_with_a_pill.svg",

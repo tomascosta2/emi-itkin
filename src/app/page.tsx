@@ -51,7 +51,7 @@ export default function Home() {
         />
       )}
       <img src="/images/LOGO-100_CALISTENIA.webp" className="h-[40px] object-contain mx-auto" alt="Logo" />
-      <header className="bg-linear-0 from-[#0E0E0E] to-[#1C1B1B] max-w-[85%] mt-12 w-[500px] rounded-full mx-auto border border-[var(--primary)]/30 z-50">
+      <header className="bg-linear-0 from-[#0E0E0E] to-[#1C1B1B] max-w-[85%] mt-6 md:mt-12 w-[500px] rounded-full mx-auto border border-[var(--primary)]/30 z-50">
         <div className="cf-container">
           <h3 className="text-center uppercase text-[var(--text-primary)]/80 tracking-widest text-[12px] py-3 leading-[130%]">
             <span>Exclusivo para profesionales mayores de 35</span>
