@@ -277,8 +277,7 @@ export default function Home() {
                           alt="Es para vos"
                         />
                       </div>
-                      Tenes 30 años o más con una carrera profesional
-                      demandante.
+                      Tenes 30 años o más y una vida ocupada.
                     </li>
                     <li className="flex items-start gap-4">
                       <div className="size-[24px] mt-2 min-w-[24px] rounded-full flex items-center justify-center bg-[var(--primary)]">
@@ -288,7 +287,7 @@ export default function Home() {
                           alt="Es para vos"
                         />
                       </div>
-                      Sentis estrés frecuentemente, desgano y baja energía.
+                      Queres resultados sostenibles en el tiempo.
                     </li>
                     <li className="flex items-start gap-4">
                       <div className="size-[24px] mt-2 min-w-[24px] rounded-full flex items-center justify-center bg-[var(--primary)]">
@@ -298,7 +297,7 @@ export default function Home() {
                           alt="Es para vos"
                         />
                       </div>
-                      Poder dedicarle al método 3 horas a la semana.
+                      No queres perder tiempo improvisando.
                     </li>
                   </ul>
                 </div>

@@ -77,16 +77,8 @@ export default function CalendlyFast() {
   const calendlyUrl = useMemo(() => {
     const params = new URLSearchParams({
       hide_gdpr_banner: "1",
-      embed_type: "InlineWidget",
-      embed_domain:
-        typeof window !== "undefined" ? window.location.hostname : "",
       name,
       email,
-      // Opcionales (pueden ahorrar recursos visuales):
-      // hide_landing_page_details: "1",
-      // hide_event_type_details: "1",
-      // text_color: "000000",
-      // primary_color: "0051ff",
     });
     return `${calendlyBaseUrl}?${params.toString()}`;
   }, [name, email]);
@@ -185,7 +177,7 @@ export default function CalendlyFast() {
         </div>
       </section>
 
-       {/* Social proof – sin cambios */}
+      {/* Social proof – sin cambios */}
       {/* <section className="py-[40px] px-4">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex flex-wrap justify-center gap-4 mt-8">
