@@ -186,7 +186,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
         subtitle:
           'Esto nos ayuda a adaptar tu alimentación y entrenamiento a tu estilo de vida.',
         options: [
-          { value: 'negocio-propio', label: 'Tengo mi propio negocio con empleados' },
+          { value: 'negocio-propio', label: 'Soy empresario' },
           { value: 'profesional', label: 'Soy profesional (Abogado, Médico, Ingeniero, Programador, etc.)' },
           { value: 'freelance', label: 'Freelance / Home office' },
           { value: 'trabajador', label: 'Trabajo manual / fisico' },
@@ -197,7 +197,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
         type: 'single',
         id: 'compromiso90',
         required: true,
-        title: '¿Estás listo/a para comprometerte 90 días con tu cambio?*',
+        title: '¿Estás listo para comprometerte 90 días con tu cambio?*',
         options: [
           { value: 'si', label: 'Sí, sé que los cambios duraderos no se logran en 2 semanas.' },
           { value: 'no', label: 'No, ahora no puedo comprometerme a 90 días.' },
@@ -233,10 +233,10 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
         title:
           'En caso de ser aceptado y sabiendo que es un servicio integral de 3 meses ¿Cuanto estas dispuesto a invertir en vos, tu salud y tu fisico y ser acompañado ayudandote a lograr tus objetivos de forma garantizada? *',
         options: [
-          { value: 'presupuesto-bajo', label: 'Menos de 400 USD (En este caso no vas a poder agendar)' },
-          { value: 'presupuesto-intermedio', label: 'Entre 400 y 800 USD' },
-          { value: 'presupuesto-alto', label: 'Entre 800 y 1200 USD' },
-          { value: 'presupuesto-muy-alto', label: '+1200 USD' },
+          { value: 'presupuesto-bajo', label: 'Menos de 200 USD (En este caso no vas a poder agendar)' },
+          { value: 'presupuesto-intermedio', label: 'Entre 200 y 400 USD, y puedo acceder a un plan de pagos para los siguientes meses.' },
+          { value: 'presupuesto-alto', label: 'Entre 400 y 800 USD' },
+          { value: 'presupuesto-muy-alto', label: '+800 USD' },
         ],
       },
     ],

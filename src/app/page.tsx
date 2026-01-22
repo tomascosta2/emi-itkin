@@ -62,10 +62,14 @@ export default function Home() {
       {/* Sección VSL (siempre visible) */}
       <section className="mt-6 pb-[60px] md:pb-[100px] border-b border-[var(--primary)] rounded-b-[45px] md:rounded-b-[60px] relative overflow-clip">
         <div className="cf-container">
-          <h1 className="text-center text-[22px] md:text-[36px] font-bold uppercase leading-[140%] md:px-4">
+          <h1 className="text-center text-[22px] md:text-[38px] font-bold uppercase leading-[140%] md:px-4">
+            {/* Testear este y 6 a 15 */}
             <span>
-              Bajá entre <span>6 y 15 kg de grasa, recupera tu energía y
-              tonificá en 90 días</span> con Entrenamientos en Casa y de forma 100% natural
+              Bajá entre{" "}
+              <span>
+                8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días
+              </span>{" "}
+              con mi Método Sostenible de forma 100% natural
             </span>
           </h1>
           <p className="text-[var(--primary)] text-center mt-2">
@@ -215,7 +219,7 @@ export default function Home() {
             </h2>
             <p className="text-white/80 text-[18px] text-center mx-auto max-w-[550px] mt-4">
               Este método fue diseñado especialmente para profesionales mayores
-              de 35 años que buscan un cambio real y sostenible en su salud y
+              de 30 años que buscan un cambio real y sostenible en su salud y
               apariencia física.
             </p>
             <div className="my-8 md:my-12 grid md:grid-cols-2 gap-6 md:gap-12 max-w-[900px] mx-auto">

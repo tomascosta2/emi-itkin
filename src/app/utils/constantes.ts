@@ -19,7 +19,7 @@ export const srcVsl = "https://player-vz-5c2adb98-6a4.tv.pandavideo.com/embed/?v
 
 // Thankyou
 export const idThankyou = "panda-55c6aea4-147d-4247-a7c9-e1cca58bfad2";
-export const srcThankyou = "https://player-vz-5c2adb98-6a4.tv.pandavideo.com/embed/?v=55c6aea4-147d-4247-a7c9-e1cca58bfad2" ;
+export const srcThankyou = "https://player-vz-5c2adb98-6a4.tv.pandavideo.com/embed/?v=55c6aea4-147d-4247-a7c9-e1cca58bfad2";
 
 
 export const VIDEO_TESTIMONIALS = [
@@ -74,7 +74,7 @@ export const TESTIMONIALS = [
         name: "Hugo Reynoso",
     },
     // {
-    
+
     //     img: "/images/testimonios/testimonio10.webp",
     // },
     {
@@ -106,7 +106,7 @@ export const TESTIMONIALS = [
         name: "Elian Mazaira",
     },
     // {
-    
+
     //     img: "/images/testimonios/testimonio17.webp",
     // },
     // {
@@ -114,7 +114,7 @@ export const TESTIMONIALS = [
     //     img: "/images/testimonios/testimonio18.webp",
     // },
     // {
-    
+
     //     img: "/images/testimonios/testimonio19.webp",
     // },
     {
@@ -131,10 +131,10 @@ export const TESTIMONIALS = [
     //     weight: "-X kg en 3 meses",
     //     img: "/images/testimonios/testimonio22.webp",
     // },
-    // {
-    //     weight: "-X kg en 3 meses",
-    //     img: "/images/testimonios/testimonio23.webp",
-    // },
+    {
+        weight: "-X kg en 3 meses",
+        img: "/images/testimonios/testimonio23.webp",
+    },
     {
         weight: "-11 kg en 3 meses",
         img: "/images/testimonios/testimonio24.webp",
@@ -228,19 +228,19 @@ export const METHOD_INCLUDES = [
     {
         img: "./images/stethoscope.svg",
         title: `Diagnóstico y Monitoreo Hormonal`
-    }, 
+    },
     {
         img: "./images/classroom.svg",
         title: `Clases de Motivación y Liderazgo`
-    }, 
+    },
     {
         img: "./images/test_passed.svg",
         title: `Tacker de Hábitos`
-    }, 
+    },
     {
         img: "./images/batch_assign.svg",
         title: `Comunidad Exclusiva`
-    }, 
+    },
     {
         img: "./images/today.svg",
         title: `Seguimiento y Acompañamiento Diario`
