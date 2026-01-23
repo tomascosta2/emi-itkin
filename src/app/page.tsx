@@ -73,7 +73,7 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-[var(--primary)] text-center mt-2">
-            (Sin Dietas Extremas Ni Rutinas Agobiantes)
+            (Sin Dietas Extremas Ni Rutinas Agobiantes Y Desde Tu Casa, O Donde Vos Quieras)
           </p>
           <section className="relative">
             <div className="bg-[#131313] p-1 pt-0 border-1 border-[var(--primary)] overflow-clip rounded-[12px] md:rounded-[16px] border-[var(--primary)] mt-6 max-w-[750px] mx-auto">
