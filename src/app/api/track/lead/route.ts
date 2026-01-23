@@ -39,6 +39,7 @@ export async function POST(req: Request) {
             },
           },
         ],
+        // test_event_code: 'TEST80162', // Eliminar esta línea en producción
       }),
     }
   );

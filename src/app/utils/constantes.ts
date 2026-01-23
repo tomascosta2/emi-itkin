@@ -1,6 +1,6 @@
 export const coachName = "Emiliano Itkin"
 
-export const pixelId = "639700134796854"
+export const pixelId = "1624044918599862"
 
 export const calendlyBaseUrl = "//calendly.com/emilianoitkincoach/asesoria-1-1?embed_domain=100porcientocalistenia.com&embed_type=Inline"
 
