@@ -551,7 +551,14 @@ export default function Home() {
 
 
       <p className="pb-6 pt-8 text-[14px] text-center px-4 text-white/60">
-        © {coachName} 2026. Todos los derechos reservados.
+        © {coachName} 2026 100% Calistenia. Todos los derechos reservados.
+        <br />
+        <span className="mt-2 block max-w-[500px] mx-auto text-[12px] text-white/40">
+          Este sitio no forma parte ni está avalado por Meta™ (Facebook™ o Instagram™).
+          Facebook™ e Instagram™ son marcas registradas de Meta Platforms, Inc.
+
+          Al utilizar este sitio aceptás nuestra <a href="/pages/politicas-de-privacidad">Política de Privacidad</a> y <a href="/pages/terminos-y-condiciones">Términos y Condiciones</a>.
+        </span>
       </p>
       <div className="bg-[var(--primary)] size-[600px] md:size-[700px] blur-[100px] md:blur-[200px] opacity-[50%] rounded-full absolute left-[calc(50%-300px)] md:-left-[300px] -bottom-[300px] md:block hidden -z-50"></div>
       <div className="bg-[var(--primary)] size-[600px] md:size-[700px] blur-[100px] md:blur-[200px] opacity-[50%] rounded-full absolute right-[calc(50%-300px)] md:-right-[300px] -bottom-[300px] md:block hidden -z-50"></div>
