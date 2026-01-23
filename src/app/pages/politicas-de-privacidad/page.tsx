@@ -42,7 +42,7 @@ export default function PoliticasDePrivacidadPage() {
         <section className="mb-6">
           <h2 className="text-2xl font-semibold mb-4">7. Contacto</h2>
           <p className="mb-4">
-            Para cualquier consulta podes escribirnos a nuestro correo electrónico de contacto. (santiago@santiagoramacoaching.com)
+            Para cualquier consulta podes escribirnos a nuestro correo electrónico de contacto. (emilianoitkincoachfitness@gmail.com)
           </p>
         </section>
       </main>
