@@ -96,6 +96,10 @@ export const TESTIMONIALS = [
     //     name: "Nombre Apellido",
     // },
     {
+        weight: "11 kg en 3 meses",
+        img: "/images/testimonios/testimonio23.webp",
+    },
+    {
         weight: "-9 kg en 3 meses",
         img: "/images/testimonios/testimonio15.webp",
         name: "Josue Moreno",
@@ -131,10 +135,6 @@ export const TESTIMONIALS = [
     //     weight: "-X kg en 3 meses",
     //     img: "/images/testimonios/testimonio22.webp",
     // },
-    {
-        weight: "-X kg en 3 meses",
-        img: "/images/testimonios/testimonio23.webp",
-    },
     {
         weight: "-11 kg en 3 meses",
         img: "/images/testimonios/testimonio24.webp",
