@@ -231,7 +231,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
         id: 'presupuesto',
         required: true,
         title:
-          'Si en la llamada vemos que este servicio integral encaja con vos, ¿qué monto estarías dispuesto a invertir para mejorar tu físico, tu energía y tu salud? (inversión total por los 3 meses de acompañamiento) *',
+          'En caso de ser aceptado y sabiendo que es un servicio integral de 3 meses ¿Cuanto estas dispuesto a invertir en vos, tu salud y tu fisico, siendo acompañado y ayudandote a lograr tus objetivos de forma garantizada? *',
         options: [
           { value: 'presupuesto-bajo', label: 'Menos de 400 USD (En este caso no vas a poder agendar)' },
           { value: 'presupuesto-intermedio', label: 'Entre 400 y 800 USD, y puedo acceder a un plan de pagos para los siguientes meses.' },
