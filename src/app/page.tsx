@@ -69,7 +69,7 @@ export default function Home() {
               <span>
                 8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días
               </span>{" "}
-              con mi Método Sostenible de forma 100% natural
+              Entrenando desde Casa y de Forma 100% Natural
             </span>
           </h1>
           <p className="text-[var(--primary)] text-center mt-2">
