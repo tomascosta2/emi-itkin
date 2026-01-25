@@ -114,7 +114,7 @@ export default function Home() {
             </div>
             <p className="text-center mt-4 leading-[90%] text-white/40 mx-auto max-w-[350px] text-[14px] flex items-center justify-center gap-2">
               {isUnlocked
-                ? "+50 alumnos activos"
+                ? "+50 clientes activos"
                 : "⚠️ El botón se habilitará luego de ver el video."}
               <img src="/images/Estrella.svg" alt="Estrellas" />
             </p>
