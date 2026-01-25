@@ -23,22 +23,12 @@ const faqs = [
   {
     pregunta: "¿Qué resultados puedo esperar?",
     respuesta:
-      "Podés perder entre 10 y 20 kg de grasa en un proceso de 16 semanas, con garantía de resultados o no pagás."
+      "Podés perder entre 8 y 15 kg de grasa en un proceso de 12 semanas, con garantía de resultados."
   },
   {
     pregunta: "¿Puedo contratar la nutrición y el entrenamiento por separado?",
     respuesta:
       "No. El plan es integral y se trabaja nutrición y entrenamiento de forma conjunta."
-  },
-  {
-    pregunta: "¿El asesoramiento es en línea o presencial?",
-    respuesta:
-      "El asesoramiento es 100% online. Recibís tu programa y contamos con comunicación constante para optimizar tu progreso."
-  },
-  {
-    pregunta: "¿Puedo unirme si no tengo elementos para entrenar?",
-    respuesta:
-      "Sí. La calistenia se adapta a cualquier situación, ya que se entrena principalmente con el peso corporal. Con el tiempo, se recomienda contar al menos con una barra de dominadas para facilitar el progreso."
   },
   {
     pregunta: "¿Tengo que comer todos los días lo mismo?",
