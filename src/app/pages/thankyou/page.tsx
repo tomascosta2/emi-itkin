@@ -25,6 +25,13 @@ export default function ThankYou() {
     } catch { }
   }, []);
 
+  useEffect(() => {
+    try {
+      // @ts-ignore
+      window.fbq?.("track", "Schedule");
+    } catch { }
+  }, []);
+
   // Countdown
   const countdown = useMemo(() => {
     if (!startAt) return null;
