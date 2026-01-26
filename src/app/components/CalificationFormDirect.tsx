@@ -231,11 +231,12 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
         id: 'presupuesto',
         required: true,
         title:
-          'En caso de ser aceptado y sabiendo que es un servicio integral de 3 meses ¿Cuanto estas dispuesto a invertir en tu salud y tu fisico, siendo acompañado y ayudandote a lograr tus objetivos de forma garantizada? *',
+          'En caso de ser aceptado y sabiendo que es un servicio integral de 3 meses ¿Contas con la posibilidad invertir en tu salud y tu fisico? *',
         options: [
-          { value: 'presupuesto-bajo', label: 'Menos de 400 USD (En este caso NO agendes, no te podemos ayudar)' },
-          { value: 'presupuesto-intermedio', label: 'Entre 400 y 800 USD, y puedo pagar el resto en cuotas.' },
-          { value: 'presupuesto-alto', label: 'Entre 800 y 1200 USD' },
+          { value: 'presupuesto-bajo', label: 'No, no cuento con al menos 400 USD' },
+          { value: 'presupuesto-intermedio', label: 'Si, puedo hacer un pago de usd 600 y dos cuotas de usd 300' },
+          { value: 'presupuesto-alto', label: 'Si, puedo hacer dos pagos de usd 600' },
+          { value: 'presupuesto-muy-alto', label: 'Si, puedo hacer un pago usd 1200' },
         ],
       },
     ],
