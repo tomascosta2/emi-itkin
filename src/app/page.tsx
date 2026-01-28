@@ -31,6 +31,10 @@ export default function Home() {
   const variant = variantRef.current;
   console.log(variant);
 
+  const heroTitle = variant === "A"
+    ? "Bajá entre 8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días desde casa y de forma natural"
+    : "Bajá entre 8 y 12 kg de grasa, recupera tu energía y tonificá en 12 semanas desde casa y de forma natural";
+
   return (
     <div className="relative overflow-clip pt-8">
       <img
@@ -54,7 +58,7 @@ export default function Home() {
       <header className="bg-linear-0 from-[#0E0E0E] to-[#1C1B1B] max-w-[85%] mt-6 md:mt-12 w-[500px] rounded-full mx-auto border border-[var(--primary)]/30 z-50">
         <div className="cf-container">
           <h3 className="text-center uppercase text-[var(--text-primary)]/80 tracking-widest text-[12px] py-3 leading-[130%]">
-            <span>Servicio para profesionales mayores de 30</span>
+            <span>Exclusivo para hombres entre 30 y 60 años</span>
           </h3>
         </div>
       </header>
@@ -65,17 +69,12 @@ export default function Home() {
           <h1 className="text-center text-[22px] md:text-[38px] font-bold uppercase leading-[140%] md:px-4">
             {/* Testear este y 6 a 15 */}
             <span>
-              Bajá entre{" "}
-              <span>
-                8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días
-              </span>{" "}
-              con mi Método Sostenible de forma 100% natural
-              {/* Entrenando desde Casa y de Forma 100% Natural */}
+              {heroTitle}
             </span>
           </h1>
-          <p className="text-[var(--primary)] text-center mt-2">
+          {/* <p className="text-[var(--primary)] text-center mt-2">
             (Sin Dietas Extremas Ni Rutinas Agobiantes Y Desde Tu Casa, O Donde Vos Quieras)
-          </p>
+          </p> */}
           <section className="relative">
             <div className="bg-[#131313] p-1 pt-0 border-1 border-[var(--primary)] overflow-clip rounded-[12px] md:rounded-[16px] border-[var(--primary)] mt-6 max-w-[750px] mx-auto">
               <div className="p-2 text-center text-[12px] uppercase text-[var(--text-primary)] tracking-widest bg-[#131313]">
@@ -201,7 +200,7 @@ export default function Home() {
         </>
       )}
 
-      <section className="py-[60px] md:py-[90px] relative overflow-clip">
+      {/* <section className="py-[60px] md:py-[90px] relative overflow-clip">
         <div className="absolute w-full h-full -z-40 top-0 left-0 bg-[url('/images/fondo-cuadritos.webp')] filter saturate-0 bg-black bg-no-repeat bg-top"></div>
         <div className="">
           <div className="cf-container">
@@ -320,7 +319,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <div className="bg-black">
         {/* <section
@@ -509,10 +508,9 @@ export default function Home() {
         {/* </div> */}
       </section>
 
-      <section className="pt-[120px] pb-[80px]">
+      {/* <section className="pt-[120px] pb-[80px]">
         <div className="cf-container">
           <Faqs />
-          {/* Botón bloqueado 5 minutos */}
           <div className="mt-8">
             <button
               className="cf-btn disabled:opacity-60 disabled:cursor-not-allowed"
@@ -534,7 +532,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* <div className="bg-[var(--primary)] overflow-hidden w-full">
   <div className="relative flex w-full">
