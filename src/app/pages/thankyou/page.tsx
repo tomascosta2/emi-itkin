@@ -103,7 +103,7 @@ export default function ThankYou() {
   // WhatsApp confirm
 
   const confirmMsg = encodeURIComponent(
-    `Hola Manu ${name ? `, soy ${name}` : ""}. Confirmo mi asistencia a la reunión ${startAt ? `del ${new Date(startAt).toLocaleString()}` : ""}.`
+    `Hola Emi ${name ? `, soy ${name}` : ""}. Confirmo mi asistencia a la reunión ${startAt ? `del ${new Date(startAt).toLocaleString()}` : ""}.`
   );
   const waConfirmHref = `https://wa.me/${waNumber}?text=${confirmMsg}`;
 
