@@ -33,7 +33,7 @@ export default function Home() {
 
   const heroTitle = variant === "A"
     ? "Bajá entre 8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días desde casa y de forma natural"
-    : "Bajá entre 8 y 12 kg de grasa, recupera tu energía y tonificá en 12 semanas desde casa y de forma natural";
+    : "Construye un cuerpo fuerte, definido y funcional con un sistema de calistenia probado paso a paso en 90 días";
 
   return (
     <div className="relative overflow-clip pt-8">
@@ -72,9 +72,9 @@ export default function Home() {
               {heroTitle}
             </span>
           </h1>
-          {/* <p className="text-[var(--primary)] text-center mt-2">
-            (Sin Dietas Extremas Ni Rutinas Agobiantes Y Desde Tu Casa, O Donde Vos Quieras)
-          </p> */}
+          <p className="text-[var(--primary)] text-center mt-2">
+            No entrenas solo: 4 profesionales trabajan con vos 1 a 1 para llevar tu físico al siguiente nivel.
+          </p>
           <section className="relative">
             <div className="bg-[#131313] p-1 pt-0 border-1 border-[var(--primary)] overflow-clip rounded-[12px] md:rounded-[16px] border-[var(--primary)] mt-6 max-w-[750px] mx-auto">
               <div className="p-2 text-center text-[12px] uppercase text-[var(--text-primary)] tracking-widest bg-[#131313]">
