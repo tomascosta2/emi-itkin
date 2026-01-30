@@ -66,7 +66,7 @@ export default function Home() {
       {/* Sección VSL (siempre visible) */}
       <section className="mt-6 pb-[60px] md:pb-[100px] border-b border-[var(--primary)] rounded-b-[45px] md:rounded-b-[60px] relative overflow-clip">
         <div className="cf-container">
-          <h1 className="text-center text-[22px] md:text-[38px] font-bold uppercase leading-[140%] md:px-4">
+          <h1 className="text-center text-[20px] md:text-[38px] font-bold uppercase leading-[140%] md:px-4">
             {/* Testear este y 6 a 15 */}
             <span>
               {heroTitle}
