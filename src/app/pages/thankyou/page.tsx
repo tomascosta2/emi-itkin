@@ -1,8 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { descriptionCalender, titleCalender, waNumber, locationCalender, idVsl, idThankyou, srcThankyou, coachName, TESTIMONIALS_THANKYOU_IMG, ALT_IMG_GENERIC, MORE_CHANGES_IMG, TESTIMONIALS, TESTIMONIALS_VIDEO_PAGE } from "@/app/utils/constantes";
+
+const generateEventId = () => {
+  return `schedule-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+};
 
 export default function ThankYou() {
   // Opcional: recuperar datos del paso anterior
@@ -11,6 +15,7 @@ export default function ThankYou() {
   const [agreeQuietPlace, setAgreeQuietPlace] = useState(false);
   const [agreeOnTime, setAgreeOnTime] = useState(false);
   const [agreeNoReschedule, setAgreeNoReschedule] = useState(false);
+  const scheduleFiredRef = useRef(false);
 
   useEffect(() => {
     try {
@@ -27,8 +32,33 @@ export default function ThankYou() {
 
   useEffect(() => {
     try {
+      if (scheduleFiredRef.current) return;
+      scheduleFiredRef.current = true;
+
+      const isQualified = localStorage.getItem("isQualified");
+      if (isQualified !== "true") return;
+
+      const alreadyFired = localStorage.getItem("schedule_fired");
+      if (alreadyFired) {
+        localStorage.removeItem("isQualified");
+        return;
+      }
+
+      const storedEventId = localStorage.getItem("schedule_event_id");
+      const eventId = storedEventId || generateEventId();
+      const email = localStorage.getItem("email") || undefined;
+      const phone = localStorage.getItem("phone") || undefined;
+
+      const payload: Record<string, string> = {};
+      if (email) payload.em = email;
+      if (phone) payload.ph = phone;
+
       // @ts-ignore
-      window.fbq?.("track", "Schedule");
+      window.fbq?.("track", "Schedule", payload, { eventID: eventId });
+
+      localStorage.setItem("schedule_fired", eventId);
+      localStorage.removeItem("isQualified");
+      localStorage.removeItem("schedule_event_id");
     } catch { }
   }, []);
 
