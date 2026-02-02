@@ -430,6 +430,11 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
       const fbc = getCookieValue('_fbc');
 
       if (isQualified) {
+        const leadEventId = `lead-${Date.now()}-${Math.random()
+          .toString(36)
+          .slice(2, 8)}`;
+        localStorage.setItem('lead_event_id', leadEventId);
+
         await fetch('/api/track/lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -438,7 +443,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
             phone: `${data.codigoPais}${data.telefono}`,
             fbp,
             fbc,
-            eventId: `lead-${Date.now()}`,
+            eventId: leadEventId,
           }),
         });
       }

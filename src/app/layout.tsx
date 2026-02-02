@@ -28,7 +28,7 @@ export default function RootLayout({
               t.src=v;s=b.getElementsByTagName(e)[0];
               s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '1624044918599862');
+              fbq('init', '1624044918599862', test_event_code='TEST42406');
               fbq('track', 'PageView');
             `,
           }}

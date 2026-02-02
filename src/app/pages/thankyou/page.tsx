@@ -76,60 +76,6 @@ export default function ThankYou() {
   }, [startAt]);
 
 
-  const gcalHref = useMemo(() => {
-    if (!startAt) return "#";
-    const start = new Date(startAt);
-    const end = new Date(start.getTime() + 30 * 60 * 1000); // 30min
-    const fmt = (d: Date) =>
-      d.toISOString().replace(/[-:]|\.\d{3}/g, ""); // YYYYMMDDTHHMMSSZ
-    const qs = new URLSearchParams({
-      action: "TEMPLATE",
-      text: titleCalender,
-      details: descriptionCalender,
-      locationCalender,
-      dates: `${fmt(start)}/${fmt(end)}`
-    });
-    return `https://www.google.com/calendar/render?${qs.toString()}`;
-  }, [startAt]);
-
-  const outlookHref = useMemo(() => {
-    if (!startAt) return "#";
-    const start = new Date(startAt);
-    const end = new Date(start.getTime() + 30 * 60 * 1000);
-    const qs = new URLSearchParams({
-      path: "/calendar/action/compose",
-      rru: "addevent",
-      startdt: start.toISOString(),
-      enddt: end.toISOString(),
-      subject: titleCalender,
-      body: descriptionCalender,
-      locationCalender
-    });
-    return `https://outlook.live.com/calendar/0/deeplink/compose?${qs.toString()}`;
-  }, [startAt]);
-
-  const appleIcsData = useMemo(() => {
-    if (!startAt) return "#";
-    const start = new Date(startAt);
-    const end = new Date(start.getTime() + 30 * 60 * 1000);
-    const ics = [
-      "BEGIN:VCALENDAR",
-      "VERSION:2.0",
-      "PRODID:-//Nano//Attendance//ES",
-      "BEGIN:VEVENT",
-      `UID:${crypto.randomUUID()}`,
-      `DTSTAMP:${new Date().toISOString().replace(/[-:]|\.\d{3}/g, "")}`,
-      `DTSTART:${start.toISOString().replace(/[-:]|\.\d{3}/g, "")}`,
-      `DTEND:${end.toISOString().replace(/[-:]|\.\d{3}/g, "")}`,
-      `SUMMARY:${titleCalender}`,
-      `DESCRIPTION:${descriptionCalender.replace(/\n/g, "\\n")}`,
-      `LOCATION:${location}`,
-      "END:VEVENT",
-      "END:VCALENDAR"
-    ].join("\r\n");
-    return `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`;
-  }, [startAt]);
-
   // WhatsApp confirm
 
   const confirmMsg = encodeURIComponent(

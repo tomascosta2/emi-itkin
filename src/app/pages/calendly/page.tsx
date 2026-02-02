@@ -24,6 +24,25 @@ export default function CalendlyFast() {
     setPhone(localStorage.getItem("phone") || "");
   }, []);
 
+  useEffect(() => {
+    try {
+      const isQualified = localStorage.getItem("isQualified");
+      if (isQualified !== "true") return;
+      const alreadyFired = localStorage.getItem("lead_fired");
+      if (alreadyFired) return;
+
+      const leadEventId =
+        localStorage.getItem("lead_event_id") ||
+        `lead-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
+      // @ts-ignore
+      window.fbq?.("track", "Lead", {}, { eventID: leadEventId });
+
+      localStorage.setItem("lead_fired", leadEventId);
+      localStorage.removeItem("lead_event_id");
+    } catch { }
+  }, []);
+
   // Listener de eventos de Calendly (funciona igual con iframe)
   useEffect(() => {
     const handleCalendlyEvent = (e: MessageEvent) => {
@@ -50,6 +69,18 @@ export default function CalendlyFast() {
             .toString(36)
             .slice(2, 8)}`;
           localStorage.setItem("schedule_event_id", eventId);
+
+          const scheduleAlreadyFired = localStorage.getItem("schedule_fired");
+          if (!scheduleAlreadyFired) {
+            try {
+              // @ts-ignore
+              if (window.fbq) {
+                // @ts-ignore
+                window.fbq("track", "Schedule", {}, { eventID: eventId });
+                localStorage.setItem("schedule_fired", eventId);
+              }
+            } catch { }
+          }
 
           fetch("/api/track/qualified-shedule", {
             method: "POST",

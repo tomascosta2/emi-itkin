@@ -39,7 +39,7 @@ export async function POST(req: Request) {
             },
           },
         ],
-        // test_event_code: 'TEST80162', // Eliminar esta línea en producción
+        test_event_code: 'TEST42406', // Eliminar esta línea en producción
       }),
     }
   );

@@ -14,6 +14,8 @@ export async function POST(req: Request) {
   const hashEmail = await hashSHA256(data.email);
   const hashPhone = await hashSHA256(data.phone);
 
+  const userAgent = navigator.userAgent;
+
   const response = await fetch(
     `https://graph.facebook.com/v18.0/${pixelId}/events?access_token=${process.env.API_ACCESS_TOKEN}`,
     {
@@ -33,12 +35,12 @@ export async function POST(req: Request) {
               ph: [hashPhone],
               fbp: data.fbp,
               fbc: data.fbc,
-              client_user_agent: req.headers.get('user-agent'),
+              client_user_agent: userAgent,
               client_ip_address: req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip'),
             },
           },
         ],
-        // test_event_code: 'TEST80162', // Eliminar esta línea en producción
+        test_event_code: 'TEST42406', // Eliminar esta línea en producción
       }),
     }
   );
