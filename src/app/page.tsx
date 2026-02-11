@@ -33,7 +33,7 @@ export default function Home() {
 
   const heroTitle = variant === "A"
     ? "Bajá entre 8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días desde casa y de forma natural"
-    : "Construye un cuerpo fuerte, definido y funcional con un sistema de calistenia probado paso a paso en 90 días";
+    : "Bajá entre 8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días desde casa y de forma natural, sin dietas restrictivas ni rutinas eternas";
 
   return (
     <div className="relative overflow-clip pt-8">
