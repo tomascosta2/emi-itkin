@@ -115,7 +115,7 @@ export default function Home() {
             <p className="text-center mt-4 leading-[90%] text-white/40 mx-auto max-w-[350px] text-[14px] flex items-center justify-center gap-2">
               {isUnlocked
                 ? "+50 clientes activos"
-                : "⚠️ El botón se habilitará luego de ver el video."}
+                : ""}
               <img src="/images/Estrella.svg" alt="Estrellas" />
             </p>
           </div>
@@ -500,7 +500,7 @@ export default function Home() {
               <p className="text-center my-4 text-white/40 mx-auto max-w-[350px] text-[14px] ">
                 {isUnlocked
                   ? "Solo 6 cupos nuevos por mes"
-                  : "⚠️ El botón se habilitará luego de ver el video."}
+                  : ""}
               </p>
             </div>
           </div>
@@ -528,7 +528,7 @@ export default function Home() {
             <p className="text-center mt-4 text-white/40 mx-auto max-w-[350px] text-[14px]">
               {isUnlocked
                 ? "Solo 6 cupos nuevos por mes"
-                : "⚠️ El botón se habilitará luego de ver el video."}
+                : ""}
             </p>
           </div>
         </div>
