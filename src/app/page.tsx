@@ -73,7 +73,7 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-[var(--primary)] text-center mt-2">
-            No entrenas solo: 5 profesionales trabajan con vos 1 a 1 para llevar tu físico al siguiente nivel.
+            No entrenas solo: 5 profesionales expertos en perdida de peso trabajan con vos 1 a 1 para llevar tu físico al siguiente nivel.
           </p>
           <section className="relative">
             <div className="bg-[#131313] p-1 pt-0 border-1 border-[var(--primary)] overflow-clip rounded-[12px] md:rounded-[16px] border-[var(--primary)] mt-6 max-w-[750px] mx-auto">
