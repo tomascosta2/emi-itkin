@@ -451,6 +451,7 @@ export default function Home() {
                     <img
                       className="w-full h-full object-cover rounded-[10px]"
                       src={t.img}
+                      loading="lazy"
                       alt={`${ALT_IMG_GENERIC} cambio ${i + 1}`}
                     />
                   </div>
