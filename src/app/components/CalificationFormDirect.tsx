@@ -1,9 +1,13 @@
 'use client';
 
-import { hostname } from 'os';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { COMPLETED_FORM, COMPLETED_FORM_TEST, FIRST_STEP_FORM, FIRST_STEP_FORM_TEST } from '../utils/constantes';
+import {
+  COMPLETED_FORM,
+  COMPLETED_FORM_TEST,
+  FIRST_STEP_FORM,
+  FIRST_STEP_FORM_TEST,
+} from '../utils/constantes';
 
 type Props = {
   variant: string;
@@ -25,7 +29,6 @@ type FormValues = {
   objetivo: string;
   ad: string;
 };
-
 
 // IDs válidos de preguntas de opción única
 type SingleId = Extract<
@@ -83,6 +86,53 @@ const PAISES = [
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
+// ---- Cookies helpers (para fbp/fbc)
+const getCookieValue = (cookieName: string) => {
+  if (typeof document === 'undefined') return '';
+  const name = cookieName + '=';
+  const decodedCookie = decodeURIComponent(document.cookie || '');
+  const ca = decodedCookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    const c = ca[i].trim();
+    if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
+  }
+  return '';
+};
+
+// Crea _fbc si llega fbclid y no existe (clave para que CAPI tenga fbc)
+const ensureFbcFromFbclid = () => {
+  if (typeof window === 'undefined') return;
+
+  const params = new URLSearchParams(window.location.search);
+  const fbclid = params.get('fbclid');
+  if (!fbclid) return;
+
+  const existing = getCookieValue('_fbc');
+  if (existing) {
+    try {
+      localStorage.setItem('_fbc', existing);
+    } catch {}
+    return;
+  }
+
+  const fbc = `fb.1.${Date.now()}.${fbclid}`;
+
+  const isLocalhost =
+    window.location.hostname.includes('localhost') ||
+    window.location.hostname.includes('127.0.0.1');
+
+  // En localhost http no uses Secure/None
+  const cookie = isLocalhost
+    ? `_fbc=${fbc}; path=/; SameSite=Lax`
+    : `_fbc=${fbc}; path=/; SameSite=None; Secure`;
+
+  document.cookie = cookie;
+
+  try {
+    localStorage.setItem('_fbc', fbc);
+  } catch {}
+};
+
 export default function CalificationFormDirect({ variant, onClose }: Props) {
   const {
     register,
@@ -109,9 +159,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
 
   // Lead ID único por sesión
   const leadIdRef = useRef<string>('');
-
   useEffect(() => {
-    // 1 leadId por sesión (sirve para update en el submit final)
     const existing = sessionStorage.getItem('leadId');
     const id = existing ?? `lead-${Date.now()}-${Math.random().toString(16).slice(2)}`;
     leadIdRef.current = id;
@@ -126,68 +174,21 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
       {
         type: 'contact',
         id: 'contact',
-        title:
-          'Completá tus datos para agendar tu consulta gratuita y ver si somos un buen fit',
-        subtitle:
-          'Tus datos son 100% confidenciales. Te tomará menos de 1 minuto.',
+        title: 'Completá tus datos para agendar tu consulta gratuita y ver si somos un buen fit',
+        subtitle: 'Tus datos son 100% confidenciales. Te tomará menos de 1 minuto.',
       },
-      // {
-      //   type: 'single',
-      //   id: 'cuerpo',
-      //   required: true,
-      //   title: '¿Cómo describirías tu cuerpo hoy?*',
-      //   subtitle:
-      //     'No te preocupes, nadie va a juzgarte. Solo queremos entender por dónde empezar.',
-      //   options: [
-      //     {
-      //       value: 'sobrepeso-15kg',
-      //       label: 'Tengo sobrepeso (quiero perder más de 15 kg por salud)',
-      //     },
-      //     {
-      //       value: 'fuera-de-forma',
-      //       label:
-      //         'Estoy fuera de forma (quiero perder entre 7 y 15 kg y quiero verme mejor)',
-      //     },
-      //     {
-      //       value: 'delgado-grasa',
-      //       label:
-      //         'Soy delgado(a), pero tengo grasa rebelde que quiero eliminar y ganar músculo',
-      //     },
-      //     { value: 'otro', label: 'Otro' },
-      //   ],
-      // },
-      // {
-      //   type: 'single',
-      //   id: 'urgencia',
-      //   required: true,
-      //   title: '¿Qué tan urgente es para ti cambiar tu cuerpo ahora mismo?*',
-      //   subtitle:
-      //     'Responde con total sinceridad. Esto nos ayuda a ver cómo ayudarte.',
-      //   options: [
-      //     { value: '3', label: '(3 de 10) Estoy buscando info. No es prioridad ahora.' },
-      //     { value: '5', label: '(5 de 10) Quiero empezar pronto. Me estoy motivando.' },
-      //     {
-      //       value: '7',
-      //       label:
-      //         '(7 de 10) Quiero empezar ya. Me frustra cómo me siento y quiero recuperar mi salud y autoestima.',
-      //     },
-      //     {
-      //       value: '10',
-      //       label:
-      //         '(10 de 10) No puedo esperar más. Esto me afecta física y mentalmente. Haré lo que haga falta.',
-      //     },
-      //   ],
-      // },
       {
         type: 'single',
         id: 'ocupacion',
         required: true,
         title: '¿A qué te dedicas?*',
-        subtitle:
-          'Esto nos ayuda a adaptar tu alimentación y entrenamiento a tu estilo de vida.',
+        subtitle: 'Esto nos ayuda a adaptar tu alimentación y entrenamiento a tu estilo de vida.',
         options: [
           { value: 'negocio-propio', label: 'Soy empresario' },
-          { value: 'profesional', label: 'Soy profesional (Abogado, Médico, Ingeniero, Programador, etc.)' },
+          {
+            value: 'profesional',
+            label: 'Soy profesional (Abogado, Médico, Ingeniero, Programador, etc.)',
+          },
           { value: 'freelance', label: 'Freelance / Home office' },
           { value: 'trabajador', label: 'Trabajo manual / fisico' },
           { value: 'otro', label: 'Otro' },
@@ -221,8 +222,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
         required: true,
         title:
           '¿Cuál es tu objetivo de salud/calidad de vida y cómo querés sentirte en los próximos meses?*',
-        subtitle:
-          'Cuanto más nos cuentes, mejor vamos a poder ayudarte.',
+        subtitle: 'Cuanto más nos cuentes, mejor vamos a poder ayudarte.',
         placeholder:
           'Ej: Tener más energía, dejar de cansarme, sentirme bien con mi cuerpo, mejorar mi salud...',
       },
@@ -236,7 +236,11 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
           { value: 'presupuesto-intermedio', label: 'Entre 300 a 400 usd/mes' },
           { value: 'presupuesto-alto', label: 'Entre 400 a 500 usd/mes' },
           { value: 'presupuesto-muy-alto', label: 'Entre 500 a 600 usd/mes' },
-          { value: 'presupuesto-bajo', label: 'No tengo dinero para invertir en mi calidad de vida, imagen y salud (NO AGENDES si no estas dispuesto en invertir en vos y en tu salud)' },
+          {
+            value: 'presupuesto-bajo',
+            label:
+              'No tengo dinero para invertir en mi calidad de vida, imagen y salud (NO AGENDES si no estas dispuesto en invertir en vos y en tu salud)',
+          },
         ],
       },
     ],
@@ -248,6 +252,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
   const isLast = stepIndex === totalSteps - 1;
 
   useEffect(() => {
+    ensureFbcFromFbclid();
     containerRef.current?.querySelector<HTMLElement>('[data-autofocus]')?.focus();
     containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
   }, [stepIndex]);
@@ -264,18 +269,10 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
 
   const canAdvanceFromStep = (s: ContactStep | SingleStep | TextStep) => {
     if (s.type === 'contact') return isContactValid();
-
-    if (s.type === 'single' && s.required === true) {
-      return !!values[s.id];
-    }
-
-    if (s.type === 'text' && s.required === true) {
-      return (values.objetivo ?? '').trim().length > 10;
-    }
-
+    if (s.type === 'single' && s.required === true) return !!values[s.id];
+    if (s.type === 'text' && s.required === true) return (values.objetivo ?? '').trim().length > 10;
     return true;
   };
-
 
   const back = () => setStepIndex((i) => Math.max(0, i - 1));
   const next = () => setStepIndex((i) => Math.min(totalSteps - 1, i + 1));
@@ -284,6 +281,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const step = steps[stepIndex];
+
       if (step.type === 'single') {
         const selectByIndex = (idx: number) => {
           const opt = step.options[idx];
@@ -323,20 +321,17 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
     return () => b?.classList.remove('overflow-hidden');
   }, []);
 
+  const hostname = typeof window !== 'undefined' ? window.location.hostname : '';
+  const isLocalhost =
+    hostname.includes('localhost') || hostname.includes('127.0.0.1');
 
-  const hostname = typeof window !== "undefined" ? window.location.hostname : "";
-
-  const N8N_CONTACT_WEBHOOK = hostname.includes("localhost") ?
-    FIRST_STEP_FORM_TEST :
-    FIRST_STEP_FORM;
+  const N8N_CONTACT_WEBHOOK = isLocalhost ? FIRST_STEP_FORM_TEST : FIRST_STEP_FORM;
 
   const sentContactRef = useRef(false);
 
   const sendContactToN8N = async () => {
-    if (sentContactRef.current) return; // no duplicar
+    if (sentContactRef.current) return;
     if (!isContactValid()) return;
-
-    console.log('Enviando contacto a N8N...');
 
     sentContactRef.current = true;
 
@@ -353,25 +348,19 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
       ts: new Date().toISOString(),
     };
 
-    // fire-and-forget (no frena UX)
     fetch(N8N_CONTACT_WEBHOOK, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify([payload]),
-    }).catch(() => { });
+    }).catch(() => {});
   };
 
   // ------- Submit
   const onSubmit = async (data: FormValues) => {
-    // ✅ Type guard reutilizable
     const isSingleRequired = (s: ContactStep | SingleStep | TextStep): s is SingleStep =>
       s.type === 'single' && s.required === true;
 
-
-    // Doble seguro: si falta algún single requerido, volver al primero que falte
-    const requiredIds = steps
-      .filter(isSingleRequired)      // <- ahora devuelve siempre boolean y estrecha el tipo
-      .map((s) => s.id);
+    const requiredIds = steps.filter(isSingleRequired).map((s) => s.id);
 
     const missing = requiredIds.find((id) => !data[id]);
     if (missing) {
@@ -383,57 +372,47 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
     try {
       setLoading(true);
 
-      console.log(data)
-
       // test
       try {
-        const result = await fetch(COMPLETED_FORM_TEST, {
+        await fetch(COMPLETED_FORM_TEST, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify([{ ...data, variant, leadId: leadIdRef.current }]),
         });
-        console.log(result)
-      } catch { }
+      } catch {}
 
+      // production
       try {
-        // production
         await fetch(COMPLETED_FORM, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify([{ ...data, variant, leadId: leadIdRef.current }]),
         });
-      } catch { }
+      } catch {}
 
       const isQualified =
-        (data.presupuesto === 'presupuesto-intermedio' || data.presupuesto === 'presupuesto-alto' || data.presupuesto === 'presupuesto-muy-alto') &&
-        (data.edad === 'adulto' || data.edad === 'mayor')
+        (data.presupuesto === 'presupuesto-intermedio' ||
+          data.presupuesto === 'presupuesto-alto' ||
+          data.presupuesto === 'presupuesto-muy-alto') &&
+        (data.edad === 'adulto' || data.edad === 'mayor');
 
       localStorage.setItem('isQualified', isQualified ? 'true' : 'false');
       localStorage.setItem('name', data.name);
       localStorage.setItem('email', data.email);
       localStorage.setItem('phone', `${data.codigoPais}${data.telefono}`);
 
-      const fbp =
-        document.cookie.split('; ').find((row) => row.startsWith('_fbp='))?.split('=')[1] ||
-        null;
-
-      const getCookieValue = (cookieName: string) => {
-        const name = cookieName + '=';
-        const decodedCookie = decodeURIComponent(document.cookie);
-        const ca = decodedCookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-          let c = ca[i].trim();
-          if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
-        }
-        return '';
-      };
-      const fbc = getCookieValue('_fbc');
+      // ✅ fbp/fbc: fuente real = cookies + fallback localStorage
+      const fbpCookie = getCookieValue('_fbp');
+      const fbcCookie = getCookieValue('_fbc');
+      const fbp = fbpCookie || localStorage.getItem('_fbp') || null;
+      const fbc = fbcCookie || localStorage.getItem('_fbc') || null;
 
       if (isQualified) {
-        const leadEventId = `lead-${Date.now()}-${Math.random()
-          .toString(36)
-          .slice(2, 8)}`;
+        const leadEventId = `lead-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
         localStorage.setItem('lead_event_id', leadEventId);
+
+        if (fbp) localStorage.setItem('_fbp', fbp);
+        if (fbc) localStorage.setItem('_fbc', fbc);
 
         await fetch('/api/track/lead', {
           method: 'POST',
@@ -448,7 +427,11 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
         });
       }
 
-      if (data.presupuesto === 'presupuesto-intermedio' || data.presupuesto === 'presupuesto-alto' || data.presupuesto === 'presupuesto-muy-alto') {
+      if (
+        data.presupuesto === 'presupuesto-intermedio' ||
+        data.presupuesto === 'presupuesto-alto' ||
+        data.presupuesto === 'presupuesto-muy-alto'
+      ) {
         window.location.href = '/pages/calendly';
       } else {
         window.location.href = '/pages/nothing-for-you-now';
@@ -490,18 +473,19 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
 
   const progress = useMemo(() => {
     if (totalSteps <= 1) return 0;
-    // typeform-style: arranca con un poquito y termina en 100
     return Math.round(((stepIndex + 1) / totalSteps) * 100);
   }, [stepIndex, totalSteps]);
 
-
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center px-4" style={{ zIndex: 10000 }}>
+    <div
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center px-4"
+      style={{ zIndex: 10000 }}
+    >
       <div
         ref={containerRef}
         className="w-full md:max-w-[720px] max-h-[calc(100vh-80px)] overflow-y-auto rounded-[20px] border border-white/10 bg-[#111] p-6 md:p-10 shadow-2xl"
       >
-        {/* Progress bar (Typeform style) */}
+        {/* Progress bar */}
         <div className="mb-5">
           <div className="flex items-center justify-between text-[12px] text-white/50 mb-2">
             <span>
@@ -521,9 +505,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
         <h2 className="text-[22px] md:text-[26px] font-semibold text-white leading-tight">
           {step.title}
         </h2>
-        {'subtitle' in step && step.subtitle && (
-          <p className="text-white/70 mt-2">{step.subtitle}</p>
-        )}
+        {'subtitle' in step && step.subtitle && <p className="text-white/70 mt-2">{step.subtitle}</p>}
 
         <form className="mt-6" onSubmit={handleSubmit(onSubmit)} autoComplete="on">
           {step.type === 'contact' && (
@@ -548,9 +530,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
                   {...register('email', { required: 'Campo requerido' })}
                   className="mt-2 w-full rounded-lg bg-white text-[#111] px-4 py-3 outline-none"
                 />
-                {errors.email && (
-                  <span className="text-red-400 text-xs">{errors.email.message}</span>
-                )}
+                {errors.email && <span className="text-red-400 text-xs">{errors.email.message}</span>}
               </label>
 
               <div>
@@ -570,6 +550,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
                       </option>
                     ))}
                   </select>
+
                   <input
                     type="tel"
                     placeholder="Número"
@@ -580,8 +561,9 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
                     className="flex-1 bg-white text-[#111]/80 rounded-lg px-4 py-2 outline-none min-w-0"
                   />
                 </div>
-                {(errors as any).codigoPais && (
-                  <span className="text-red-400 text-xs">{(errors as any).codigoPais.message}</span>
+
+                {errors.codigoPais && (
+                  <span className="text-red-400 text-xs">{errors.codigoPais.message}</span>
                 )}
                 {errors.telefono && (
                   <span className="text-red-400 text-xs">{errors.telefono.message}</span>
@@ -613,12 +595,12 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
                 data-autofocus
                 rows={5}
                 placeholder={step.placeholder}
-                {...register('objetivo', { required: step.required })}
+                {...register('objetivo', { required: step.required ? 'Este campo es obligatorio' : false })}
                 className="w-full rounded-xl bg-white text-[#111] px-4 py-3 outline-none resize-none"
               />
               {errors.objetivo && (
                 <span className="text-red-400 text-xs mt-1 block">
-                  Este campo es obligatorio
+                  {errors.objetivo.message as string}
                 </span>
               )}
             </div>
@@ -651,15 +633,11 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
                 type="button"
                 onClick={async () => {
                   const s = steps[stepIndex];
+                  if (!canAdvanceFromStep(s)) return;
 
-                  if (canAdvanceFromStep(s)) {
-                    // Si estamos en el paso de contacto, mandamos el lead a n8n
-                    if (s.type === 'contact') {
-                      await sendContactToN8N();
-                    }
+                  if (s.type === 'contact') await sendContactToN8N();
 
-                    setStepIndex((i) => i + 1);
-                  }
+                  setStepIndex((i) => i + 1);
                 }}
                 className="cf-btn"
                 disabled={loading || !canAdvanceFromStep(step)}
@@ -677,7 +655,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
                     <path
                       d="M6.41318 11.6364L5.09499 10.3296L8.55522 6.86932H0.447266V4.94887H8.55522L5.09499 1.49432L6.41318 0.181824L12.1404 5.9091L6.41318 11.6364Z"
                       fill="#FFF"
-                    ></path>
+                    />
                   </svg>
                 )}
               </button>
