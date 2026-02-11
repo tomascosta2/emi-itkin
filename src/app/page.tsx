@@ -58,7 +58,7 @@ export default function Home() {
       <header className="bg-linear-0 from-[#0E0E0E] to-[#1C1B1B] max-w-[85%] mt-6 md:mt-12 w-[500px] rounded-full mx-auto border border-[var(--primary)]/30 z-50">
         <div className="cf-container">
           <h3 className="text-center uppercase text-[var(--text-primary)]/80 tracking-widest text-[12px] py-3 leading-[130%]">
-            <span>Exclusivo para hombres entre 30 y 60 años</span>
+            <span>Programa #1 para hombres sedentarios en LATAM o algo así</span>
           </h3>
         </div>
       </header>
@@ -73,7 +73,7 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-[var(--primary)] text-center mt-2">
-            No entrenas solo: 4 profesionales trabajan con vos 1 a 1 para llevar tu físico al siguiente nivel.
+            No entrenas solo: 5 profesionales trabajan con vos 1 a 1 para llevar tu físico al siguiente nivel.
           </p>
           <section className="relative">
             <div className="bg-[#131313] p-1 pt-0 border-1 border-[var(--primary)] overflow-clip rounded-[12px] md:rounded-[16px] border-[var(--primary)] mt-6 max-w-[750px] mx-auto">
