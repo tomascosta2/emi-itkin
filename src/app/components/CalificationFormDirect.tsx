@@ -210,10 +210,10 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
         required: true,
         title: '¿En qué rango de edad te encontrás?*',
         options: [
-          { value: 'menor', label: 'Soy menor de edad' },
-          { value: 'joven', label: '18 - 24 años' },
-          { value: 'adulto', label: '24 - 44 años' },
-          { value: 'mayor', label: '+44 años' },
+          { value: 'muy-joven', label: '18 - 24 años' },
+          { value: 'joven', label: '24 - 35 años' },
+          { value: 'adulto', label: '35 - 45 años' },
+          { value: 'mayor', label: '+45 años' },
         ],
       },
       {
@@ -231,15 +231,15 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
         id: 'presupuesto',
         required: true,
         title:
-          'En caso de ser aceptado ¿Cuánto dinero dispones para invertir en vos y ser acompañado por todo un equipo integral de 4 profesionales que te ayudaran a lograr tus objetivos de forma garantizada?',
+          'Este programa incluye el acompañamiento de un equipo integral de 5 profesionales. Para mantener la calidad y los resultados, trabajamos con cupos limitados y una inversión acorde. ¿Qué presupuesto mensual tienes asignado para lograr este objetivo?',
         options: [
-          { value: 'presupuesto-intermedio', label: 'Entre 300 a 400 usd/mes' },
-          { value: 'presupuesto-alto', label: 'Entre 400 a 500 usd/mes' },
-          { value: 'presupuesto-muy-alto', label: 'Entre 500 a 600 usd/mes' },
+          { value: 'presupuesto-intermedio', label: 'Dispongo de entre 300 y 400 USD/mes.' },
+          { value: 'presupuesto-alto', label: 'Dispongo de entre 400 y 500 USD/mes.' },
+          { value: 'presupuesto-muy-alto', label: 'Dispongo de más de 500 USD/mes para asegurar el mejor plan.' },
           {
             value: 'presupuesto-bajo',
             label:
-              'No tengo dinero para invertir en mi calidad de vida, imagen y salud (NO AGENDES si no estas dispuesto en invertir en vos y en tu salud)',
+              'No dispongo de este presupuesto actualmente.',
           },
         ],
       },
