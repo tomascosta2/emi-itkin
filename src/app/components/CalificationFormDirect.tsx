@@ -410,6 +410,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
       if (isQualified) {
         const leadEventId = `lead-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
         localStorage.setItem('lead_event_id', leadEventId);
+        localStorage.removeItem('lead_fired');
 
         if (fbp) localStorage.setItem('_fbp', fbp);
         if (fbc) localStorage.setItem('_fbc', fbc);

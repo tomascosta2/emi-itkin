@@ -130,11 +130,16 @@ export default function CalendlyFast() {
       const isQualified = localStorage.getItem("isQualified");
       if (isQualified !== "true") return;
 
+      const pendingLeadEventId = localStorage.getItem("lead_event_id");
       const alreadyFired = localStorage.getItem("lead_fired");
-      if (alreadyFired) return;
+
+      // Si ya se disparó exactamente este evento, no repetir.
+      if (alreadyFired && pendingLeadEventId && alreadyFired === pendingLeadEventId) return;
+      // Si no hay evento pendiente y ya hubo uno disparado antes, no crear uno nuevo acá.
+      if (alreadyFired && !pendingLeadEventId) return;
 
       const leadEventId =
-        localStorage.getItem("lead_event_id") ||
+        pendingLeadEventId ||
         `lead-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 
       fireFbq("Lead", leadEventId, {}, () => {
