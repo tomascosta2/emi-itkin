@@ -394,7 +394,7 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
         (data.presupuesto === 'presupuesto-intermedio' ||
           data.presupuesto === 'presupuesto-alto' ||
           data.presupuesto === 'presupuesto-muy-alto') &&
-        (data.edad === 'adulto' || data.edad === 'mayor');
+        (data.edad === 'joven' || data.edad === 'adulto' || data.edad === 'mayor');
 
       localStorage.setItem('isQualified', isQualified ? 'true' : 'false');
       localStorage.setItem('name', data.name);
