@@ -32,8 +32,8 @@ export default function Home() {
   console.log(variant);
 
   const heroTitle = variant === "A"
-    ? "Bajá entre 8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días desde casa y de forma natural"
-    : "Bajá entre 8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días desde casa y de forma natural, sin dietas restrictivas ni rutinas eternas";
+    ? "Bajá entre 8 y 12 kg de grasa, recuperá tu energía y tonificá en 90 días, con solo 3 horas por semana, de forma natural."
+    : "Bajá entre 8 y 12 kg de grasa, recuperá tu energía y tonificá en 90 días, con solo 3 horas por semana, de forma natural.";
 
   return (
     <div className="relative overflow-clip pt-8">
@@ -73,7 +73,7 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-[var(--primary)] text-center mt-2">
-            No entrenas solo: 5 profesionales expertos en perdida de peso trabajan 1 a 1 con vos para llevar tu físico al siguiente nivel.
+            No entrenás solo: 5 profesionales expertos en pérdida de peso trabajan 1 a 1 con vos para llevar tu físico al siguiente nivel.
           </p>
           <section className="relative">
             <div className="bg-[#131313] p-1 pt-0 border-1 border-[var(--primary)] overflow-clip rounded-[12px] md:rounded-[16px] border-[var(--primary)] mt-6 max-w-[750px] mx-auto">

@@ -4,8 +4,13 @@ import Script from "next/script";
 import { coachName, hotjarID } from "./utils/constantes";
 
 export const metadata: Metadata = {
-  title: `${coachName} Fit - Baja entre 5 y 15 kilogramos de grasa con mi metodo para adultos ocupados`,
-  description: `${coachName} Fit - Baja entre 5 y 15 kilogramos de grasa con mi metodo para adultos ocupados`,
+  title: `${coachName} 100% Calistenia - Baja la panza y recupera tu energía`,
+  description: `${coachName} 100% Calistenia - Baja la panza y recupera tu energía`,
+  icons: {
+    icon: "/images/icon.png",
+    shortcut: "/images/icon.png",
+    apple: "/images/icon.png",
+  },
 };
 
 export default function RootLayout({
