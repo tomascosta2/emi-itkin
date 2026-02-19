@@ -32,8 +32,8 @@ export default function Home() {
   console.log(variant);
 
   const heroTitle = variant === "A"
-    ? "Bajá entre 8 y 12 kg de grasa, recuperá tu energía y tonificá en 90 días, con solo 3 horas por semana, de forma natural."
-    : "Bajá entre 8 y 12 kg de grasa, recuperá tu energía y tonificá en 90 días, con solo 3 horas por semana, de forma natural.";
+    ? "BAJÁ ENTRE 8 Y 12 KG DE GRASA EN 90 DÍAS CON SOLO 3 HS SEMANALES, SIN GIMNASIO NI DIETAS RESTRICTIVAS."
+    : "BAJÁ ENTRE 8 Y 12 KG DE GRASA EN 90 DÍAS CON SOLO 3 HS SEMANALES, SIN GIMNASIO NI DIETAS RESTRICTIVAS.";
 
   return (
     <div className="relative overflow-clip pt-8">
