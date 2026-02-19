@@ -14,8 +14,8 @@ export const descriptionCalender = `Reunión 1:1 para alinear objetivos y plan.\
 export const locationCalender = "Online (se compartirá enlace)";
 
 // VSL
-export const idVsl = "panda-636f6d70-151f-4d4b-8ff9-20657528c779";
-export const srcVsl = "https://player-vz-5c2adb98-6a4.tv.pandavideo.com.br/embed/?v=636f6d70-151f-4d4b-8ff9-20657528c779";
+export const idVsl = "panda-636f6d70-4f7d-42d3-b6d6-5e2747176559";
+export const srcVsl = "https://player-vz-5c2adb98-6a4.tv.pandavideo.com.br/embed/?v=636f6d70-4f7d-42d3-b6d6-5e2747176559";
 
 // Thankyou
 export const idThankyou = "panda-55c6aea4-147d-4247-a7c9-e1cca58bfad2";
