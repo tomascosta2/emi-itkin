@@ -116,8 +116,13 @@ export default function ThankYou() {
             {/* Aviso destacado */}
             <p className="mb-3 bg-amber-400/15 border border-amber-400/40 flex items-center gap-2 justify-center p-2 rounded-md text-[16px] text-amber-100">
               <svg className="fill-amber-300 size-[22px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M320 64C334.7 64 348.2 72.1 355.2 85L571.2 485C577.9 497.4 577.6 512.4 570.4 524.5C563.2 536.6 550.1 544 536 544L104 544C89.9 544 76.9 536.6 69.6 524.5C62.3 512.4 62.1 497.4 68.8 485L284.8 85C291.8 72.1 305.3 64 320 64zM320 232C306.7 232 296 242.7 296 256L296 368C296 381.3 306.7 392 320 392C333.3 392 344 381.3 344 368L344 256C344 242.7 333.3 232 320 232zM346.7 448C347.3 438.1 342.4 428.7 333.9 423.5C325.4 418.4 314.7 418.4 306.2 423.5C297.7 428.7 292.8 438.1 293.4 448C292.8 457.9 297.7 467.3 306.2 472.5C314.7 477.6 325.4 477.6 333.9 472.5C342.4 467.3 347.3 457.9 346.7 448z" /></svg>
-              <span><strong>¡Ultimo paso!</strong> Confirma para no perder tu cupo.</span>
+              <span><strong>¡Ultimo paso!</strong> Mira el video y confirma para no perder tu cupo.</span>
             </p>
+
+            {/* Título + countdown */}
+            <h1 className="text-[26px] text-white font-bold leading-[115%] my-8">
+              {name ? `¡${name},` : "¡Genial,"} tu consulta ya esta reservada, te vamos a escribir por Whatsapp para confirmarla.
+            </h1>
 
             <iframe
               className="w-full aspect-video my-4 bg-[#131313] rounded-[12px] overflow-clip border border-[var(--primary)]/30"
@@ -126,53 +131,18 @@ export default function ThankYou() {
               allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
             ></iframe>
 
-            {/* Título + countdown */}
-            <h1 className="text-[26px] text-white font-bold leading-[115%] my-8">
-              {name ? `¡${name},` : "¡Genial,"} ya casi estamos! Solo falta confirmar.
-            </h1>
             {startAt && (
               <p className="text-[16px] text-white/80 mb-4">
                 Tu reunión está programada para:{" "}
                 <strong>{new Date(startAt).toLocaleString()}</strong>{" "}
                 {countdown && <span className="ml-2 px-2 py-1 bg-white text-black rounded">Comienza en {countdown}</span>}
               </p>
-            )}
-
-            {/* Checklist de compromiso */}
-            <div className="rounded-xl border border-[#2a2a2a] p-4 bg-[#121212] mb-4">
-              <p className="font-semibold text-[18px] mb-2 text-white">
-                Checklist (2 minutos) — marca para habilitar la confirmacion:
-              </p>
-              <label className="flex items-start gap-3 text-[16px] text-white/80 mb-2">
-                <input type="checkbox" className="mt-1 accent-[var(--primary)]" checked={agreeQuietPlace} onChange={e => setAgreeQuietPlace(e.target.checked)} />
-                <span>Voy a estar en un lugar tranquilo, sin interrupciones.</span>
-              </label>
-              <label className="flex items-start gap-3 text-[16px] text-white/80 mb-2">
-                <input type="checkbox" className="mt-1 accent-[var(--primary)]" checked={agreeOnTime} onChange={e => setAgreeOnTime(e.target.checked)} />
-                <span>Me comprometo a llegar a tiempo (respeto el cupo y la agenda).</span>
-              </label>
-              <label className="flex items-start gap-3 text-[16px] text-white/80">
-                <input type="checkbox" className="mt-1 accent-[var(--primary)]" checked={agreeNoReschedule} onChange={e => setAgreeNoReschedule(e.target.checked)} />
-                <span>Si no puedo asistir, reprogramo con anticipacion para liberar el lugar.</span>
-              </label>
-            </div>
-
-            {/* CTA principal */}
-            <a
-              className={`cf-btn ${confirmEnabled ? "" : "opacity-60 pointer-events-none"}`}
-              target="_blank"
-              onClick={confirmEnabled ? trackConfirm : undefined}
-              href={confirmEnabled ? waConfirmHref : undefined}
-              aria-disabled={!confirmEnabled}
-            >
-              Confirmar mi asistencia por WhatsApp
-            </a>
-            <p className="text-red-400 text-[14px] text-center mt-2">En caso de no confirmar, tu llamada va a ser cancelada</p>
+            )}           
 
             <section className="pt-[100px]">
               <div>
                 <h2 className="text-[28px] md:text-[36px] font-bold text-white text-center max-w-[500px] leading-[130%] mx-auto">
-                  Ellos Ya Pasaron Por Acá
+                  Tasa de exito del 100%: Historias reales de hombres ocupados que transformaron su físico, energía y salud con nuestro programa de calistenia.
                 </h2>
                 <div className="my-8 md:my-12 max-w-[900px] mx-auto space-y-6">
                   {TESTIMONIALS_VIDEO_PAGE.map((testimonial) => {
@@ -295,40 +265,6 @@ export default function ThankYou() {
               </div>
             </section>
 
-            {/* Checklist de compromiso */}
-            <div className="rounded-xl border border-[#2a2a2a] p-4 bg-[#121212] mt-8">
-              <p className="font-semibold text-[18px] mb-2 text-white">
-                Checklist (2 minutos) — marca para habilitar la confirmacion:
-              </p>
-              <label className="flex items-start gap-3 text-[16px] text-white/80 mb-2">
-                <input type="checkbox" className="mt-1 accent-[var(--primary)]" checked={agreeQuietPlace} onChange={e => setAgreeQuietPlace(e.target.checked)} />
-                <span>Voy a estar en un lugar tranquilo, sin interrupciones.</span>
-              </label>
-              <label className="flex items-start gap-3 text-[16px] text-white/80 mb-2">
-                <input type="checkbox" className="mt-1 accent-[var(--primary)]" checked={agreeOnTime} onChange={e => setAgreeOnTime(e.target.checked)} />
-                <span>Me comprometo a llegar a tiempo (respeto el cupo y la agenda).</span>
-              </label>
-              <label className="flex items-start gap-3 text-[16px] text-white/80">
-                <input type="checkbox" className="mt-1 accent-[var(--primary)]" checked={agreeNoReschedule} onChange={e => setAgreeNoReschedule(e.target.checked)} />
-                <span>Si no puedo asistir, reprogramo con anticipacion para liberar el lugar.</span>
-              </label>
-            </div>
-
-            {/* CTA repetido al final */}
-            <a
-              className={`cf-btn mt-4 ${confirmEnabled ? "" : "opacity-60 pointer-events-none"}`}
-              target="_blank"
-              onClick={confirmEnabled ? trackConfirm : undefined}
-              href={confirmEnabled ? waConfirmHref : undefined}
-              aria-disabled={!confirmEnabled}
-            >
-              Confirmar mi asistencia por WhatsApp
-            </a>
-
-            {/* Nota de escasez real */}
-            <p className="text-center text-[14px] text-red-400 mt-2">
-              Cupos limitados: si no confirmas, el sistema libera tu lugar automaticamente.
-            </p>
           </div>
         </div>
         <div className="bg-[var(--primary)]/80 size-[600px] rounded-full left-[-400px] absolute -z-50 blur-[200px] -bottom-[300px]"></div>
