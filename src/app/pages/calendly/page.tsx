@@ -221,9 +221,10 @@ export default function CalendlyFast() {
       embed_domain: typeof window !== "undefined" ? window.location.hostname : "",
       name,
       email,
+      a1: phone,
     });
     return `${calendlyBaseUrl}?${params.toString()}`;
-  }, [name, email]);
+  }, [name, email, phone]);
 
   return (
     <main>
