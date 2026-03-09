@@ -47,7 +47,7 @@ export default function Home() {
         alt="Sombra"
         className="w-[700px] absolute left-0 top-0 scale-x-[-1] -z-50 hidden md:block"
       />
-      <div className="bg-[var(--primary)]/80 size-[600px] rounded-full left-1/2 transform hidden md:block -translate-x-1/2 absolute -z-50  blur-[800px] -top-[400px]"></div>
+      <div className="bg-[var(--primary)] size-[600px] rounded-full left-1/2 transform hidden md:block -translate-x-1/2 absolute -z-50 blur-[800px] -top-[400px] [transform:translateZ(0)] isolate opacity-100"></div>
       {isFormOpened && (
         <CalificationFormDirect
           variant={variant}
@@ -121,8 +121,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="bg-[var(--primary)]/80 size-[600px] rounded-full left-[-400px] absolute -z-50  blur-[200px] -bottom-[300px]"></div>
-        <div className="bg-[var(--primary)]/80 size-[600px] rounded-full right-[-400px] absolute -z-50  blur-[200px] -bottom-[300px]"></div>
+        <div className="bg-[var(--primary)] size-[600px] rounded-full left-[-400px] absolute -z-50 blur-[200px] -bottom-[300px] [transform:translateZ(0)] isolate opacity-100"></div>
+        <div className="bg-[var(--primary)] size-[600px] rounded-full right-[-400px] absolute -z-50 blur-[200px] -bottom-[300px] [transform:translateZ(0)] isolate opacity-100"></div>
       </section>
 
       {isUnlocked && (
@@ -145,10 +145,32 @@ export default function Home() {
                           className="p-1 md:p-2 rounded-[24px] relative overflow-clip z-50 bg-[var(--background)]"
                         >
                           <div className="h-[2px] absolute top-0 overflow-clip w-full">
-                            <div className="bg-white size-[80px] md:size-[300px] -top-[40px] md:top-[-150px] blur-[20px] md:blur-[100px] opacity-[100%] rounded-full absolute left-[calc(50%-40px)] md:left-[calc(50%-150px)] -z-50"></div>
+                            <div
+                              className="pointer-events-none absolute
+                                size-[100px] md:size-[300px]
+                                -top-[50px] md:-top-[150px]
+                                left-1/2 -translate-x-1/2
+                                rounded-full bg-white
+                                blur-[30px] md:blur-[100px]
+                                opacity-100
+                                z-50
+                                [transform:translateZ(0)]"
+                            />
                           </div>
-                          <div className="bg-[var(--primary)] size-[900px] top-[-450px] blur-[150px] opacity-[70%] rounded-full absolute -right-[450px] -z-40"></div>
-                          <div className="bg-[var(--primary)] size-[900px] bottom-[-450px] blur-[150px] opacity-[70%] rounded-full absolute -left-[450px] -z-40"></div>
+                          <div
+                            className="pointer-events-none absolute -right-[450px] top-[-450px]
+                                      size-[850px] rounded-full bg-[var(--primary)]
+                                      blur-[150px] opacity-100 -z-10
+                                      [transform:translateZ(0)]
+                                      isolate"
+                          ></div>
+                          <div
+                            className="pointer-events-none absolute -left-[450px] bottom-[-450px]
+                                      size-[850px] rounded-full bg-[var(--primary)]
+                                      blur-[150px] opacity-100 -z-10
+                                      [transform:translateZ(0)]
+                                      isolate"
+                          ></div>
                           <div className="relative bg-[#171717] z-50 p-4 md:p-[50px] rounded-[20px] flex md:flex-row flex-col gap-4 md:gap-8">
                             <div className="w-full max-w-[400px] aspect-video rounded-[10px] overflow-hidden">
                               <iframe
@@ -560,8 +582,8 @@ export default function Home() {
           Al utilizar este sitio aceptás nuestra <a href="/pages/politicas-de-privacidad">Política de Privacidad</a> y <a href="/pages/terminos-y-condiciones">Términos y Condiciones</a>.
         </span>
       </p>
-      <div className="bg-[var(--primary)] size-[600px] md:size-[700px] blur-[100px] md:blur-[200px] opacity-[50%] rounded-full absolute left-[calc(50%-300px)] md:-left-[300px] -bottom-[300px] md:block hidden -z-50"></div>
-      <div className="bg-[var(--primary)] size-[600px] md:size-[700px] blur-[100px] md:blur-[200px] opacity-[50%] rounded-full absolute right-[calc(50%-300px)] md:-right-[300px] -bottom-[300px] md:block hidden -z-50"></div>
+      <div className="bg-[var(--primary)] size-[600px] md:size-[700px] blur-[100px] md:blur-[200px] opacity-100 rounded-full absolute left-[calc(50%-300px)] md:-left-[300px] -bottom-[300px] md:block hidden -z-50 [transform:translateZ(0)] isolate"></div>
+      <div className="bg-[var(--primary)] size-[600px] md:size-[700px] blur-[100px] md:blur-[200px] opacity-100 rounded-full absolute right-[calc(50%-300px)] md:-right-[300px] -bottom-[300px] md:block hidden -z-50 [transform:translateZ(0)] isolate"></div>
     </div>
   );
 }

@@ -331,3 +331,16 @@ body {
 .animate-marquee {
   animation: marquee 15s linear infinite;
 }
+
+/* Safari: compensar la pérdida de intensidad por clip-path */
+@supports (-webkit-touch-callout: none) {
+  .testimonial-glow {
+    opacity: 1 !important;
+  }
+  .testimonial-shadow {
+    box-shadow: 0 4px 120px 30px rgba(var(--primary-rgb), 1) !important;
+  }
+  .testimonial-inner-card {
+    box-shadow: 0 0 60px 20px rgba(var(--primary-rgb), 1) !important;
+  }
+}
