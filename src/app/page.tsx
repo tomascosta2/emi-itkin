@@ -33,7 +33,7 @@ export default function Home() {
 
   const heroTitle = variant === "A"
     ? "BAJÁ ENTRE 8 Y 12 KG DE GRASA EN 90 DÍAS CON SOLO 3 HS SEMANALES, SIN GIMNASIO NI DIETAS RESTRICTIVAS."
-    : "Descubre Como +300 Hombres Sedentarios Bajaron Entre 8 y 12 Kg de Grasa en 90 días, Con Solo 3 Hs Semanales, Sin Dietas Restrictivas Ni Gimnasios";
+    : "Como +300 Hombres Sedentarios Bajaron Entre 8 y 12 Kg de Grasa en 90 días, Con Solo 3 Hs Semanales, Sin Dietas Restrictivas Ni Gimnasios";
 
   return (
     <div className="relative overflow-clip pt-8">
