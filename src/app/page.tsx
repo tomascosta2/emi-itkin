@@ -27,13 +27,19 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  const variantRef = useRef<"A" | "B">(Math.random() < 0.5 ? "A" : "B");
+  const getInitialVariant = (): "A" | "B" => {
+    if (typeof window !== "undefined") {
+      const p = new URLSearchParams(window.location.search).get("variant");
+      if (p === "A" || p === "B") return p;
+    }
+    return Math.random() < 0.5 ? "A" : "B";
+  };
+  const variantRef = useRef<"A" | "B">(getInitialVariant());
   const variant = variantRef.current;
-  console.log(variant);
 
   const heroTitle = variant === "A"
     ? "Bajá entre 8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días desde casa y de forma natural"
-    : "BAJÁ ENTRE 8 Y 12 KG DE GRASA EN 90 DÍAS CON SOLO 3 HS SEMANALES, SIN GIMNASIO NI DIETAS RESTRICTIVAS";
+    : "Bajá entre 8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días desde casa y de forma natural";
   
   const subtitle = variant === "A"
     ? "De forma 100% natural y con entrenamientos simples desde casa, diseñados para hombres ocupados."

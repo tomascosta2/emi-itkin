@@ -226,25 +226,35 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
         placeholder:
           'Ej: Tener más energía, dejar de cansarme, sentirme bien con mi cuerpo, mejorar mi salud...',
       },
-      {
-        type: 'single',
-        id: 'presupuesto',
-        required: true,
-        title:
-          'Este programa incluye el acompañamiento de un equipo integral de 5 profesionales. Para mantener la calidad y los resultados, trabajamos con cupos limitados y una inversión acorde. ¿Qué presupuesto mensual tienes asignado para lograr este objetivo?',
-        options: [
-          { value: 'presupuesto-intermedio', label: 'Dispongo de entre 300 y 400 USD/mes.' },
-          { value: 'presupuesto-alto', label: 'Dispongo de entre 400 y 500 USD/mes.' },
-          { value: 'presupuesto-muy-alto', label: 'Dispongo de más de 500 USD/mes para asegurar el mejor plan.' },
-          {
-            value: 'presupuesto-bajo',
-            label:
-              'No dispongo de este presupuesto actualmente.',
+      variant === 'B'
+        ? {
+            type: 'single' as const,
+            id: 'presupuesto' as const,
+            required: true,
+            title: '¿Podrías comprometer al menos 400 USD al mes para tu proceso de transformación física si vemos que el programa es adecuado para vos?',
+            subtitle:
+              'Nuestro programa es un acompañamiento profesional completo y suele requerir una inversión mensual acorde al nivel de soporte del equipo. Para asegurarnos de que la llamada tenga sentido para vos y para nosotros, necesitamos confirmar lo siguiente.',
+            options: [
+              { value: 'presupuesto-alto', label: 'Sí, sin problema.' },
+              { value: 'presupuesto-intermedio', label: 'Sí, pero cerca de 400 USD.' },
+              { value: 'presupuesto-bajo', label: 'No en este momento.' },
+            ],
+          }
+        : {
+            type: 'single' as const,
+            id: 'presupuesto' as const,
+            required: true,
+            title:
+              'Este programa incluye el acompañamiento de un equipo integral de 5 profesionales. Para mantener la calidad y los resultados, trabajamos con cupos limitados y una inversión acorde. ¿Qué presupuesto mensual tienes asignado para lograr este objetivo?',
+            options: [
+              { value: 'presupuesto-intermedio', label: 'Dispongo de entre 300 y 400 USD/mes.' },
+              { value: 'presupuesto-alto', label: 'Dispongo de entre 400 y 500 USD/mes.' },
+              { value: 'presupuesto-muy-alto', label: 'Dispongo de más de 500 USD/mes para asegurar el mejor plan.' },
+              { value: 'presupuesto-bajo', label: 'No dispongo de este presupuesto actualmente.' },
+            ],
           },
-        ],
-      },
     ],
-    []
+    [variant]
   );
 
   const [stepIndex, setStepIndex] = useState(0);
