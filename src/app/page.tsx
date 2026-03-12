@@ -35,7 +35,7 @@ export default function Home() {
     ? "BAJÁ ENTRE 8 Y 12 KG DE GRASA EN 90 DÍAS CON SOLO 3 HS SEMANALES, SIN GIMNASIO NI DIETAS RESTRICTIVAS."
     : "BAJÁ ENTRE 8 Y 12 KG DE GRASA EN 90 DÍAS CON SOLO 3 HS SEMANALES, SIN GIMNASIO NI DIETAS RESTRICTIVAS.";
   
-    const subtitle = variant === "A"
+  const subtitle = variant === "A"
     ? "No entrenás solo: Un equipo integral de 5 profesionales trabaja 1 a 1 con vos para que este cambio físico sea definitivo."
     : "De forma 100% natural y con entrenamientos simples desde casa, diseñados para hombres ocupados.";
 
@@ -77,7 +77,7 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-[var(--primary)] text-center mt-2">
-            No entrenás solo: Un equipo integral de 5 profesionales trabaja 1 a 1 con vos para que este cambio físico sea definitivo.
+            {subtitle}
           </p>
           <section className="relative">
             <div className="bg-[#131313] p-1 pt-0 border-1 border-[var(--primary)] overflow-clip rounded-[12px] md:rounded-[16px] border-[var(--primary)] mt-6 max-w-[750px] mx-auto">
