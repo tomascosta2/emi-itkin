@@ -235,8 +235,8 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
             subtitle:
               'Nuestro programa es un acompañamiento profesional completo y suele requerir una inversión mensual acorde al nivel de soporte del equipo. Para asegurarnos de que la llamada tenga sentido para vos y para nosotros, necesitamos confirmar lo siguiente.',
             options: [
-              { value: 'presupuesto-alto', label: 'Sí, sin problema.' },
-              { value: 'presupuesto-intermedio', label: 'Sí, pero cerca de 400 USD.' },
+              { value: 'presupuesto-alto', label: 'Sí, quiero asegurar mi cambio.' },
+              { value: 'presupuesto-intermedio', label: 'Sí, pero primero necesito ver cómo es el servicio.' },
               { value: 'presupuesto-bajo', label: 'No en este momento.' },
             ],
           }
