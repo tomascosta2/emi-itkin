@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
 import CalificationFormDirect from "./components/CalificationFormDirect";
+import CalendlyInline from "./components/CalendlyInline";
 import Faqs from "./components/Faqs";
 import {
   ALT_IMG_GENERIC,
@@ -15,6 +16,8 @@ import {
 
 export default function Home() {
   const [isFormOpened, setIsFormOpened] = useState(false);
+  const [showCalendly, setShowCalendly] = useState(false);
+  const [calendlyPrefill, setCalendlyPrefill] = useState<{ name: string; email: string; phone: string } | null>(null);
 
   // 🔒 Nuevo: control de bloqueo por 5 minutos
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -46,7 +49,28 @@ export default function Home() {
     : "De forma 100% natural y con entrenamientos simples desde casa, diseñados para hombres ocupados.";
 
   return (
-    <div className="relative overflow-clip pt-8">
+    <>
+      {/* Precarga oculta del calendly desde que se abre el formulario */}
+      {(calendlyPrefill !== null || showCalendly) && (
+        <div
+          style={{
+            opacity: showCalendly ? 1 : 0,
+            pointerEvents: showCalendly ? "auto" : "none",
+            position: showCalendly ? "relative" : "fixed",
+            inset: showCalendly ? "auto" : "0",
+            zIndex: showCalendly ? "auto" : 0,
+          }}
+        >
+          <CalendlyInline
+            name={calendlyPrefill?.name ?? ""}
+            email={calendlyPrefill?.email ?? ""}
+            phone={calendlyPrefill?.phone ?? ""}
+          />
+        </div>
+      )}
+
+      {!showCalendly && (
+      <div className="relative overflow-clip pt-8">
       <img
         src="/images/Sombra.webp"
         alt="Sombra"
@@ -62,6 +86,12 @@ export default function Home() {
         <CalificationFormDirect
           variant={variant}
           onClose={() => setIsFormOpened(false)}
+          onContactReady={(name, email, phone) => setCalendlyPrefill({ name, email, phone })}
+          onCalendly={() => {
+            setIsFormOpened(false);
+            setShowCalendly(true);
+            window.history.pushState(null, '', '?calendario');
+          }}
         />
       )}
       <img src="/images/LOGO-100_CALISTENIA.webp" className="h-[40px] object-contain mx-auto" alt="Logo" />
@@ -188,6 +218,7 @@ export default function Home() {
                                 src={testimonial.video}
                                 title={testimonial.titulo}
                                 allow="autoplay; fullscreen"
+                                loading="lazy"
                               ></iframe>
                             </div>
                             <div className="py-4 flex flex-col justify-between">
@@ -595,5 +626,7 @@ export default function Home() {
       <div className="bg-[var(--primary)] size-[600px] md:size-[700px] blur-[100px] md:blur-[200px] opacity-100 rounded-full absolute left-[calc(50%-300px)] md:-left-[300px] -bottom-[300px] md:block hidden -z-50 [transform:translateZ(0)] isolate"></div>
       <div className="bg-[var(--primary)] size-[600px] md:size-[700px] blur-[100px] md:blur-[200px] opacity-100 rounded-full absolute right-[calc(50%-300px)] md:-right-[300px] -bottom-[300px] md:block hidden -z-50 [transform:translateZ(0)] isolate"></div>
     </div>
+      )}
+    </>
   );
 }

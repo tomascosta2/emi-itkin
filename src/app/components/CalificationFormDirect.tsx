@@ -12,6 +12,8 @@ import {
 type Props = {
   variant: string;
   onClose: () => void;
+  onContactReady?: (name: string, email: string, phone: string) => void;
+  onCalendly?: () => void;
 };
 type Opcion = { value: string; label: string };
 
@@ -133,7 +135,7 @@ const ensureFbcFromFbclid = () => {
   } catch {}
 };
 
-export default function CalificationFormDirect({ variant, onClose }: Props) {
+export default function CalificationFormDirect({ variant, onClose, onContactReady, onCalendly }: Props) {
   const {
     register,
     handleSubmit,
@@ -443,7 +445,11 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
         data.presupuesto === 'presupuesto-alto' ||
         data.presupuesto === 'presupuesto-muy-alto'
       ) {
-        window.location.href = '/pages/calendly';
+        if (onCalendly) {
+          onCalendly();
+        } else {
+          window.location.href = '/pages/calendly';
+        }
       } else {
         window.location.href = '/pages/nothing-for-you-now';
       }
@@ -646,7 +652,10 @@ export default function CalificationFormDirect({ variant, onClose }: Props) {
                   const s = steps[stepIndex];
                   if (!canAdvanceFromStep(s)) return;
 
-                  if (s.type === 'contact') await sendContactToN8N();
+                  if (s.type === 'contact') {
+                    await sendContactToN8N();
+                    onContactReady?.(values.name, values.email, `${values.codigoPais}${values.telefono}`);
+                  }
 
                   setStepIndex((i) => i + 1);
                 }}
