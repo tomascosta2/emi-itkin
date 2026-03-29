@@ -45,8 +45,8 @@ export default function Home() {
     : "Bajá entre 8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días desde casa y de forma natural";
   
   const subtitle = variant === "A"
-    ? "De forma 100% natural y con entrenamientos simples desde casa, diseñados para hombres ocupados."
-    : "De forma 100% natural y con entrenamientos simples desde casa, diseñados para hombres ocupados.";
+    ? "De forma 100% natural y con entrenamientos simples, diseñados para profesionales que pasan la mayor parte del día sentados."
+    : "De forma 100% natural y con entrenamientos simples, diseñados para profesionales que pasan la mayor parte del día sentados.";
 
   return (
     <>

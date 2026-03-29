@@ -116,12 +116,36 @@ export default function CalendlyInline({ name, email, phone }: Props) {
       if (e.data?.event === "calendly.event_scheduled") {
         const currentEmail = emailRef.current;
         const currentPhone = phoneRef.current;
+        const isLocalhost =
+          window.location.hostname.includes("localhost") ||
+          window.location.hostname.includes("127.0.0.1");
 
-        fetch(CALL_SHEDULED, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: currentEmail }),
-        }).catch((err) => console.error("Tracking error:", err));
+        const eventUri = e.data.payload?.event?.uri ?? null;
+
+        // Obtener closer y enviar a N8N en background (no bloqueante)
+        (async () => {
+          let closer: string | null = null;
+          let closerEmail: string | null = null;
+          let startTime: string | null = null;
+          if (eventUri) {
+            try {
+              const res = await fetch("/api/calendly/closer", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ eventUri }),
+              });
+              const json = await res.json();
+              closer = json.closer ?? null;
+              closerEmail = json.closerEmail ?? null;
+              startTime = json.startTime ?? null;
+            } catch {}
+          }
+          fetch(CALL_SHEDULED, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: currentEmail, closer, closerEmail, calendlyEventUri: eventUri, startTime }),
+          }).catch(() => {});
+        })();
 
         const isQualified = localStorage.getItem("isQualified");
 

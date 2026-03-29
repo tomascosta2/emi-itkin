@@ -1,0 +1,78 @@
+import { NextResponse } from 'next/server';
+
+export async function POST(req: Request) {
+  const body = await req.json();
+
+  console.log('[Calendly Webhook] Evento recibido:', body.event);
+  console.log('[Calendly Webhook] Payload:', JSON.stringify(body.payload, null, 2));
+
+  // Solo procesamos routing_form_submission.created
+  if (body.event !== 'routing_form_submission.created') {
+    return NextResponse.json({ ok: true, skipped: true });
+  }
+
+  const qa = body.payload?.questions_and_answers ?? [];
+  const answers: Record<string, string> = {};
+  for (const item of qa) {
+    answers[item.question] = item.answer;
+  }
+
+  const name = answers["Nombre"] ?? "";
+  const email = answers["Correo electrónico"] ?? "";
+  const phone = answers["Teléfono celular (Número de WhatsApp)"] ?? "";
+  const instagram = answers["¿Cuál es tu usuario de Instagram? Ejemplo @emilianoitkin"] ?? "";
+  const edad = answers["Edad"] ?? "";
+  const ocupacion = answers["Trabajo/Profesión"] ?? "";
+
+  // Compromiso
+  const compromisoKey = "¿Cómo describirías tu disposición actual para empezar este proceso de transformación?";
+  const compromisoRaw = answers[compromisoKey] ?? "";
+  let compromiso = compromisoRaw;
+  if (compromisoRaw.includes("decidido")) compromiso = "Alto";
+  else if (compromisoRaw.includes("arrancar pronto") || compromisoRaw.includes("dudas")) compromiso = "Medio";
+  else if (compromisoRaw.includes("No es una prioridad")) compromiso = "Bajo";
+
+  // Presupuesto (dos versiones del form)
+  const presupuestoKey1 = "Este programa incluye el acompañamiento de un equipo integral de 5 profesionales. Para mantener la calidad, trabajamos con cupos limitados y una inversión acorde. ¿En qué situación te encontrás hoy para afrontar este proceso de 3 meses?";
+  const presupuestoKey2 = "Este programa incluye el acompañamiento de un equipo integral de 5 profesionales. Para mantener la calidad y los resultados, trabajamos con cupos limitados y una inversión acorde. ¿Cuál de estas opciones describe mejor tu situación para invertir hoy?";
+  const presupuestoRaw = answers[presupuestoKey1] ?? answers[presupuestoKey2] ?? "";
+  let presupuesto = presupuestoRaw;
+  if (presupuestoRaw.includes("Dispongo") || presupuestoRaw.includes("Cuento con la capacidad")) presupuesto = "Alto";
+  else if (presupuestoRaw.includes("prioridad") || presupuestoRaw.includes("esfuerzo")) presupuesto = "Medio";
+  else if (presupuestoRaw.includes("No estoy")) presupuesto = "Bajo";
+
+  // Enviar a FFA (lead sin agendo — todavía no agendó)
+  const ffaPayload = {
+    name,
+    email,
+    phone,
+    variant: "C",
+    edad,
+    ocupacion,
+    compromiso,
+    presupuesto,
+    instagram,
+  };
+
+  console.log('[Calendly Webhook] Enviando lead a FFA:', JSON.stringify(ffaPayload, null, 2));
+
+  try {
+    const res = await fetch(`${getBaseUrl(req)}/api/analytics/lead`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(ffaPayload),
+    });
+    const text = await res.text();
+    console.log('[Calendly Webhook] FFA respuesta:', res.status, text);
+  } catch (err) {
+    console.error('[Calendly Webhook] FFA error:', err);
+  }
+
+  return NextResponse.json({ ok: true });
+}
+
+function getBaseUrl(req: Request): string {
+  const host = req.headers.get('host') ?? 'localhost:3000';
+  const proto = host.includes('localhost') ? 'http' : 'https';
+  return `${proto}://${host}`;
+}
