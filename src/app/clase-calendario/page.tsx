@@ -195,7 +195,7 @@ export default function ClaseCalendario() {
               <div className="bg-radial from-white to-black/0 size-[200px]"></div>
             </div>
             <p className="text-center mt-4 text-white/40 mx-auto max-w-[350px] text-[14px]">
-              Solo 6 cupos nuevos por mes
+              Solo 15 cupos nuevos por mes
             </p>
           </div>
         </section>
@@ -290,7 +290,7 @@ export default function ClaseCalendario() {
                 <div className="bg-radial from-white to-black/0 size-[200px]"></div>
               </div>
               <p className="text-center my-4 text-white/40 mx-auto max-w-[350px] text-[14px]">
-                {isUnlocked ? "Solo 6 cupos nuevos por mes" : ""}
+                {isUnlocked ? "Solo 15 cupos nuevos por mes" : ""}
               </p>
             </div>
           </div>

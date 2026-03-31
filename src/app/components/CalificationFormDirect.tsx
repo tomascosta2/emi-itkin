@@ -113,7 +113,7 @@ const ensureFbcFromFbclid = () => {
   if (existing) {
     try {
       localStorage.setItem('_fbc', existing);
-    } catch {}
+    } catch { }
     return;
   }
 
@@ -132,7 +132,7 @@ const ensureFbcFromFbclid = () => {
 
   try {
     localStorage.setItem('_fbc', fbc);
-  } catch {}
+  } catch { }
 };
 
 export default function CalificationFormDirect({ variant, onClose, onContactReady, onCalendly }: Props) {
@@ -228,33 +228,19 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
         placeholder:
           'Ej: Tener más energía, dejar de cansarme, sentirme bien con mi cuerpo, mejorar mi salud...',
       },
-      variant === 'B'
-        ? {
-            type: 'single' as const,
-            id: 'presupuesto' as const,
-            required: true,
-            title: '¿Podrías comprometer al menos 400 USD al mes para tu proceso de transformación física si vemos que el programa es adecuado para vos?',
-            subtitle:
-              'Nuestro programa es un acompañamiento profesional completo y suele requerir una inversión mensual acorde al nivel de soporte del equipo. Para asegurarnos de que la llamada tenga sentido para vos y para nosotros, necesitamos confirmar lo siguiente.',
-            options: [
-              { value: 'presupuesto-alto', label: 'Sí, quiero asegurar mi cambio.' },
-              { value: 'presupuesto-intermedio', label: 'Sí, pero primero necesito ver cómo es el servicio.' },
-              { value: 'presupuesto-bajo', label: 'No en este momento.' },
-            ],
-          }
-        : {
-            type: 'single' as const,
-            id: 'presupuesto' as const,
-            required: true,
-            title:
-              'Este programa incluye el acompañamiento de un equipo integral de 5 profesionales. Para mantener la calidad y los resultados, trabajamos con cupos limitados y una inversión acorde. ¿Qué presupuesto mensual tienes asignado para lograr este objetivo?',
-            options: [
-              { value: 'presupuesto-intermedio', label: 'Dispongo de entre 300 y 400 USD/mes.' },
-              { value: 'presupuesto-alto', label: 'Dispongo de entre 400 y 500 USD/mes.' },
-              { value: 'presupuesto-muy-alto', label: 'Dispongo de más de 500 USD/mes para asegurar el mejor plan.' },
-              { value: 'presupuesto-bajo', label: 'No dispongo de este presupuesto actualmente.' },
-            ],
-          },
+      {
+        type: 'single' as const,
+        id: 'presupuesto' as const,
+        required: true,
+        title: '¿Podrías comprometer al menos 400 USD al mes para tu proceso de transformación física si vemos que el programa es adecuado para vos?',
+        subtitle:
+          'Nuestro programa es un acompañamiento profesional completo y suele requerir una inversión mensual acorde al nivel de soporte del equipo. Para asegurarnos de que la llamada tenga sentido para vos y para nosotros, necesitamos confirmar lo siguiente.',
+        options: [
+          { value: 'presupuesto-alto', label: 'Sí, quiero asegurar mi cambio.' },
+          { value: 'presupuesto-intermedio', label: 'Sí, pero primero necesito ver cómo es el servicio.' },
+          { value: 'presupuesto-bajo', label: 'No en este momento.' },
+        ],
+      }
     ],
     [variant]
   );
@@ -364,7 +350,7 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify([payload]),
-    }).catch(() => {});
+    }).catch(() => { });
   };
 
   // ------- Submit
@@ -391,7 +377,7 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify([{ ...data, variant, leadId: leadIdRef.current }]),
         });
-      } catch {}
+      } catch { }
 
       // production
       try {
@@ -400,7 +386,7 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify([{ ...data, variant, leadId: leadIdRef.current }]),
         });
-      } catch {}
+      } catch { }
 
       const isQualified =
         (data.presupuesto === 'presupuesto-intermedio' ||
