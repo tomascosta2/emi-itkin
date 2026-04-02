@@ -2,12 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import {
-  COMPLETED_FORM,
-  COMPLETED_FORM_TEST,
-  FIRST_STEP_FORM,
-  FIRST_STEP_FORM_TEST,
-} from '../utils/constantes';
 
 type Props = {
   variant: string;
@@ -363,38 +357,25 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
     return () => b?.classList.remove('overflow-hidden');
   }, []);
 
-  const hostname = typeof window !== 'undefined' ? window.location.hostname : '';
-  const isLocalhost =
-    hostname.includes('localhost') || hostname.includes('127.0.0.1');
-
-  const N8N_CONTACT_WEBHOOK = isLocalhost ? FIRST_STEP_FORM_TEST : FIRST_STEP_FORM;
-
   const sentContactRef = useRef(false);
 
-  const sendContactToN8N = async () => {
+  const sendContactToFFA = () => {
     if (sentContactRef.current) return;
     if (!isContactValid()) return;
 
     sentContactRef.current = true;
 
-    const payload = {
-      event: 'lead_contact_created',
-      leadId: leadIdRef.current,
-      variant,
-      name: values.name,
-      email: values.email,
-      phone: `${values.codigoPais}${values.telefono}`,
-      codigoPais: values.codigoPais,
-      telefono: values.telefono,
-      ad: values.ad,
-      ts: new Date().toISOString(),
-    };
-
-    fetch(N8N_CONTACT_WEBHOOK, {
+    fetch('/api/analytics/lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify([payload]),
-    }).catch(() => { });
+      body: JSON.stringify({
+        name: values.name,
+        email: values.email,
+        phone: `${values.codigoPais}${values.telefono}`.replace(/[\s\-().]/g, ''),
+        variant,
+        ad: values.ad,
+      }),
+    }).catch(() => {});
   };
 
   // ------- Submit
@@ -414,23 +395,26 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
     try {
       setLoading(true);
 
-      // test
-      try {
-        await fetch(COMPLETED_FORM_TEST, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify([{ ...data, variant, leadId: leadIdRef.current }]),
-        });
-      } catch { }
-
-      // production
-      try {
-        await fetch(COMPLETED_FORM, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify([{ ...data, variant, leadId: leadIdRef.current }]),
-        });
-      } catch { }
+      const normalizedPhone = `${data.codigoPais}${data.telefono}`.replace(/[\s\-().]/g, '');
+      fetch('/api/analytics/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: normalizedPhone,
+          variant,
+          ad: data.ad,
+          edad: data.edad,
+          ocupacion: data.ocupacion,
+          compromiso90: data.compromiso90,
+          urgencia: data.urgencia,
+          objetivo: data.objetivo,
+          freno: data.freno,
+          intentos: data.intentos,
+          presupuesto: data.presupuesto,
+        }),
+      }).catch(() => {});
 
       const isQualified =
         (data.presupuesto === 'presupuesto-intermedio' ||
@@ -685,7 +669,7 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
                   if (!canAdvanceFromStep(s)) return;
 
                   if (s.type === 'contact') {
-                    await sendContactToN8N();
+                    sendContactToFFA();
                     onContactReady?.(values.name, values.email, `${values.codigoPais}${values.telefono}`);
                   }
 
