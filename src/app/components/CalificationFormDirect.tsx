@@ -29,13 +29,15 @@ type FormValues = {
   ocupacion: string;
   compromiso90: string;
   objetivo: string;
+  freno: string;
+  intentos: string;
   ad: string;
 };
 
 // IDs válidos de preguntas de opción única
 type SingleId = Extract<
   keyof FormValues,
-  'edad' | 'presupuesto' | 'cuerpo' | 'urgencia' | 'ocupacion' | 'compromiso90'
+  'edad' | 'presupuesto' | 'cuerpo' | 'urgencia' | 'ocupacion' | 'compromiso90' | 'freno' | 'intentos'
 >;
 
 type ContactStep = {
@@ -155,6 +157,8 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
       ocupacion: '',
       compromiso90: '',
       objetivo: '',
+      freno: '',
+      intentos: '',
       ad: '',
     },
   });
@@ -208,6 +212,19 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
       },
       {
         type: 'single',
+        id: 'urgencia',
+        required: true,
+        title: '¿Qué tan urgente es para vos cambiar tu cuerpo ahora mismo?*',
+        subtitle: 'Respondé con total sinceridad. Esto nos ayuda a ver cómo ayudarte.',
+        options: [
+          { value: 'urgencia-baja', label: '(3 de 10) Estoy buscando info. No es prioridad ahora.' },
+          { value: 'urgencia-media', label: '(5 de 10) Quiero empezar pronto. Me estoy motivando.' },
+          { value: 'urgencia-alta', label: '(7 de 10) Quiero empezar ya. Me frustra cómo me siento y quiero recuperar mi salud y energía.' },
+          { value: 'urgencia-muy-alta', label: '(10 de 10) No puedo esperar más. Esto me afecta física y mentalmente. Haré lo que haga falta.' },
+        ],
+      },
+      {
+        type: 'single',
         id: 'edad',
         required: true,
         title: '¿En qué rango de edad te encontrás?*',
@@ -227,6 +244,33 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
         subtitle: 'Cuanto más nos cuentes, mejor vamos a poder ayudarte.',
         placeholder:
           'Ej: Tener más energía, dejar de cansarme, sentirme bien con mi cuerpo, mejorar mi salud...',
+      },
+      {
+        type: 'single',
+        id: 'freno',
+        required: true,
+        title: '¿Qué es lo que más te frena para lograr tu objetivo físico?*',
+        subtitle: 'Esto nos ayuda a preparar mejor tu sesión.',
+        options: [
+          { value: 'constancia', label: 'Me falta constancia y disciplina.' },
+          { value: 'estructura', label: 'No tengo una estructura clara a seguir.' },
+          { value: 'tiempo', label: 'Apenas tengo tiempo libre.' },
+          { value: 'alimentacion', label: 'No sé qué comer para ver resultados.' },
+          { value: 'lesion', label: 'Tengo una lesión o limitación física.' },
+        ],
+      },
+      {
+        type: 'single',
+        id: 'intentos',
+        required: true,
+        title: '¿Qué has probado antes para mejorar tu físico o tu salud?*',
+        options: [
+          { value: 'dietas', label: 'Dietas por mi cuenta, sin resultado duradero.' },
+          { value: 'gimnasio', label: 'Gimnasio o entrenamiento sin guía.' },
+          { value: 'programa', label: 'Un programa o coach, pero no funcionó.' },
+          { value: 'nada', label: 'Casi nada, no sé por dónde empezar.' },
+          { value: 'varias', label: 'Varias cosas, pero nada me dio resultados consistentes.' },
+        ],
       },
       {
         type: 'single' as const,
@@ -392,7 +436,9 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
         (data.presupuesto === 'presupuesto-intermedio' ||
           data.presupuesto === 'presupuesto-alto' ||
           data.presupuesto === 'presupuesto-muy-alto') &&
-        (data.edad === 'joven' || data.edad === 'adulto' || data.edad === 'mayor');
+        (data.edad === 'joven' || data.edad === 'adulto' || data.edad === 'mayor') &&
+        data.compromiso90 === 'si' &&
+        (data.urgencia === 'urgencia-alta' || data.urgencia === 'urgencia-muy-alta');
 
       localStorage.setItem('isQualified', isQualified ? 'true' : 'false');
       localStorage.setItem('name', data.name);
