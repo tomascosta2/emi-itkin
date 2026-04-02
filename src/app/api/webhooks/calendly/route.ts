@@ -51,7 +51,7 @@ export async function POST(req: Request) {
       hashSHA256(name.split(' ')[0].toLowerCase()),
     ]);
     fetch(
-      `https://graph.facebook.com/v18.0/${pixelId}/events?access_token=${process.env.API_ACCESS_TOKEN}`,
+      `https://graph.facebook.com/v22.0/${pixelId}/events?access_token=${process.env.API_ACCESS_TOKEN}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

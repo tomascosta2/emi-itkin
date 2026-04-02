@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     const userAgent = req.headers.get('user-agent') || undefined;
 
     const response = await fetch(
-      `https://graph.facebook.com/v18.0/${pixelId}/events?access_token=${process.env.API_ACCESS_TOKEN}`,
+      `https://graph.facebook.com/v22.0/${pixelId}/events?access_token=${process.env.API_ACCESS_TOKEN}`,
       {
         method: 'POST',
         headers: {
