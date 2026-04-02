@@ -1,3 +1,4 @@
+import { pixelId } from '@/app/utils/constantes';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
@@ -41,6 +42,36 @@ export async function POST(req: Request) {
   else if (presupuestoRaw.includes("prioridad") || presupuestoRaw.includes("esfuerzo")) presupuesto = "Medio";
   else if (presupuestoRaw.includes("No estoy")) presupuesto = "Bajo";
 
+  // Enviar Lead CAPI a Meta con email/phone/nombre
+  if (email && phone) {
+    const leadEventId = `lead-routing-${Date.now()}`;
+    const [hashEmail, hashPhone, hashName] = await Promise.all([
+      hashSHA256(email),
+      hashSHA256(phone),
+      hashSHA256(name.split(' ')[0].toLowerCase()),
+    ]);
+    fetch(
+      `https://graph.facebook.com/v18.0/${pixelId}/events?access_token=${process.env.API_ACCESS_TOKEN}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          data: [{
+            event_id: leadEventId,
+            event_name: 'Lead',
+            event_time: Math.floor(Date.now() / 1000),
+            action_source: 'website',
+            user_data: {
+              em: [hashEmail],
+              ph: [hashPhone],
+              fn: [hashName],
+            },
+          }],
+        }),
+      }
+    ).catch((err) => console.error('[Calendly Webhook] Lead CAPI error:', err));
+  }
+
   // Enviar a FFA (lead sin agendo — todavía no agendó)
   const ffaPayload = {
     name,
@@ -69,6 +100,14 @@ export async function POST(req: Request) {
   }
 
   return NextResponse.json({ ok: true });
+}
+
+async function hashSHA256(value: string) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(value.trim().toLowerCase());
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 
 function getBaseUrl(req: Request): string {

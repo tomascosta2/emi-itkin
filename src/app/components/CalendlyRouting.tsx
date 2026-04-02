@@ -117,14 +117,7 @@ export default function CalendlyRouting() {
             console.log("[CalendlyRouting] Lead pixel OK");
           });
 
-          console.log("[CalendlyRouting] Enviando Lead CAPI...");
-          fetch("/api/track/lead", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ eventName: "Lead", fbp, fbc, eventId: leadEventId }),
-          })
-            .then((res) => console.log("[CalendlyRouting] Lead CAPI respuesta:", res.status))
-            .catch((err) => console.error("[CalendlyRouting] Lead CAPI error:", err));
+          // Lead CAPI se dispara desde el webhook de Calendly (tiene email/phone)
         }
       }
 
@@ -137,6 +130,20 @@ export default function CalendlyRouting() {
         const inviteeUri = e.data.payload?.invitee?.uri ?? null;
         console.log("[CalendlyRouting] eventUri:", eventUri);
         console.log("[CalendlyRouting] inviteeUri:", inviteeUri);
+
+        const fbpCookie = getCookieValue("_fbp");
+        const fbcCookie = getCookieValue("_fbc");
+        const fbp = fbpCookie || localStorage.getItem("_fbp") || null;
+        const fbc = fbcCookie || localStorage.getItem("_fbc") || null;
+        const scheduleAlreadyFired = localStorage.getItem("schedule_fired_routing");
+        const scheduleEventId = scheduleAlreadyFired ?? `schedule-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
+        if (!scheduleAlreadyFired) {
+          fireFbq("Schedule", scheduleEventId, {}, () => {
+            localStorage.setItem("schedule_fired_routing", scheduleEventId);
+            console.log("[CalendlyRouting] Schedule pixel OK");
+          });
+        }
 
         (async () => {
           let closer: string | null = null;
@@ -188,6 +195,18 @@ export default function CalendlyRouting() {
             } catch (err) {
               console.error("[CalendlyRouting] Error invitee:", err);
             }
+          }
+
+          // Schedule CAPI con email/phone
+          if (!scheduleAlreadyFired && inviteeEmail && inviteePhone) {
+            console.log("[CalendlyRouting] Enviando Schedule CAPI con email/phone...");
+            fetch("/api/track/qualified-shedule", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ fbp, fbc, eventId: scheduleEventId, email: inviteeEmail, phone: inviteePhone }),
+            })
+              .then((res) => console.log("[CalendlyRouting] Schedule CAPI respuesta:", res.status))
+              .catch((err) => console.error("[CalendlyRouting] Schedule CAPI error:", err));
           }
 
           // Enviar a N8N
@@ -259,32 +278,6 @@ export default function CalendlyRouting() {
             })
             .catch((err) => console.error("[CalendlyRouting] FFA error:", err));
         })();
-
-        // Schedule pixel
-        const fbpCookie = getCookieValue("_fbp");
-        const fbcCookie = getCookieValue("_fbc");
-        const fbp = fbpCookie || localStorage.getItem("_fbp") || null;
-        const fbc = fbcCookie || localStorage.getItem("_fbc") || null;
-
-        const scheduleAlreadyFired = localStorage.getItem("schedule_fired_routing");
-        console.log("[CalendlyRouting] Schedule already fired?", scheduleAlreadyFired);
-        if (!scheduleAlreadyFired) {
-          const scheduleEventId = `schedule-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-          console.log("[CalendlyRouting] Disparando Schedule pixel, eventId:", scheduleEventId);
-          fireFbq("Schedule", scheduleEventId, {}, () => {
-            localStorage.setItem("schedule_fired_routing", scheduleEventId);
-            console.log("[CalendlyRouting] Schedule pixel OK");
-          });
-
-          console.log("[CalendlyRouting] Enviando Schedule CAPI...");
-          fetch("/api/track/qualified-shedule", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ eventName: "Schedule", fbp, fbc, eventId: scheduleEventId }),
-          })
-            .then((res) => console.log("[CalendlyRouting] Schedule CAPI respuesta:", res.status))
-            .catch((err) => console.error("[CalendlyRouting] Schedule CAPI error:", err));
-        }
 
         console.log("[CalendlyRouting] Redirigiendo a /pages/thankyou en 2000ms...");
         setTimeout(() => {
