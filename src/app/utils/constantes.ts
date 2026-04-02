@@ -193,7 +193,7 @@ export const TESTIMONIALS_VIDEO_PAGE = [
         story:
             "En el primer chequeo bajé entre 2 y 5 kilos, y siempre tuve un progreso.",
         nombre: "Dario Gutierrez",
-        dato: "Buenos Aires, Argentina",
+        dato: "Tierra del Fuego, Argentina",
     },
     {
         video:

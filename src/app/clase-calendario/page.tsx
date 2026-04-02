@@ -216,7 +216,7 @@ export default function ClaseCalendario() {
               Estos Resultados podes Obtener Si Agendas Hoy
             </h2>
             <p className="mt-4 text-white/80 text-[18px] max-w-[500px] mx-auto">
-              +300 Hombres Ocupados ya mejoraron su Fisico, Energia y Salud. Si
+              +300 Hombres Sedentarios ya mejoraron su Fisico, Energia y Salud. Si
               ellos pudieron, Vos También Podés.
             </p>
             <div className="grid md:grid-cols-3 mt-[140px] md:mt-[192px] gap-4">

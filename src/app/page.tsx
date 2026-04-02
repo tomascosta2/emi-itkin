@@ -40,9 +40,7 @@ export default function Home() {
   const variantRef = useRef<"A" | "B">(getInitialVariant());
   const variant = variantRef.current;
 
-  const heroTitle = variant === "A"
-    ? "Bajá entre 8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días desde casa y de forma natural"
-    : "Ganale al sedentarismo: Bajá como mínimo 8 kg de grasa, recuperá tu energía y corregí tu postura en 90 días.";
+  const heroTitle = "Bajá entre 8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días desde casa y de forma natural";
   
   const subtitle = variant === "A"
     ? "De forma 100% natural y con entrenamientos simples, diseñados para profesionales que pasan la mayor parte del día sentados."
