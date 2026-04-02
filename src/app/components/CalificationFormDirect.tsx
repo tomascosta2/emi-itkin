@@ -396,25 +396,6 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
       setLoading(true);
 
       const normalizedPhone = `${data.codigoPais}${data.telefono}`.replace(/[\s\-().]/g, '');
-      fetch('/api/analytics/lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          phone: normalizedPhone,
-          variant,
-          ad: data.ad,
-          edad: data.edad,
-          ocupacion: data.ocupacion,
-          compromiso90: data.compromiso90,
-          urgencia: data.urgencia,
-          objetivo: data.objetivo,
-          freno: data.freno,
-          intentos: data.intentos,
-          presupuesto: data.presupuesto,
-        }),
-      }).catch(() => {});
 
       const isQualified =
         (data.presupuesto === 'presupuesto-intermedio' ||
@@ -434,6 +415,28 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
       const fbcCookie = getCookieValue('_fbc');
       const fbp = fbpCookie || localStorage.getItem('_fbp') || null;
       const fbc = fbcCookie || localStorage.getItem('_fbc') || null;
+
+      fetch('/api/analytics/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: normalizedPhone,
+          variant,
+          ad: data.ad,
+          edad: data.edad,
+          ocupacion: data.ocupacion,
+          compromiso90: data.compromiso90,
+          urgencia: data.urgencia,
+          objetivo: data.objetivo,
+          freno: data.freno,
+          intentos: data.intentos,
+          presupuesto: data.presupuesto,
+          fbp,
+          fbc,
+        }),
+      }).catch(() => {});
 
       if (isQualified) {
         const leadEventId = `lead-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
