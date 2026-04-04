@@ -42,7 +42,7 @@ export default function Home() {
 
   const heroTitle = "Bajá entre 8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días desde casa y de forma natural";
   
-  const subtitle = "No entrenas solo: 4 profesionales trabajan con vos 1 a 1 para llevar tu físico al siguiente nivel.";
+  const subtitle = "No entrenas solo: 5 profesionales trabajan con vos 1 a 1 para llevar tu físico al siguiente nivel.";
 
   return (
     <>
