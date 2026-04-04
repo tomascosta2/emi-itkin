@@ -31,8 +31,10 @@ type FormValues = {
 // IDs válidos de preguntas de opción única
 type SingleId = Extract<
   keyof FormValues,
-  'edad' | 'presupuesto' | 'cuerpo' | 'urgencia' | 'ocupacion' | 'compromiso90' | 'freno' | 'intentos'
+  'edad' | 'presupuesto' | 'cuerpo' | 'urgencia' | 'ocupacion' | 'compromiso90'
 >;
+
+type MultiId = 'freno' | 'intentos';
 
 type ContactStep = {
   type: 'contact';
@@ -44,6 +46,15 @@ type ContactStep = {
 type SingleStep = {
   type: 'single';
   id: SingleId;
+  title: string;
+  subtitle?: string;
+  options: Opcion[];
+  required?: boolean;
+};
+
+type MultiStep = {
+  type: 'multi';
+  id: MultiId;
   title: string;
   subtitle?: string;
   options: Opcion[];
@@ -167,9 +178,19 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
   }, []);
 
   const [loading, setLoading] = useState(false);
+  const [multiSelections, setMultiSelections] = useState<Record<string, string[]>>({ freno: [], intentos: [] });
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const steps = useMemo<(ContactStep | SingleStep | TextStep)[]>(
+  const toggleMulti = (id: MultiId, value: string) => {
+    setMultiSelections((prev) => {
+      const current = prev[id] ?? [];
+      const next = current.includes(value) ? current.filter((v) => v !== value) : [...current, value];
+      setValue(id as keyof FormValues, next.join(',') as any);
+      return { ...prev, [id]: next };
+    });
+  };
+
+  const steps = useMemo<(ContactStep | SingleStep | MultiStep | TextStep)[]>(
     () => [
       {
         type: 'contact',
@@ -240,11 +261,11 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
           'Ej: Tener más energía, dejar de cansarme, sentirme bien con mi cuerpo, mejorar mi salud...',
       },
       {
-        type: 'single',
+        type: 'multi',
         id: 'freno',
         required: true,
         title: '¿Qué es lo que más te frena para lograr tu objetivo físico?*',
-        subtitle: 'Esto nos ayuda a preparar mejor tu sesión.',
+        subtitle: 'Podés elegir más de una opción.',
         options: [
           { value: 'constancia', label: 'Me falta constancia y disciplina.' },
           { value: 'estructura', label: 'No tengo una estructura clara a seguir.' },
@@ -254,10 +275,11 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
         ],
       },
       {
-        type: 'single',
+        type: 'multi',
         id: 'intentos',
         required: true,
         title: '¿Qué has probado antes para mejorar tu físico o tu salud?*',
+        subtitle: 'Podés elegir más de una opción.',
         options: [
           { value: 'dietas', label: 'Dietas por mi cuenta, sin resultado duradero.' },
           { value: 'gimnasio', label: 'Gimnasio o entrenamiento sin guía.' },
@@ -303,9 +325,10 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
     return isNameValid && isEmailValid && isPhoneValid;
   };
 
-  const canAdvanceFromStep = (s: ContactStep | SingleStep | TextStep) => {
+  const canAdvanceFromStep = (s: ContactStep | SingleStep | MultiStep | TextStep) => {
     if (s.type === 'contact') return isContactValid();
     if (s.type === 'single' && s.required === true) return !!values[s.id];
+    if (s.type === 'multi' && s.required === true) return (multiSelections[s.id]?.length ?? 0) > 0;
     if (s.type === 'text' && s.required === true) return (values.objetivo ?? '').trim().length > 10;
     return true;
   };
@@ -380,14 +403,24 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
 
   // ------- Submit
   const onSubmit = async (data: FormValues) => {
-    const isSingleRequired = (s: ContactStep | SingleStep | TextStep): s is SingleStep =>
+    const isSingleRequired = (s: ContactStep | SingleStep | MultiStep | TextStep): s is SingleStep =>
       s.type === 'single' && s.required === true;
 
     const requiredIds = steps.filter(isSingleRequired).map((s) => s.id);
 
     const missing = requiredIds.find((id) => !data[id]);
+
+    const missingMulti = (['freno', 'intentos'] as MultiId[]).find(
+      (id) => (multiSelections[id]?.length ?? 0) === 0
+    );
     if (missing) {
       const idx = steps.findIndex((s) => s.type === 'single' && s.id === missing);
+      if (idx >= 0) setStepIndex(idx);
+      return;
+    }
+
+    if (missingMulti) {
+      const idx = steps.findIndex((s) => s.type === 'multi' && s.id === missingMulti);
       if (idx >= 0) setStepIndex(idx);
       return;
     }
@@ -622,6 +655,33 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
                   }}
                 />
               ))}
+            </div>
+          )}
+
+          {step.type === 'multi' && (
+            <div className="mt-2">
+              {step.options.map((op) => {
+                const selected = (multiSelections[step.id] ?? []).includes(op.value);
+                return (
+                  <button
+                    key={op.value}
+                    type="button"
+                    onClick={() => toggleMulti(step.id, op.value)}
+                    className={`w-full text-left rounded-xl border px-5 py-4 mb-3 bg-[#1a1a1a] hover:bg-[#232323] transition flex items-center gap-3
+                      ${selected ? 'ring-2 ring-[var(--primary)] border-[var(--primary)]/60' : 'border-white/15'}`}
+                  >
+                    <span className={`inline-flex items-center justify-center min-w-5 h-5 rounded border-2 transition
+                      ${selected ? 'bg-[var(--primary)] border-[var(--primary)]' : 'border-white/40'}`}>
+                      {selected && (
+                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      )}
+                    </span>
+                    <span className="text-white/90 leading-snug">{op.label}</span>
+                  </button>
+                );
+              })}
             </div>
           )}
 
