@@ -31,7 +31,7 @@ type FormValues = {
 // IDs válidos de preguntas de opción única
 type SingleId = Extract<
   keyof FormValues,
-  'edad' | 'presupuesto' | 'cuerpo' | 'urgencia' | 'ocupacion' | 'compromiso90'
+  'presupuesto' | 'cuerpo' | 'urgencia' | 'ocupacion' | 'compromiso90'
 >;
 
 type MultiId = 'freno' | 'intentos';
@@ -63,11 +63,12 @@ type MultiStep = {
 
 type TextStep = {
   type: 'text';
-  id: 'objetivo';
+  id: 'objetivo' | 'edad';
   title: string;
   subtitle?: string;
   placeholder?: string;
   required?: boolean;
+  inputType?: 'textarea' | 'number';
 };
 
 const PAISES = [
@@ -239,16 +240,12 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
         ],
       },
       {
-        type: 'single',
+        type: 'text',
         id: 'edad',
         required: true,
-        title: '¿En qué rango de edad te encontrás?*',
-        options: [
-          { value: 'muy-joven', label: '18 - 24 años' },
-          { value: 'joven', label: '24 - 35 años' },
-          { value: 'adulto', label: '35 - 45 años' },
-          { value: 'mayor', label: '+45 años' },
-        ],
+        title: '¿Cuántos años tenés?*',
+        placeholder: 'Ej: 35',
+        inputType: 'number',
       },
       {
         type: 'text',
@@ -329,6 +326,7 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
     if (s.type === 'contact') return isContactValid();
     if (s.type === 'single' && s.required === true) return !!values[s.id];
     if (s.type === 'multi' && s.required === true) return (multiSelections[s.id]?.length ?? 0) > 0;
+    if (s.type === 'text' && s.id === 'edad' && s.required === true) return parseInt(values.edad) > 0;
     if (s.type === 'text' && s.required === true) return (values.objetivo ?? '').trim().length > 10;
     return true;
   };
@@ -434,7 +432,7 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
         (data.presupuesto === 'presupuesto-intermedio' ||
           data.presupuesto === 'presupuesto-alto' ||
           data.presupuesto === 'presupuesto-muy-alto') &&
-        (data.edad === 'joven' || data.edad === 'adulto' || data.edad === 'mayor') &&
+        parseInt(data.edad) > 25 &&
         data.compromiso90 === 'si' &&
         (data.urgencia === 'urgencia-alta' || data.urgencia === 'urgencia-muy-alta');
 
@@ -687,13 +685,30 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
 
           {step.type === 'text' && (
             <div className="mt-4">
-              <textarea
-                data-autofocus
-                rows={5}
-                placeholder={step.placeholder}
-                {...register('objetivo', { required: step.required ? 'Este campo es obligatorio' : false })}
-                className="w-full rounded-xl bg-white text-[#111] px-4 py-3 outline-none resize-none"
-              />
+              {step.inputType === 'number' ? (
+                <input
+                  data-autofocus
+                  type="number"
+                  min="1"
+                  max="99"
+                  placeholder={step.placeholder}
+                  {...register('edad', { required: step.required ? 'Este campo es obligatorio' : false })}
+                  className="w-full rounded-xl bg-white text-[#111] px-4 py-3 outline-none"
+                />
+              ) : (
+                <textarea
+                  data-autofocus
+                  rows={5}
+                  placeholder={step.placeholder}
+                  {...register('objetivo', { required: step.required ? 'Este campo es obligatorio' : false })}
+                  className="w-full rounded-xl bg-white text-[#111] px-4 py-3 outline-none resize-none"
+                />
+              )}
+              {errors.edad && (
+                <span className="text-red-400 text-xs mt-1 block">
+                  {errors.edad.message as string}
+                </span>
+              )}
               {errors.objetivo && (
                 <span className="text-red-400 text-xs mt-1 block">
                   {errors.objetivo.message as string}
