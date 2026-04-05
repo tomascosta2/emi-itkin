@@ -432,7 +432,7 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
         (data.presupuesto === 'presupuesto-intermedio' ||
           data.presupuesto === 'presupuesto-alto' ||
           data.presupuesto === 'presupuesto-muy-alto') &&
-        parseInt(data.edad) > 25 &&
+        parseInt(data.edad) >= 28 &&
         data.compromiso90 === 'si' &&
         (data.urgencia === 'urgencia-media' || data.urgencia === 'urgencia-alta' || data.urgencia === 'urgencia-muy-alta');
 
