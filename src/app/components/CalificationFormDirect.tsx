@@ -434,7 +434,7 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
           data.presupuesto === 'presupuesto-muy-alto') &&
         parseInt(data.edad) > 25 &&
         data.compromiso90 === 'si' &&
-        (data.urgencia === 'urgencia-alta' || data.urgencia === 'urgencia-muy-alta');
+        (data.urgencia === 'urgencia-media' || data.urgencia === 'urgencia-alta' || data.urgencia === 'urgencia-muy-alta');
 
       localStorage.setItem('isQualified', isQualified ? 'true' : 'false');
       localStorage.setItem('name', data.name);
