@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import CalificationFormDirect from "./components/CalificationFormDirect";
 import CalendlyInline from "./components/CalendlyInline";
 import Faqs from "./components/Faqs";
@@ -18,6 +18,13 @@ export default function Home() {
   const [isFormOpened, setIsFormOpened] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
   const [calendlyPrefill, setCalendlyPrefill] = useState<{ name: string; email: string; phone: string } | null>(null);
+  const [timeOnPage, setTimeOnPage] = useState(0);
+  const pageLoadTime = useRef<number>(Date.now());
+
+  const openForm = () => {
+    setTimeOnPage(Math.floor((Date.now() - pageLoadTime.current) / 1000));
+    openForm();
+  };
 
   // 🔒 Nuevo: control de bloqueo por 5 minutos
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -82,6 +89,7 @@ export default function Home() {
       {isFormOpened && (
         <CalificationFormDirect
           variant={variant}
+          timeOnPage={timeOnPage}
           onClose={() => setIsFormOpened(false)}
           onContactReady={(name, email, phone) => setCalendlyPrefill({ name, email, phone })}
           onCalendly={() => {
@@ -141,7 +149,7 @@ export default function Home() {
               disabled={!isUnlocked}
               onClick={() => {
                 if (!isUnlocked) return;
-                setIsFormOpened(true);
+                openForm();
               }}
             >
               ¡AGENDAR MI SESIÓN DE DIAGNÓSTICO!
@@ -244,7 +252,7 @@ export default function Home() {
               <button
                 className="cf-btn"
                 onClick={() => {
-                  setIsFormOpened(true);
+                  openForm();
                 }}
               >
                 ¡AGENDAR MI SESIÓN DE DIAGNÓSTICO!
@@ -366,7 +374,7 @@ export default function Home() {
             <button
               className="cf-btn"
               onClick={() => {
-                setIsFormOpened(true);
+                openForm();
               }}
             >
               ¡AGENDAR MI SESIÓN DE DIAGNÓSTICO!
@@ -461,7 +469,7 @@ export default function Home() {
             <button
               className="cf-btn"
               onClick={() => {
-                setIsFormOpened(true);
+                openForm();
               }}
             >
               ¡AGENDAR MI SESIÓN DE DIAGNÓSTICO!
@@ -553,7 +561,7 @@ export default function Home() {
                 disabled={!isUnlocked}
                 onClick={() => {
                   if (!isUnlocked) return;
-                  setIsFormOpened(true);
+                  openForm();
                 }}
               >
                 ¡AGENDAR MI SESIÓN DE DIAGNÓSTICO!
@@ -581,7 +589,7 @@ export default function Home() {
               disabled={!isUnlocked}
               onClick={() => {
                 if (!isUnlocked) return;
-                setIsFormOpened(true);
+                openForm();
               }}
             >
               ¡AGENDAR MI SESIÓN DE DIAGNÓSTICO!
