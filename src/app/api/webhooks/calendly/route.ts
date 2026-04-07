@@ -7,7 +7,51 @@ export async function POST(req: Request) {
   console.log('[Calendly Webhook] Evento recibido:', body.event);
   console.log('[Calendly Webhook] Payload:', JSON.stringify(body.payload, null, 2));
 
-  // Solo procesamos routing_form_submission.created
+  // ── invitee.created → el lead efectivamente agendó una llamada ──────────
+  if (body.event === 'invitee.created') {
+    const email = body.payload?.email ?? '';
+    const name = body.payload?.name
+      ?? `${body.payload?.first_name ?? ''} ${body.payload?.last_name ?? ''}`.trim();
+    const scheduled = body.payload?.scheduled_event ?? {};
+    const startTime = scheduled.start_time ?? undefined;
+
+    // Closer = primer host del event_memberships
+    const memberships = (scheduled.event_memberships ?? []) as Array<{ user_email?: string; user_name?: string }>;
+    const closerEmail = memberships[0]?.user_email;
+    const closerName = memberships[0]?.user_name;
+
+    if (!email) {
+      console.warn('[Calendly Webhook] invitee.created sin email — no se puede matchear el lead');
+      return NextResponse.json({ ok: true, skipped: 'no_email' });
+    }
+
+    const ffaPayload = {
+      name,
+      email,
+      agendo: 'Si',
+      startTime,
+      ...(closerName && { closer: closerName }),
+      ...(closerEmail && { closerEmail }),
+    };
+
+    console.log('[Calendly Webhook] Marcando lead como agendado en FFA:', JSON.stringify(ffaPayload, null, 2));
+
+    try {
+      const res = await fetch(`${getBaseUrl(req)}/api/analytics/lead`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(ffaPayload),
+      });
+      const text = await res.text();
+      console.log('[Calendly Webhook] FFA respuesta (agendo):', res.status, text);
+    } catch (err) {
+      console.error('[Calendly Webhook] FFA error (agendo):', err);
+    }
+
+    return NextResponse.json({ ok: true, action: 'agendo_marked' });
+  }
+
+  // ── routing_form_submission.created → el lead completó el form ──────────
   if (body.event !== 'routing_form_submission.created') {
     return NextResponse.json({ ok: true, skipped: true });
   }
