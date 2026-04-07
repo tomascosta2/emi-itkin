@@ -119,8 +119,8 @@ export default function Home() {
               <div className="bg-[#131313] aspect-video rounded-[8px] md:rounded-[12px] overflow-clip">
                 <iframe
                   className="w-full aspect-video"
-                  id={`${idVsl}`}
-                  src={`${srcVsl}`}
+                  id={variant === "A" ? idVsl : "panda-5496ba3b-382b-48d5-a780-d44e9ce787dc"}
+                  src={variant === "A" ? srcVsl : "https://player-vz-5c2adb98-6a4.tv.pandavideo.com/embed/?v=5496ba3b-382b-48d5-a780-d44e9ce787dc"}
                   allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
                 ></iframe>
               </div>
