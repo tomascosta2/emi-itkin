@@ -23,7 +23,7 @@ export default function Home() {
 
   const openForm = () => {
     setTimeOnPage(Math.floor((Date.now() - pageLoadTime.current) / 1000));
-    openForm();
+    setIsFormOpened(true);
   };
 
   // 🔒 Nuevo: control de bloqueo por 5 minutos
