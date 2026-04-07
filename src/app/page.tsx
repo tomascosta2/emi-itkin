@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import CalificationFormDirect from "./components/CalificationFormDirect";
 import CalendlyInline from "./components/CalendlyInline";
 import Faqs from "./components/Faqs";
@@ -30,15 +30,16 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  const getInitialVariant = (): "A" | "B" => {
-    if (typeof window !== "undefined") {
-      const p = new URLSearchParams(window.location.search).get("variant");
-      if (p === "A" || p === "B") return p;
+  const [variant, setVariant] = useState<"A" | "B">("A");
+
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search).get("variant");
+    if (p === "A" || p === "B") {
+      setVariant(p);
+    } else {
+      setVariant(Math.random() < 0.5 ? "A" : "B");
     }
-    return Math.random() < 0.5 ? "A" : "B";
-  };
-  const variantRef = useRef<"A" | "B">(getInitialVariant());
-  const variant = variantRef.current;
+  }, []);
 
   const heroTitle = "Bajá entre 8 y 12 kg de grasa, recupera tu energía y tonificá en 90 días desde casa y de forma natural";
   
