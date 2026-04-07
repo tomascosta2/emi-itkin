@@ -16,6 +16,7 @@ export async function POST(req: Request) {
       ...(body.closer !== undefined && { closer: body.closer }),
       ...(body.closerEmail !== undefined && { closerEmail: body.closerEmail }),
       ...(body.startTime !== undefined && { startTime: body.startTime }),
+      ...(body.timeonpage !== undefined && { startTime: body.timeonpage }),
       ...(body.edad !== undefined && { edad: body.edad }),
       ...(body.ocupacion !== undefined && { ocupacion: body.ocupacion }),
       ...(body.objetivo !== undefined && { objetivo: body.objetivo }),
