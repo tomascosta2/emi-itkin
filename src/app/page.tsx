@@ -483,7 +483,7 @@ export default function Home() {
         <div className="cf-container relative">
           <div className="mx-auto w-full max-w-[1200px] text-center">
             <h2 className="text-[32px] md:text-[50px] max-w-[750px] mx-auto font-bold text-white leading-[130%]">
-              Estos Resultados podes Obtener Si Agendas Hoy
+              Tasa de éxito del 100%
             </h2>
             <p className="mt-4 text-white/80 text-[18px] max-w-[500px] mx-auto">
               +300 Hombres Sedentarios ya mejoraron su Fisico, Energia y Salud. Si ellos pudieron, Vos También Podés.
@@ -543,6 +543,9 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            <p className="mt-6 text-white/30 text-[11px] max-w-[500px] mx-auto">
+              Todos los hombres que aparecen en las fotografías dieron su consentimiento expreso para ser mostrados en este sitio.
+            </p>
             <div className="mt-8 md:mt-12">
               <button
                 className="cf-btn disabled:opacity-60 disabled:cursor-not-allowed"
