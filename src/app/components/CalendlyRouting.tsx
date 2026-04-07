@@ -204,6 +204,7 @@ export default function CalendlyRouting() {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ fbp, fbc, eventId: scheduleEventId, email: inviteeEmail, phone: inviteePhone }),
+              keepalive: true,
             })
               .then((res) => console.log("[CalendlyRouting] Schedule CAPI respuesta:", res.status))
               .catch((err) => console.error("[CalendlyRouting] Schedule CAPI error:", err));
@@ -228,6 +229,7 @@ export default function CalendlyRouting() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(n8nPayload),
+            keepalive: true,
           })
             .then((res) => console.log("[CalendlyRouting] N8N respuesta:", res.status))
             .catch((err) => console.error("[CalendlyRouting] N8N error:", err));
@@ -267,10 +269,13 @@ export default function CalendlyRouting() {
             instagram: allAnswers["¿Cuál es tu usuario de Instagram? Ejemplo @emilianoitkin"] ?? "",
           };
           console.log("[CalendlyRouting] Enviando a FFA:", JSON.stringify(ffaPayload, null, 2));
+          // keepalive: true → la request sigue viva aunque el browser navegue.
+          // FFA puede tardar varios segundos por las llamadas a 2chat.
           fetch("/api/analytics/lead", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(ffaPayload),
+            keepalive: true,
           })
             .then(async (res) => {
               const text = await res.text();
@@ -279,10 +284,10 @@ export default function CalendlyRouting() {
             .catch((err) => console.error("[CalendlyRouting] FFA error:", err));
         })();
 
-        console.log("[CalendlyRouting] Redirigiendo a /pages/thankyou en 2000ms...");
+        console.log("[CalendlyRouting] Redirigiendo a /pages/thankyou en 4000ms...");
         setTimeout(() => {
           window.location.href = "/pages/thankyou";
-        }, 2000);
+        }, 4000);
       }
     };
 

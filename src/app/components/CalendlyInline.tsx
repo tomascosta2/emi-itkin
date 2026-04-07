@@ -68,9 +68,11 @@ type Props = {
 export default function CalendlyInline({ name, email, phone }: Props) {
   const [frameLoaded, setFrameLoaded] = useState(false);
 
+  const nameRef = useRef(name);
   const emailRef = useRef(email);
   const phoneRef = useRef(phone);
 
+  useEffect(() => { nameRef.current = name; }, [name]);
   useEffect(() => { emailRef.current = email; }, [email]);
   useEffect(() => { phoneRef.current = phone; }, [phone]);
 
@@ -122,7 +124,7 @@ export default function CalendlyInline({ name, email, phone }: Props) {
 
         const eventUri = e.data.payload?.event?.uri ?? null;
 
-        // Obtener closer y enviar a N8N en background (no bloqueante)
+        // Obtener closer y enviar a FFA + N8N en background
         (async () => {
           let closer: string | null = null;
           let closerEmail: string | null = null;
@@ -140,10 +142,29 @@ export default function CalendlyInline({ name, email, phone }: Props) {
               startTime = json.startTime ?? null;
             } catch {}
           }
+
+          // Marcar el lead como agendado en FFA (upsert por correo)
+          // keepalive: true → la request sobrevive a la navegación a /pages/thankyou
+          fetch("/api/analytics/lead", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: nameRef.current,
+              email: currentEmail,
+              phone: currentPhone,
+              agendo: "Si",
+              closer,
+              closerEmail,
+              startTime,
+            }),
+            keepalive: true,
+          }).catch((err) => console.error("[CalendlyInline] FFA error:", err));
+
           fetch(CALL_SHEDULED, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: currentEmail, closer, closerEmail, calendlyEventUri: eventUri, startTime }),
+            keepalive: true,
           }).catch(() => {});
         })();
 
@@ -176,12 +197,13 @@ export default function CalendlyInline({ name, email, phone }: Props) {
               fbc,
               eventId,
             }),
+            keepalive: true,
           }).catch((err) => console.error("Qualified schedule error:", err));
         }
 
         setTimeout(() => {
           window.location.href = "/pages/thankyou";
-        }, 600);
+        }, 4000);
       }
     };
 
