@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 
 type Props = {
   variant: string;
-  timeOnPage?: number;
+  timeonpage?: number;
   onClose: () => void;
   onContactReady?: (name: string, email: string, phone: string) => void;
   onCalendly?: () => void;
@@ -144,7 +144,7 @@ const ensureFbcFromFbclid = () => {
   } catch { }
 };
 
-export default function CalificationFormDirect({ variant, timeOnPage, onClose, onContactReady, onCalendly }: Props) {
+export default function CalificationFormDirect({ variant, timeonpage, onClose, onContactReady, onCalendly }: Props) {
   const {
     register,
     handleSubmit,
@@ -367,7 +367,7 @@ export default function CalificationFormDirect({ variant, timeOnPage, onClose, o
         phone: `${values.codigoPais}${values.telefono}`.replace(/[\s\-().]/g, ''),
         variant,
         ad: values.ad,
-        timeOnPage,
+        timeonpage,
       }),
     }).catch(() => {});
   };
@@ -437,7 +437,7 @@ export default function CalificationFormDirect({ variant, timeOnPage, onClose, o
           freno: data.freno,
           intentos: data.intentos,
           presupuesto: data.presupuesto,
-          timeOnPage,
+          timeonpage,
           fbp,
           fbc,
         }),

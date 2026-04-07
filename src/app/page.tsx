@@ -18,7 +18,7 @@ export default function Home() {
   const [isFormOpened, setIsFormOpened] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
   const [calendlyPrefill, setCalendlyPrefill] = useState<{ name: string; email: string; phone: string } | null>(null);
-  const [timeOnPage, setTimeOnPage] = useState(0);
+  const [timeonpage, setTimeOnPage] = useState(0);
   const pageLoadTime = useRef<number>(Date.now());
 
   const openForm = () => {
@@ -89,7 +89,7 @@ export default function Home() {
       {isFormOpened && (
         <CalificationFormDirect
           variant={variant}
-          timeOnPage={timeOnPage}
+          timeonpage={timeonpage}
           onClose={() => setIsFormOpened(false)}
           onContactReady={(name, email, phone) => setCalendlyPrefill({ name, email, phone })}
           onCalendly={() => {
