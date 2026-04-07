@@ -196,7 +196,7 @@ export default function CalificationFormDirect({ variant, onClose, onContactRead
       {
         type: 'contact',
         id: 'contact',
-        title: 'Completá tus datos para agendar tu consulta gratuita y ver si somos un buen fit',
+        title: 'Completá tus datos para agendar tu sesión de diagnóstico y ver cómo te podemos ayudar.',
         subtitle: 'Tus datos son 100% confidenciales. Te tomará menos de 1 minuto.',
       },
       {
