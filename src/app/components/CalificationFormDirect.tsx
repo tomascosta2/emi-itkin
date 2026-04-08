@@ -32,10 +32,10 @@ type FormValues = {
 // IDs válidos de preguntas de opción única
 type SingleId = Extract<
   keyof FormValues,
-  'presupuesto' | 'cuerpo' | 'urgencia' | 'ocupacion' | 'compromiso90'
+  'presupuesto' | 'urgencia' | 'ocupacion' | 'compromiso90' | 'intentos'
 >;
 
-type MultiId = 'freno' | 'intentos';
+type MultiId = 'cuerpo';
 
 type ContactStep = {
   type: 'contact';
@@ -195,18 +195,10 @@ export default function CalificationFormDirect({ variant, timeonpage, onClose, o
   const steps = useMemo<(ContactStep | SingleStep | MultiStep | TextStep)[]>(
     () => [
       {
-        type: 'text',
-        id: 'edad',
-        required: true,
-        title: '¿Cuántos años tenés?*',
-        placeholder: 'Ej: 35',
-        inputType: 'number',
-      },
-      {
         type: 'single',
         id: 'ocupacion',
         required: true,
-        title: '¿A qué te dedicas?*',
+        title: '¿A qué te dedicás?',
         subtitle: 'Esto nos ayuda a adaptar tu alimentación y entrenamiento a tu estilo de vida.',
         options: [
           { value: 'negocio-propio', label: 'Soy empresario' },
@@ -220,10 +212,44 @@ export default function CalificationFormDirect({ variant, timeonpage, onClose, o
         ],
       },
       {
+        type: 'multi',
+        id: 'cuerpo',
+        required: true,
+        title: '¿Cómo describirías tu situación física actual?',
+        subtitle: 'Podés elegir más de una opción.',
+        options: [
+          { value: 'grasa', label: 'Tengo exceso de grasa o panza que no puedo bajar' },
+          { value: 'energia', label: 'Me siento sin energía y con el cuerpo oxidado' },
+          { value: 'dolores', label: 'Empecé a sentir dolores o rigidez que antes no tenía' },
+          { value: 'masa-muscular', label: 'Perdí masa muscular y fuerza con los años' },
+          { value: 'sin-rumbo', label: 'Estoy fuera de ritmo, sé que tengo que arrancar pero no sé por dónde' },
+        ],
+      },
+      {
+        type: 'single',
+        id: 'intentos',
+        required: true,
+        title: '¿Probaste antes con el gimnasio u otra actividad física?',
+        options: [
+          { value: 'no-sostuve', label: 'Sí, fui un tiempo pero no lo pude sostener' },
+          { value: 'abandone', label: 'Lo intenté varias veces y siempre abandoné' },
+          { value: 'sin-resultados', label: 'Arranqué por mi cuenta pero sin resultados claros' },
+          { value: 'nunca', label: 'Nunca arranqué en serio' },
+        ],
+      },
+      {
+        type: 'text',
+        id: 'edad',
+        required: true,
+        title: '¿Cuántos años tenés?',
+        placeholder: 'Ej: 35',
+        inputType: 'number',
+      },
+      {
         type: 'single',
         id: 'urgencia',
         required: true,
-        title: '¿Qué tan urgente es para vos cambiar tu cuerpo ahora mismo?*',
+        title: '¿Qué tan urgente es para vos cambiar tu cuerpo ahora mismo?',
         subtitle: 'Respondé con total sinceridad. Esto nos ayuda a ver cómo ayudarte.',
         options: [
           { value: 'urgencia-baja', label: '(3 de 10) Estoy buscando info. No es prioridad ahora.' },
@@ -236,21 +262,11 @@ export default function CalificationFormDirect({ variant, timeonpage, onClose, o
         type: 'single',
         id: 'compromiso90',
         required: true,
-        title: '¿Estás listo para comprometerte 90 días con tu cambio?*',
+        title: '¿Estás listo para comprometerte 90 días con tu cambio?',
         options: [
           { value: 'si', label: 'Sí, sé que los cambios duraderos no se logran en 2 semanas.' },
           { value: 'no', label: 'No, ahora no puedo comprometerme a 90 días.' },
         ],
-      },
-      {
-        type: 'text',
-        id: 'objetivo',
-        required: true,
-        title:
-          '¿Cuál es tu objetivo de salud/calidad de vida y cómo querés sentirte en los próximos meses?*',
-        subtitle: 'Cuanto más nos cuentes, mejor vamos a poder ayudarte.',
-        placeholder:
-          'Ej: Tener más energía, dejar de cansarme, sentirme bien con mi cuerpo, mejorar mi salud...',
       },
       {
         type: 'single' as const,
@@ -400,11 +416,10 @@ export default function CalificationFormDirect({ variant, timeonpage, onClose, o
           ad: data.ad,
           edad: data.edad,
           ocupacion: data.ocupacion,
-          compromiso90: data.compromiso90,
-          urgencia: data.urgencia,
-          objetivo: data.objetivo,
-          freno: data.freno,
+          cuerpo: data.cuerpo,
           intentos: data.intentos,
+          urgencia: data.urgencia,
+          compromiso90: data.compromiso90,
           presupuesto: data.presupuesto,
           timeonpage,
           fbp,
