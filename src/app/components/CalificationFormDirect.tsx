@@ -195,6 +195,14 @@ export default function CalificationFormDirect({ variant, timeonpage, onClose, o
   const steps = useMemo<(ContactStep | SingleStep | MultiStep | TextStep)[]>(
     () => [
       {
+        type: 'text',
+        id: 'edad',
+        required: true,
+        title: '¿Cuántos años tenés?*',
+        placeholder: 'Ej: 35',
+        inputType: 'number',
+      },
+      {
         type: 'single',
         id: 'ocupacion',
         required: true,
@@ -213,16 +221,6 @@ export default function CalificationFormDirect({ variant, timeonpage, onClose, o
       },
       {
         type: 'single',
-        id: 'compromiso90',
-        required: true,
-        title: '¿Estás listo para comprometerte 90 días con tu cambio?*',
-        options: [
-          { value: 'si', label: 'Sí, sé que los cambios duraderos no se logran en 2 semanas.' },
-          { value: 'no', label: 'No, ahora no puedo comprometerme a 90 días.' },
-        ],
-      },
-      {
-        type: 'single',
         id: 'urgencia',
         required: true,
         title: '¿Qué tan urgente es para vos cambiar tu cuerpo ahora mismo?*',
@@ -235,12 +233,14 @@ export default function CalificationFormDirect({ variant, timeonpage, onClose, o
         ],
       },
       {
-        type: 'text',
-        id: 'edad',
+        type: 'single',
+        id: 'compromiso90',
         required: true,
-        title: '¿Cuántos años tenés?*',
-        placeholder: 'Ej: 35',
-        inputType: 'number',
+        title: '¿Estás listo para comprometerte 90 días con tu cambio?*',
+        options: [
+          { value: 'si', label: 'Sí, sé que los cambios duraderos no se logran en 2 semanas.' },
+          { value: 'no', label: 'No, ahora no puedo comprometerme a 90 días.' },
+        ],
       },
       {
         type: 'text',
