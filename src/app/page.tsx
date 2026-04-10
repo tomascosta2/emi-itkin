@@ -30,6 +30,12 @@ export default function Home() {
   const [isUnlocked, setIsUnlocked] = useState(false);
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'PageView');
+    }
+  }, []);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setIsUnlocked(true);
     }, 0 * 60 * 1000); // 5 minutos
