@@ -195,12 +195,6 @@ export default function CalificationFormDirect({ variant, timeonpage, onClose, o
   const steps = useMemo<(ContactStep | SingleStep | MultiStep | TextStep)[]>(
     () => [
       {
-        type: 'contact',
-        id: 'contact',
-        title: 'Completá tus datos para agendar tu sesión de diagnóstico y ver cómo te podemos ayudar.',
-        subtitle: 'Tus datos son 100% confidenciales. Te tomará menos de 1 minuto.',
-      },
-      {
         type: 'single',
         id: 'ocupacion',
         required: true,
@@ -286,6 +280,12 @@ export default function CalificationFormDirect({ variant, timeonpage, onClose, o
           { value: 'presupuesto-bajo', label: 'No dispongo de este presupuesto actualmente.' },
         ],
       },
+      {
+        type: 'contact',
+        id: 'contact',
+        title: 'Completá tus datos para agendar tu sesión de diagnóstico y ver cómo te podemos ayudar.',
+        subtitle: 'Tus datos son 100% confidenciales. Te tomará menos de 1 minuto.',
+      },
     ],
     [variant]
   );
@@ -365,28 +365,6 @@ export default function CalificationFormDirect({ variant, timeonpage, onClose, o
     b?.classList.add('overflow-hidden');
     return () => b?.classList.remove('overflow-hidden');
   }, []);
-
-  const sentContactRef = useRef(false);
-
-  const sendContactToFFA = () => {
-    if (sentContactRef.current) return;
-    if (!isContactValid()) return;
-
-    sentContactRef.current = true;
-
-    fetch('/api/analytics/lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: values.name,
-        email: values.email,
-        phone: `${values.codigoPais}${values.telefono}`.replace(/[\s\-().]/g, ''),
-        variant,
-        ad: values.ad,
-        timeonpage,
-      }),
-    }).catch(() => {});
-  };
 
   // ------- Submit
   const onSubmit = async (data: FormValues) => {
@@ -475,6 +453,7 @@ export default function CalificationFormDirect({ variant, timeonpage, onClose, o
         data.presupuesto === 'presupuesto-alto' ||
         data.presupuesto === 'presupuesto-muy-alto'
       ) {
+        onContactReady?.(data.name, data.email, `${data.codigoPais}${data.telefono}`);
         if (onCalendly) {
           onCalendly();
         } else {
@@ -725,11 +704,6 @@ export default function CalificationFormDirect({ variant, timeonpage, onClose, o
                 onClick={async () => {
                   const s = steps[stepIndex];
                   if (!canAdvanceFromStep(s)) return;
-
-                  if (s.type === 'contact') {
-                    sendContactToFFA();
-                    onContactReady?.(values.name, values.email, `${values.codigoPais}${values.telefono}`);
-                  }
 
                   setStepIndex((i) => i + 1);
                 }}
